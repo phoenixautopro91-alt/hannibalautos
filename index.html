@@ -3,19 +3,22 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Hannibal Autos – Garage mécanique et voitures d'occasion à Maisse (91)</title>
-<meta name="description" content="Garage Hannibal Autos à Maisse (Essonne) : entretien et réparation toutes marques, au garage ou à domicile, et voitures d'occasion remises en état. Accessible depuis Paris en RER D. 06 99 50 18 49.">
+<title>Hannibal Autos – Garage mécanique à Maisse (91)</title>
+<meta name="description" content="Garage Hannibal Autos à Maisse (Essonne) : mécanique toutes marques au garage ou à domicile, remorquage en Île-de-France et voitures d'occasion. Ouvert du lundi au samedi, 10h-20h. Accès RER D. 06 99 50 18 49.">
 <link rel="canonical" href="https://hannibalautos.fr/">
 <meta name="theme-color" content="#1E131B">
-<link rel="icon" type="image/svg+xml" href="img/favicon.svg?v=3">
-<link rel="icon" type="image/png" href="img/favicon.png?v=3">
+<link rel="icon" href="/favicon.ico?v=4" sizes="48x48">
+<link rel="icon" type="image/png" sizes="96x96" href="img/favicon-96.png?v=4">
+<link rel="icon" type="image/png" sizes="192x192" href="img/favicon-192.png?v=4">
+<link rel="icon" type="image/svg+xml" href="img/favicon.svg?v=4">
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png?v=2">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="fr_FR">
 <meta property="og:title" content="Hannibal Autos – Garage à Maisse">
-<meta property="og:description" content="Mécanique toutes marques et voitures d'occasion remises en état à Maisse (91).">
+<meta property="og:description" content="Mécanique toutes marques, remorquage en Île-de-France et voitures d'occasion à Maisse (91).">
 <meta property="og:url" content="https://hannibalautos.fr/">
 <meta property="og:image" content="https://hannibalautos.fr/img/partage.jpg">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Hannibal Autos","alternateName":"Hannibal Auto","url":"https://hannibalautos.fr/"}</script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"AutoRepair","name":"Hannibal Autos","legalName":"PHOENIXAUTO SAS",
 "url":"https://hannibalautos.fr/","image":"https://hannibalautos.fr/img/partage.jpg","telephone":"+33699501849",
@@ -257,6 +260,17 @@ footer{padding-block:24px 40px}
 .car[data-href]:hover .lbc{background:rgba(138,61,110,.35);border-color:var(--mauve-soft)}
 .car[data-href]:hover .lbc svg{transform:translate(2px,-2px)}
 .car.sold .sphoto::after{content:"VENDUE";position:absolute;top:18px;right:-34px;transform:rotate(35deg);background:var(--mauve);color:#fff;font:800 14px var(--display);letter-spacing:3px;padding:6px 44px}
+/* Voitures en préparation : même forme que les voitures en vente (zone image avec le logo de la marque) ; barre lente et douce */
+.car.prep{padding:0;min-height:0}
+.car.prep .pphoto{position:relative;aspect-ratio:4/3;overflow:hidden;background:radial-gradient(ellipse at 50% 55%,rgba(138,61,110,.28),rgba(30,19,27,0) 70%),linear-gradient(160deg,rgba(255,255,255,.03),rgba(0,0,0,.12));border-bottom:1px solid rgba(194,135,174,.14)}
+.car.prep .pphoto .badge{position:absolute;top:16px;left:16px}
+.car.prep .mlogo{left:50%;top:50%;right:auto;width:120px;height:120px;margin:-60px 0 0 -60px;opacity:.32}
+.car.prep:hover .mlogo{opacity:.45;transform:scale(1.04)}
+.car.prep .sbody{position:relative;flex:1;padding:18px 20px 22px;display:flex;flex-direction:column;gap:6px}
+.car.prep .bar{margin-top:auto}
+.car.prep .model{margin-bottom:14px}
+.car .bar::after{width:45%;opacity:.6;background:linear-gradient(90deg,transparent,var(--mauve-soft),var(--gold-soft),transparent);animation:work 14s ease-in-out infinite}
+@media (max-width:760px){.car.prep .mlogo{width:56px;height:56px;top:auto;bottom:14px;margin:0 0 0 -28px}.car.prep .pphoto .badge{top:10px;left:10px}.car.prep .sbody{padding:12px 14px 16px}.car.prep .model{margin-bottom:10px}}
 .legal{max-width:760px}
 /* Barre d'actions téléphone */
 .mbar{display:none}
@@ -457,6 +471,21 @@ body{background:#1E131B}
   .car .model{font-size:20px}
   .car{padding:12px}
 }
+
+.glow{filter:none!important;will-change:transform}
+.glow.g1{width:760px;height:760px;left:-280px}.glow.g2{width:860px;height:860px;right:-330px}
+.gnav{backdrop-filter:none!important;-webkit-backdrop-filter:none!important;background:rgba(30,19,27,.72)}
+.hero-media img,.photo img{will-change:transform}
+.paused,.paused *{animation-play-state:paused!important}
+@media (max-width:760px){
+  .car.prep{padding:14px;min-height:150px;justify-content:space-between}
+  .car.prep .pphoto{position:static;aspect-ratio:auto;background:none;border:0;overflow:visible}
+  .car.prep .pphoto .badge{position:relative;top:auto;left:auto}
+  .car.prep .mlogo,.car.prep:hover .mlogo{left:auto;right:12px;top:50%;bottom:auto;width:58px;height:58px;margin:-29px 0 0 0;opacity:.24;transform:none}
+  .car.prep .sbody{padding:0;flex:0 0 auto;gap:0}
+  .car.prep .model{margin-bottom:0}
+  .car.prep .bar{margin-top:12px}
+}
 </style>
 </head>
 <body>
@@ -569,7 +598,7 @@ body{background:#1E131B}
   <a class="btn btn-line" href="https://www.google.com/maps/search/?api=1&amp;query=Hannibal+Autos+17+rue+de+la+Fert%C3%A9+Alais+91720+Maisse" target="_blank" rel="noopener">Itinéraire</a>
 </div>
 
-<script src="voitures.js?v=3dfe280d"></script>
+<script src="voitures.js?v=4f82a5bc"></script>
 <script>
 (function(){
   var GEAR = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#E8C373" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M5.3 18.7l2.1-2.1M16.6 7.4l2.1-2.1"/></svg>';
@@ -597,7 +626,7 @@ body{background:#1E131B}
   var html = sale.concat(prep).map(function(v, i){
     var d = 'style="--d:' + (i * 110) + 'ms"';
     if (v.statut === 'preparation') {
-      return '<article class="car" data-r ' + d + '><span class="el elor" aria-hidden="true"></span>' + mlogo(v) + '<span class="badge">GEAR EN PRÉPARATION</span><div><div class="brandn">' + esc(v.marque) + '</div><div class="model">' + esc(v.modele) + '</div><div class="bar" aria-hidden="true"></div></div></article>';
+      return '<article class="car prep" data-r ' + d + '><div class="pphoto">' + mlogo(v) + '<span class="badge">GEAR EN PRÉPARATION</span></div><div class="sbody"><div class="brandn">' + esc(v.marque) + '</div><div class="model">' + esc(v.modele) + '</div><div class="bar" aria-hidden="true"></div></div></article>';
     }
     var SP = function(d, x){ return x ? '<span class="spec"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + d + '</svg>' + esc(x) + '</span>' : ''; };
     var specs = SP('<rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/>', v.annee) +
@@ -689,6 +718,13 @@ body{background:#1E131B}
   var b = document.getElementById('burger'), m = document.getElementById('menu');
   b.addEventListener('click', function(){ var o = m.classList.toggle('open'); b.setAttribute('aria-expanded', o); });
   m.addEventListener('click', function(e){ if(e.target.tagName==='A'){ m.classList.remove('open'); b.setAttribute('aria-expanded', false); } });
+})();
+</script>
+<script>
+(function(){
+  if (!('IntersectionObserver' in window)) return;
+  var io = new IntersectionObserver(function(es){ es.forEach(function(e){ e.target.classList.toggle('paused', !e.isIntersecting); }); }, {rootMargin:'100px'});
+  [].forEach.call(document.querySelectorAll('.hero, section, footer, .frieze'), function(el){ io.observe(el); });
 })();
 </script>
 </body>
