@@ -251,6 +251,11 @@ footer{padding-block:24px 40px}
 .car:hover .mlogo{opacity:.38;transform:scale(1.04)}
 .car.sale .mlogo{width:76px;height:76px;margin-top:-38px}
 @media (max-width:700px){.car .mlogo{width:58px;height:58px;margin-top:-29px;right:12px}.car.sale .mlogo{width:64px;height:64px;margin-top:-32px;right:18px}}
+.car[data-href]{cursor:pointer}
+.car .lbc{align-self:flex-start;margin-top:2px;padding:11px 18px;font-size:15px;gap:8px}
+.car .lbc svg{flex:none;transition:transform .3s var(--ease)}
+.car[data-href]:hover .lbc{background:rgba(138,61,110,.35);border-color:var(--mauve-soft)}
+.car[data-href]:hover .lbc svg{transform:translate(2px,-2px)}
 .car.sold .sphoto::after{content:"VENDUE";position:absolute;top:18px;right:-34px;transform:rotate(35deg);background:var(--mauve);color:#fff;font:800 14px var(--display);letter-spacing:3px;padding:6px 44px}
 .legal{max-width:760px}
 /* Barre d'actions téléphone */
@@ -493,7 +498,6 @@ body{background:#1E131B}
     <div class="wrap">
       <div class="head" data-r>
         <div><h2 id="carsTitle">Voitures à vendre</h2><p id="carsSub" hidden></p></div>
-        <a href="https://www.leboncoin.fr" style="font-weight:700;text-decoration:none">Nos annonces Leboncoin <span class="arrow">→</span></a>
       </div>
       <div class="cars" id="cars"></div>
     </div>
@@ -565,7 +569,7 @@ body{background:#1E131B}
   <a class="btn btn-line" href="https://www.google.com/maps/search/?api=1&amp;query=Hannibal+Autos+17+rue+de+la+Fert%C3%A9+Alais+91720+Maisse" target="_blank" rel="noopener">Itinéraire</a>
 </div>
 
-<script src="voitures.js?v=c5ab7eb8"></script>
+<script src="voitures.js?v=3dfe280d"></script>
 <script>
 (function(){
   var GEAR = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#E8C373" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M5.3 18.7l2.1-2.1M16.6 7.4l2.1-2.1"/></svg>';
@@ -600,15 +604,20 @@ body{background:#1E131B}
       SP('<path d="M4 17a8 8 0 1 1 16 0"/><path d="M12 17l3.5-4.5"/><circle cx="12" cy="17" r="1.1"/>', v.km ? nb(v.km) + ' km' : '') +
       SP('<path d="M5 20V5.5A1.5 1.5 0 0 1 6.5 4h6A1.5 1.5 0 0 1 14 5.5V20M3.5 20h12M5 10h9"/><path d="M14 8l3 3v6a1.5 1.5 0 0 0 3 0V9.5L17.5 7"/>', v.carburant) +
       SP('<circle cx="6" cy="6" r="1.8"/><circle cx="12" cy="6" r="1.8"/><circle cx="18" cy="6" r="1.8"/><circle cx="6" cy="18" r="1.8"/><circle cx="12" cy="18" r="1.8"/><path d="M6 8v8M12 8v8M18 8v4H6"/>', v.boite);
-    return '<article class="car sale' + (v.statut === 'vendue' ? ' sold' : '') + '" data-r ' + d + '>' +
+    var lien = v.lien && v.statut !== 'vendue' ? ' data-href="' + esc(v.lien) + '"' : '';
+    return '<article class="car sale' + (v.statut === 'vendue' ? ' sold' : '') + '"' + lien + ' data-r ' + d + '>' +
       gal(v) +
       '<div class="sbody">' + mlogo(v) + '<div class="brandn">' + esc(v.marque) + '</div><div class="model">' + esc(v.modele) + '</div>' +
       (specs ? '<div class="specs">' + specs + '</div>' : '') +
       (v.prix && v.statut !== 'vendue' ? '<div class="price">' + nb(v.prix) + ' €</div>' : '') +
-      (v.lien && v.statut !== 'vendue' ? '<a class="btn btn-gold" href="' + esc(v.lien) + '" target="_blank" rel="noopener">Voir l\'annonce</a>' : '') +
+      (v.lien && v.statut !== 'vendue' ? '<a class="btn btn-line lbc" href="' + esc(v.lien) + '" target="_blank" rel="noopener">Voir l\'annonce sur Leboncoin<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></a>' : '') +
       '</div></article>';
   }).join('');
   box.innerHTML = html.split('GEAR ').join(GEAR);
+  // Toute la carte ouvre l'annonce Leboncoin (sauf les flèches des photos)
+  [].forEach.call(box.querySelectorAll('.car[data-href]'), function(c){
+    c.addEventListener('click', function(e){ if (e.target.closest('.gnav, a')) return; window.open(c.getAttribute('data-href'), '_blank', 'noopener'); });
+  });
   // Boutons et glisser du doigt pour changer de photo
   [].forEach.call(box.querySelectorAll('.gal'), function(g){
     var ph = g.getAttribute('data-photos').split('|'), img = g.querySelector('img'), cnt = g.querySelector('.gcount'), i = 0, alt = img.alt.replace(/, photo 1$/, '');
@@ -627,7 +636,7 @@ body{background:#1E131B}
   });
   if (!V.length) {
     var s = document.getElementById('carsSub');
-    s.textContent = 'Pas de voiture en ce moment. Retrouvez nos annonces sur Leboncoin.';
+    s.textContent = 'Pas de voiture en ce moment.';
     s.hidden = false;
   }
 })();
