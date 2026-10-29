@@ -19,7 +19,7 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"AutoRepair","name":"Hannibal Autos","legalName":"PHOENIXAUTO SAS",
 "url":"https://hannibalautos.fr/","image":"https://hannibalautos.fr/img/partage.jpg","telephone":"+33699501849",
-"email":"phoenixautopro91@gmail.com",
+"email":"contact@hannibalautos.fr",
 "address":{"@type":"PostalAddress","streetAddress":"17 rue de la Ferté Alais","postalCode":"91720","addressLocality":"Maisse","addressCountry":"FR"},
 "openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"opens":"10:00","closes":"20:00"}],
 "areaServed":["Maisse","Milly-la-Forêt","La Ferté-Alais","Boutigny-sur-Essonne","Essonne"],
@@ -235,8 +235,22 @@ footer{padding-block:24px 40px}
 .car.sale .sphoto img{width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease)}
 .car.sale:hover .sphoto img{transform:scale(1.06)}
 .car.sale .sbody{position:relative;padding:18px 20px 20px;display:flex;flex-direction:column;gap:6px}
-.car .specs{color:var(--muted);font-size:15px}
+.car .specs{position:relative;display:flex;flex-wrap:wrap;gap:7px;margin:6px 0 2px;max-width:calc(100% - 70px)}
+.car .spec{display:inline-flex;align-items:center;gap:6px;padding:5px 11px 5px 9px;border-radius:20px;background:rgba(255,255,255,.045);border:1px solid rgba(194,135,174,.22);color:#EDE3EA;font-size:13.5px;font-weight:600;letter-spacing:.2px;white-space:nowrap}
+.car .spec svg{color:var(--gold-soft);flex:none}
 .car .price{font:800 26px var(--display);color:var(--gold-soft);margin:4px 0 10px}
+.car.sale .sphoto img.fade{opacity:.35}
+.car.sale .sphoto.gal img{transition:transform .7s var(--ease),opacity .35s}
+.gnav{position:absolute;top:50%;width:42px;height:42px;margin-top:-21px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(30,19,27,.62);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);transition:background .3s,border-color .3s;z-index:2}
+.gnav:hover,.gnav:focus-visible{background:rgba(138,61,110,.85);border-color:var(--gold-soft)}
+.gnav.prev{left:12px}.gnav.prev svg{transform:rotate(180deg)}
+.gnav.next{right:12px}
+.gcount{position:absolute;right:12px;bottom:12px;padding:4px 10px;border-radius:20px;background:rgba(30,19,27,.7);color:#fff;font-size:13px;font-weight:700;letter-spacing:.5px;z-index:2}
+@media (max-width:700px){.car.sale{grid-column:1/-1}.gnav{width:38px;height:38px;margin-top:-19px}}
+.car .mlogo{position:absolute;right:22px;top:50%;width:92px;height:92px;margin-top:-46px;object-fit:contain;opacity:.24;pointer-events:none;transition:opacity .5s,transform .8s var(--ease)}
+.car:hover .mlogo{opacity:.38;transform:scale(1.04)}
+.car.sale .mlogo{width:76px;height:76px;margin-top:-38px}
+@media (max-width:700px){.car .mlogo{width:58px;height:58px;margin-top:-29px;right:12px}.car.sale .mlogo{width:64px;height:64px;margin-top:-32px;right:18px}}
 .car.sold .sphoto::after{content:"VENDUE";position:absolute;top:18px;right:-34px;transform:rotate(35deg);background:var(--mauve);color:#fff;font:800 14px var(--display);letter-spacing:3px;padding:6px 44px}
 .legal{max-width:760px}
 /* Barre d'actions téléphone */
@@ -318,8 +332,13 @@ header.scrolled{background:rgba(30,19,27,.96)}
 .contact>div:first-of-type{display:flex;flex-direction:column;justify-content:center}
 .contact .addr1{font-size:19px}
 .contact .phone{margin:10px 0 16px}
-.crow{display:flex;align-items:center;gap:14px}
+.crow{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.btn-mail svg{flex:none}
+.contact .phone+.mailtxt{margin:-8px 0 22px}
+.mailtxt{display:block;color:var(--muted);font-size:15px;text-decoration:none;transition:color .3s}
+.mailtxt:hover{color:var(--gold-soft)}
 .crow .btn{padding:11px 20px;font-size:16px}
+@media (max-width:420px){.crow{gap:10px}.crow .btn{padding:10px 13px;font-size:15px;gap:8px}}
 /* l'éléphant : une seule fois, en grand, centré, en signature avant le pied de page */
 footer{padding-top:24px}
 footer>.el{width:340px;margin:24px auto 32px;opacity:.16;pointer-events:none}
@@ -519,7 +538,8 @@ body{background:#1E131B}
           <p data-r style="--d:390ms" class="rerline"><img src="img/rer-d.png" alt="RER D" width="58" height="27">Depuis Paris, gare de Maisse</p>
           <p data-r style="--d:510ms" class="hours"><b>Lun – Sam</b> 10h – 20h</p>
           <a data-r style="--d:630ms" class="phone" href="tel:+33699501849">06 99 50 18 49</a>
-          <div data-r style="--d:750ms" class="crow"><a class="btn btn-wa" href="https://wa.me/33699501849"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11.6a8.2 8.2 0 0 1-12.1 7.2L3.5 20l1.3-4.2A8.2 8.2 0 1 1 20 11.6z"/><path d="M9 8.8c.3 2.6 2.3 4.9 5.2 5.6l1.1-1.2-1.6-.9-.8.7c-1-.4-1.9-1.3-2.3-2.3l.7-.8-.9-1.6z"/></svg>WhatsApp</a><div class="social "><a href="https://www.instagram.com/hannibal_auto/" target="_blank" rel="noopener" aria-label="Instagram Hannibal Auto"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1" fill="currentColor" stroke="none"/></svg></a><!-- Pour activer : remplacer href="#" par le lien et enlever « hidden » --><a href="#" target="_blank" rel="noopener" aria-label="Facebook Hannibal Auto" hidden><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-7.5h2.6l.4-3h-3V8.6c0-.9.3-1.5 1.5-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.8 1.4-3.8 3.9v2.3H7.9v3h2.6V21z"/></svg></a><a href="#" target="_blank" rel="noopener" aria-label="TikTok Hannibal Auto" hidden><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 3c.3 2.2 1.6 3.6 3.9 3.8v3.1c-1.4.1-2.6-.3-3.9-1.1v5.6c0 3.9-3.6 6.4-7.1 5.4-3.6-1-4.9-5.5-2.4-8.3 1.1-1.2 2.7-1.8 4.3-1.7v3.2c-.4-.1-.8-.2-1.2-.1-1.4.2-2.2 1.4-1.8 2.8.4 1.5 2.4 2 3.5 1 .5-.5.8-1.2.8-2V3z"/></svg></a></div></div>
+          <a data-r style="--d:690ms" class="mailtxt" href="mailto:contact@hannibalautos.fr">contact@hannibalautos.fr</a>
+          <div data-r style="--d:750ms" class="crow"><a class="btn btn-wa" href="https://wa.me/33699501849"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11.6a8.2 8.2 0 0 1-12.1 7.2L3.5 20l1.3-4.2A8.2 8.2 0 1 1 20 11.6z"/><path d="M9 8.8c.3 2.6 2.3 4.9 5.2 5.6l1.1-1.2-1.6-.9-.8.7c-1-.4-1.9-1.3-2.3-2.3l.7-.8-.9-1.6z"/></svg>WhatsApp</a><a class="btn btn-line btn-mail" href="mailto:contact@hannibalautos.fr" title="contact@hannibalautos.fr"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3.5 6.5l8.5 6.5 8.5-6.5"/></svg>Écrire au garage</a><div class="social "><a href="https://www.instagram.com/hannibal_auto/" target="_blank" rel="noopener" aria-label="Instagram Hannibal Auto"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1" fill="currentColor" stroke="none"/></svg></a><!-- Pour activer : remplacer href="#" par le lien et enlever « hidden » --><a href="#" target="_blank" rel="noopener" aria-label="Facebook Hannibal Auto" hidden><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-7.5h2.6l.4-3h-3V8.6c0-.9.3-1.5 1.5-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.8 1.4-3.8 3.9v2.3H7.9v3h2.6V21z"/></svg></a><a href="#" target="_blank" rel="noopener" aria-label="TikTok Hannibal Auto" hidden><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 3c.3 2.2 1.6 3.6 3.9 3.8v3.1c-1.4.1-2.6-.3-3.9-1.1v5.6c0 3.9-3.6 6.4-7.1 5.4-3.6-1-4.9-5.5-2.4-8.3 1.1-1.2 2.7-1.8 4.3-1.7v3.2c-.4-.1-.8-.2-1.2-.1-1.4.2-2.2 1.4-1.8 2.8.4 1.5 2.4 2 3.5 1 .5-.5.8-1.2.8-2V3z"/></svg></a></div></div>
         </div>
         <div class="mapcard real" data-r="zoom" style="--d:200ms">
           <iframe src="https://maps.google.com/maps?q=Hannibal%20Autos%2017%20rue%20de%20la%20Fert%C3%A9%20Alais%2091720%20Maisse&amp;z=15&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Carte : Hannibal Autos, 17 rue de la Ferté Alais à Maisse"></iframe>
@@ -552,23 +572,59 @@ body{background:#1E131B}
   var V = window.VOITURES || [], box = document.getElementById('cars');
   function esc(s){ return String(s == null ? '' : s).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
   function nb(n){ return Number(n).toLocaleString('fr-FR'); }
+  var NAV = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>';
+  // Photos d'une voiture : une seule photo (photo) ou plusieurs (photos) avec boutons pour avancer
+  function gal(v){
+    var ph = v.photos && v.photos.length ? v.photos : (v.photo ? [v.photo] : []);
+    if (!ph.length) return '';
+    var alt = esc(v.marque + ' ' + v.modele);
+    if (ph.length === 1) return '<div class="sphoto"><img loading="lazy" src="' + esc(ph[0]) + '" alt="' + alt + '"></div>';
+    return '<div class="sphoto gal" data-photos="' + esc(ph.join('|')) + '" data-i="0">' +
+      '<img loading="lazy" src="' + esc(ph[0]) + '" alt="' + alt + ', photo 1">' +
+      '<button type="button" class="gnav prev" aria-label="Photo précédente">' + NAV + '</button>' +
+      '<button type="button" class="gnav next" aria-label="Photo suivante">' + NAV + '</button>' +
+      '<span class="gcount">1 / ' + ph.length + '</span></div>';
+  }
+  // Logo de la marque, en filigrane dans la carte
+  var MARQUES = {'renault':'renault','peugeot':'peugeot','dacia':'dacia','citroën':'citroen','citroen':'citroen','alfa romeo':'alfaromeo'};
+  function mlogo(v){ var f = MARQUES[String(v.marque || '').toLowerCase()]; return f ? '<img class="mlogo" src="img/marques/' + f + '.svg" alt="" aria-hidden="true">' : ''; }
   var sale = V.filter(function(v){ return v.statut === 'vente' || v.statut === 'vendue'; });
   var prep = V.filter(function(v){ return v.statut === 'preparation'; });
   var html = sale.concat(prep).map(function(v, i){
     var d = 'style="--d:' + (i * 110) + 'ms"';
     if (v.statut === 'preparation') {
-      return '<article class="car" data-r ' + d + '><span class="el elor" aria-hidden="true"></span><span class="badge">GEAR EN PRÉPARATION</span><div><div class="brandn">' + esc(v.marque) + '</div><div class="model">' + esc(v.modele) + '</div><div class="bar" aria-hidden="true"></div></div></article>';
+      return '<article class="car" data-r ' + d + '><span class="el elor" aria-hidden="true"></span>' + mlogo(v) + '<span class="badge">GEAR EN PRÉPARATION</span><div><div class="brandn">' + esc(v.marque) + '</div><div class="model">' + esc(v.modele) + '</div><div class="bar" aria-hidden="true"></div></div></article>';
     }
-    var specs = [v.annee, v.km ? nb(v.km) + ' km' : '', v.carburant, v.boite].filter(Boolean).map(esc).join(' · ');
+    var SP = function(d, x){ return x ? '<span class="spec"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + d + '</svg>' + esc(x) + '</span>' : ''; };
+    var specs = SP('<rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/>', v.annee) +
+      SP('<path d="M4 17a8 8 0 1 1 16 0"/><path d="M12 17l3.5-4.5"/><circle cx="12" cy="17" r="1.1"/>', v.km ? nb(v.km) + ' km' : '') +
+      SP('<path d="M5 20V5.5A1.5 1.5 0 0 1 6.5 4h6A1.5 1.5 0 0 1 14 5.5V20M3.5 20h12M5 10h9"/><path d="M14 8l3 3v6a1.5 1.5 0 0 0 3 0V9.5L17.5 7"/>', v.carburant) +
+      SP('<circle cx="6" cy="6" r="1.8"/><circle cx="12" cy="6" r="1.8"/><circle cx="18" cy="6" r="1.8"/><circle cx="6" cy="18" r="1.8"/><circle cx="12" cy="18" r="1.8"/><path d="M6 8v8M12 8v8M18 8v4H6"/>', v.boite);
     return '<article class="car sale' + (v.statut === 'vendue' ? ' sold' : '') + '" data-r ' + d + '>' +
-      (v.photo ? '<div class="sphoto"><img loading="lazy" src="' + esc(v.photo) + '" alt="' + esc(v.marque + ' ' + v.modele) + '"></div>' : '') +
-      '<div class="sbody"><div class="brandn">' + esc(v.marque) + '</div><div class="model">' + esc(v.modele) + '</div>' +
+      gal(v) +
+      '<div class="sbody">' + mlogo(v) + '<div class="brandn">' + esc(v.marque) + '</div><div class="model">' + esc(v.modele) + '</div>' +
       (specs ? '<div class="specs">' + specs + '</div>' : '') +
       (v.prix && v.statut !== 'vendue' ? '<div class="price">' + nb(v.prix) + ' €</div>' : '') +
       (v.lien && v.statut !== 'vendue' ? '<a class="btn btn-gold" href="' + esc(v.lien) + '" target="_blank" rel="noopener">Voir l\'annonce</a>' : '') +
       '</div></article>';
   }).join('');
   box.innerHTML = html.split('GEAR ').join(GEAR);
+  // Boutons et glisser du doigt pour changer de photo
+  [].forEach.call(box.querySelectorAll('.gal'), function(g){
+    var ph = g.getAttribute('data-photos').split('|'), img = g.querySelector('img'), cnt = g.querySelector('.gcount'), i = 0, alt = img.alt.replace(/, photo 1$/, '');
+    function show(n){
+      i = (n + ph.length) % ph.length;
+      img.classList.add('fade');
+      var pre = new Image();
+      pre.onload = pre.onerror = function(){ img.src = ph[i]; img.alt = alt + ', photo ' + (i + 1); cnt.textContent = (i + 1) + ' / ' + ph.length; img.classList.remove('fade'); new Image().src = ph[(i + 1) % ph.length]; };
+      pre.src = ph[i];
+    }
+    g.querySelector('.prev').addEventListener('click', function(e){ e.preventDefault(); show(i - 1); });
+    g.querySelector('.next').addEventListener('click', function(e){ e.preventDefault(); show(i + 1); });
+    var x0 = null;
+    g.addEventListener('touchstart', function(e){ x0 = e.touches[0].clientX; }, {passive:true});
+    g.addEventListener('touchend', function(e){ if (x0 === null) return; var dx = e.changedTouches[0].clientX - x0; if (Math.abs(dx) > 40) show(i + (dx < 0 ? 1 : -1)); x0 = null; });
+  });
   if (!V.length) {
     var s = document.getElementById('carsSub');
     s.textContent = 'Pas de voiture en ce moment. Retrouvez nos annonces sur Leboncoin.';
