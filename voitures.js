@@ -19,8 +19,9 @@ window.VOITURES = [
     photos: ["img/voitures/logan-01.jpg", "img/voitures/logan-02.jpg", "img/voitures/logan-03.jpg", "img/voitures/logan-04.jpg", "img/voitures/logan-05.jpg", "img/voitures/logan-06.jpg", "img/voitures/logan-07.jpg", "img/voitures/logan-08.jpg", "img/voitures/logan-09.jpg", "img/voitures/logan-10.jpg", "img/voitures/logan-11.jpg", "img/voitures/logan-12.jpg", "img/voitures/logan-13.jpg"] },
   { statut: "vente", marque: "Renault", modele: "Grand Modus", annee: 2009, km: 215926, carburant: "Diesel", boite: "Manuelle", prix: 3380, lien: "https://www.leboncoin.fr/ad/voitures/3297367282",
     photos: ["img/voitures/modus-01.jpg", "img/voitures/modus-02.jpg", "img/voitures/modus-03.jpg", "img/voitures/modus-04.jpg", "img/voitures/modus-05.jpg", "img/voitures/modus-06.jpg", "img/voitures/modus-07.jpg", "img/voitures/modus-08.jpg", "img/voitures/modus-09.jpg", "img/voitures/modus-10.jpg", "img/voitures/modus-11.jpg", "img/voitures/modus-12.jpg", "img/voitures/modus-13.jpg"] },
+  { statut: "vente", marque: "Citroën", modele: "C4 Picasso", annee: 2013, km: 156880, carburant: "Diesel", boite: "Automatique", prix: 4990,
+    photos: ["img/voitures/c4picasso-01.jpg", "img/voitures/c4picasso-02.jpg", "img/voitures/c4picasso-03.jpg", "img/voitures/c4picasso-04.jpg", "img/voitures/c4picasso-05.jpg", "img/voitures/c4picasso-06.jpg", "img/voitures/c4picasso-07.jpg", "img/voitures/c4picasso-09.jpg", "img/voitures/c4picasso-10.jpg", "img/voitures/c4picasso-11.jpg", "img/voitures/c4picasso-12.jpg"] },
   { statut: "preparation", marque: "Peugeot",    modele: "107" },
-  { statut: "preparation", marque: "Citroën",    modele: "C4 Picasso" },
   { statut: "preparation", marque: "Renault",    modele: "Twingo III" },
   { statut: "preparation", marque: "Alfa Romeo", modele: "MiTo" }
 ];

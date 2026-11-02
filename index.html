@@ -26,7 +26,7 @@
 "address":{"@type":"PostalAddress","streetAddress":"17 rue de la Ferté Alais","postalCode":"91720","addressLocality":"Maisse","addressCountry":"FR"},
 "openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"opens":"10:00","closes":"20:00"}],
 "areaServed":["Maisse","Milly-la-Forêt","La Ferté-Alais","Boutigny-sur-Essonne","Essonne"],
-"sameAs":["https://www.instagram.com/hannibal_auto"]}
+"sameAs":["https://www.instagram.com/hannibal_auto","https://www.tiktok.com/@hannial_autos","https://www.youtube.com/@hannibalautos"]}
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Barlow:wght@500;600;700&display=swap">
@@ -92,7 +92,7 @@ nav.menu a:hover::after{transform:scaleX(1);transform-origin:left}
 .btn{position:relative;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;gap:10px;text-decoration:none;font-weight:700;font-size:17px;padding:15px 26px;border-radius:8px;transition:transform .25s var(--ease),box-shadow .25s,background .25s,color .25s;border:2px solid transparent}
 .btn:hover{transform:translateY(-3px)}
 .btn:active{transform:translateY(0) scale(.97)}
-.btn-gold{background:var(--gold);color:var(--ink)}
+.btn-gold{background:linear-gradient(180deg,#E3BC63,#CFA246);color:var(--ink);border-color:#F1D58F;box-shadow:inset 0 1px 0 rgba(255,255,255,.45),inset 0 -2px 0 rgba(110,70,15,.22),0 8px 22px rgba(0,0,0,.35)}
 .btn-gold:hover{box-shadow:0 10px 28px rgba(212,169,76,.35)}
 .btn-gold::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-20deg);animation:shine 9s ease-in-out infinite}
 @keyframes shine{0%,70%{left:-60%}100%{left:130%}}
@@ -257,6 +257,7 @@ footer{padding-block:24px 40px}
 .car[data-href]{cursor:pointer}
 .car .lbc{align-self:flex-start;margin-top:2px;padding:11px 18px;font-size:15px;gap:8px}
 .car .lbc svg{flex:none;transition:transform .3s var(--ease)}
+.car .lbc.off{opacity:.42;filter:grayscale(1);cursor:not-allowed;pointer-events:none;border-style:dashed}
 .car[data-href]:hover .lbc{background:rgba(138,61,110,.35);border-color:var(--mauve-soft)}
 .car[data-href]:hover .lbc svg{transform:translate(2px,-2px)}
 .car.sold .sphoto::after{content:"VENDUE";position:absolute;top:18px;right:-34px;transform:rotate(35deg);background:var(--mauve);color:#fff;font:800 14px var(--display);letter-spacing:3px;padding:6px 44px}
@@ -472,6 +473,43 @@ body{background:#1E131B}
   .car{padding:12px}
 }
 
+/* HAUT DE PAGE : bloc « Suivez le garage » à droite du logo (ordi), dans le menu (téléphone) + horaires en petites cartes */
+.follow{position:absolute;right:max(20px,env(safe-area-inset-right,0px));top:50%;margin-top:-4px;translate:0 -50%;display:flex;flex-direction:column;gap:8px;min-width:270px;padding:16px;border-radius:16px;background:rgba(24,15,21,.82);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid rgba(232,195,115,.32);box-shadow:0 18px 40px rgba(0,0,0,.45)}
+.flbl{font:700 12px var(--body);letter-spacing:2.5px;text-transform:uppercase;color:var(--gold-soft);padding:0 4px 4px}
+.frow{display:flex;align-items:center;gap:12px;padding:9px 12px 9px 9px;border-radius:11px;text-decoration:none;color:#fff;background:rgba(255,255,255,.04);border:1px solid rgba(194,135,174,.22);transition:background .4s,border-color .4s,transform .4s var(--ease)}
+.frow:hover{background:rgba(138,61,110,.32);border-color:var(--mauve-soft);transform:translateX(-3px)}
+.fic{width:38px;height:38px;flex:none;border-radius:10px;display:grid;place-items:center;background:var(--gold);color:#1E131B}
+.fic svg{width:20px;height:20px}
+.ftx{display:flex;flex-direction:column;line-height:1.2;min-width:0}
+.ftx b{font-size:16px;font-weight:700}
+.ftx small{font-size:13px;color:var(--muted)}
+.frow .go{margin-left:auto;color:var(--gold-soft);opacity:.7;flex:none}
+.menusoc{display:none}
+nav.menu a,.hcall{white-space:nowrap}
+@media (max-width:1100px){
+  .follow{position:static;translate:none;margin-top:0;flex-direction:row;flex-wrap:wrap;align-items:center;align-self:flex-start;min-width:0;padding:10px 12px;gap:8px}
+  .flbl{padding:0 6px 0 2px}
+  .ftx small,.frow .go{display:none}
+  .frow{padding:6px 14px 6px 6px}
+  .fic{width:32px;height:32px;border-radius:8px}
+  .fic svg{width:17px;height:17px}
+}
+.hero .info{gap:12px}
+.ibox{display:inline-flex;align-items:center;gap:12px;padding:10px 20px 10px 10px;border-radius:14px;background:rgba(30,19,27,.62);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border:1px solid rgba(194,135,174,.28)}
+.ibox .ico{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;flex:none;background:rgba(212,169,76,.15);color:var(--gold)}
+.ibox img{display:block;width:48px;height:auto;flex:none;border-radius:6px}
+.ibox b{display:block;color:#fff;font-weight:700;font-size:15px;line-height:1.25}
+.ibox small{display:block;color:var(--gold-soft);font-weight:600;font-size:14px;line-height:1.3}
+@media (max-width:760px){
+  .follow{display:none}
+  .menusoc{display:flex;flex-wrap:wrap;gap:8px;padding-top:16px}
+  nav.menu .menusoc a{display:inline-flex;align-items:center;gap:8px;padding:9px 14px;font-size:15px;border:1px solid rgba(194,135,174,.4);border-radius:30px;background:rgba(255,255,255,.04)}
+  nav.menu .menusoc a::after{display:none}
+  .menusoc svg{width:17px;height:17px;color:var(--gold-soft)}
+  .hero .info{flex-direction:column;gap:8px}
+  .ibox{width:100%;padding:9px 14px 9px 9px}
+}
+
 .glow{filter:none!important;will-change:transform}
 .glow.g1{width:760px;height:760px;left:-280px}.glow.g2{width:860px;height:860px;right:-330px}
 .gnav{backdrop-filter:none!important;-webkit-backdrop-filter:none!important;background:rgba(30,19,27,.72)}
@@ -502,6 +540,7 @@ body{background:#1E131B}
       <a href="#voitures">Voitures à vendre</a>
       <a href="#services">Services</a>
       <a href="#contact">Nous trouver</a>
+      <div class="menusoc"><a href="https://www.instagram.com/hannibal_auto/" target="_blank" rel="noopener"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1" fill="currentColor" stroke="none"/></svg>Instagram</a><a href="https://www.tiktok.com/@hannial_autos" target="_blank" rel="noopener"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 3c.3 2.2 1.6 3.6 3.9 3.8v3.1c-1.4.1-2.6-.3-3.9-1.1v5.6c0 3.9-3.6 6.4-7.1 5.4-3.6-1-4.9-5.5-2.4-8.3 1.1-1.2 2.7-1.8 4.3-1.7v3.2c-.4-.1-.8-.2-1.2-.1-1.4.2-2.2 1.4-1.8 2.8.4 1.5 2.4 2 3.5 1 .5-.5.8-1.2.8-2V3z"/></svg>TikTok</a><a href="https://www.youtube.com/@hannibalautos" target="_blank" rel="noopener"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22.5 7.2a2.8 2.8 0 0 0-2-2C18.7 4.7 12 4.7 12 4.7s-6.7 0-8.5.5a2.8 2.8 0 0 0-2 2C1 9 1 12 1 12s0 3 .5 4.8a2.8 2.8 0 0 0 2 2c1.8.5 8.5.5 8.5.5s6.7 0 8.5-.5a2.8 2.8 0 0 0 2-2c.5-1.8.5-4.8.5-4.8s0-3-.5-4.8zM9.8 15.3V8.7l5.7 3.3z"/></svg>YouTube</a></div>
     </nav>
     <a class="btn btn-gold hcall" href="tel:+33699501849">06 99 50 18 49</a>
     <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
@@ -518,7 +557,8 @@ body{background:#1E131B}
         <a class="btn btn-line cars-l" href="#voitures">Voir les voitures à vendre</a>
         <a class="btn btn-wa" href="https://wa.me/33699501849"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11.6a8.2 8.2 0 0 1-12.1 7.2L3.5 20l1.3-4.2A8.2 8.2 0 1 1 20 11.6z"/><path d="M9 8.8c.3 2.6 2.3 4.9 5.2 5.6l1.1-1.2-1.6-.9-.8.7c-1-.4-1.9-1.3-2.3-2.3l.7-.8-.9-1.6z"/></svg>WhatsApp</a>
       </div>
-      <p class="info load" style="animation-delay:1.3s"><span class="chip"><i></i>Lun – Sam · 10h – 20h</span><span class="chip rer"><img src="img/rer-d.png" alt="RER D" width="48" height="23">Depuis Paris, gare de Maisse</span></p>
+      <div class="info load" style="animation-delay:1.3s"><div class="ibox"><span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><span><b>Ouvert du lundi au samedi</b><small>de 10h à 20h</small></span></div><div class="ibox"><img src="img/rer-d.png" alt="RER D" width="48" height="23"><span><b>Depuis Paris en RER D</b><small>gare de Maisse</small></span></div></div>
+      <div class="follow load" style="animation-delay:.9s"><span class="flbl">Suivez le garage</span><a class="frow" href="https://www.instagram.com/hannibal_auto/" target="_blank" rel="noopener"><span class="fic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1" fill="currentColor" stroke="none"/></svg></span><span class="ftx"><b>Instagram</b><small>@hannibal_auto</small></span><svg class="go" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></a><a class="frow" href="https://www.tiktok.com/@hannial_autos" target="_blank" rel="noopener"><span class="fic"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 3c.3 2.2 1.6 3.6 3.9 3.8v3.1c-1.4.1-2.6-.3-3.9-1.1v5.6c0 3.9-3.6 6.4-7.1 5.4-3.6-1-4.9-5.5-2.4-8.3 1.1-1.2 2.7-1.8 4.3-1.7v3.2c-.4-.1-.8-.2-1.2-.1-1.4.2-2.2 1.4-1.8 2.8.4 1.5 2.4 2 3.5 1 .5-.5.8-1.2.8-2V3z"/></svg></span><span class="ftx"><b>TikTok</b><small>@hannial_autos</small></span><svg class="go" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></a><a class="frow" href="https://www.youtube.com/@hannibalautos" target="_blank" rel="noopener"><span class="fic"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22.5 7.2a2.8 2.8 0 0 0-2-2C18.7 4.7 12 4.7 12 4.7s-6.7 0-8.5.5a2.8 2.8 0 0 0-2 2C1 9 1 12 1 12s0 3 .5 4.8a2.8 2.8 0 0 0 2 2c1.8.5 8.5.5 8.5.5s6.7 0 8.5-.5a2.8 2.8 0 0 0 2-2c.5-1.8.5-4.8.5-4.8s0-3-.5-4.8zM9.8 15.3V8.7l5.7 3.3z"/></svg></span><span class="ftx"><b>YouTube</b><small>@hannibalautos</small></span><svg class="go" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></a></div>
     </div>
   </section>
   <div class="frieze" aria-hidden="true"></div>
@@ -569,10 +609,10 @@ body{background:#1E131B}
           <h2 data-r style="--d:100ms">Nous trouver</h2>
           <p data-r style="--d:270ms" class="addr1">17 rue de la Ferté Alais, 91720 Maisse</p>
           <p data-r style="--d:390ms" class="rerline"><img src="img/rer-d.png" alt="RER D" width="58" height="27">Depuis Paris, gare de Maisse</p>
-          <p data-r style="--d:510ms" class="hours"><b>Lun – Sam</b> 10h – 20h</p>
+          <p data-r style="--d:510ms" class="hours"><b>Du lundi au samedi</b> de 10h à 20h</p>
           <a data-r style="--d:630ms" class="phone" href="tel:+33699501849">06 99 50 18 49</a>
           <a data-r style="--d:690ms" class="mailtxt" href="mailto:contact@hannibalautos.fr">contact@hannibalautos.fr</a>
-          <div data-r style="--d:750ms" class="crow"><a class="btn btn-wa" href="https://wa.me/33699501849"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11.6a8.2 8.2 0 0 1-12.1 7.2L3.5 20l1.3-4.2A8.2 8.2 0 1 1 20 11.6z"/><path d="M9 8.8c.3 2.6 2.3 4.9 5.2 5.6l1.1-1.2-1.6-.9-.8.7c-1-.4-1.9-1.3-2.3-2.3l.7-.8-.9-1.6z"/></svg>WhatsApp</a><a class="btn btn-line btn-mail" href="mailto:contact@hannibalautos.fr" title="contact@hannibalautos.fr"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3.5 6.5l8.5 6.5 8.5-6.5"/></svg>Écrire au garage</a><div class="social "><a href="https://www.instagram.com/hannibal_auto/" target="_blank" rel="noopener" aria-label="Instagram Hannibal Auto"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1" fill="currentColor" stroke="none"/></svg></a><!-- Pour activer : remplacer href="#" par le lien et enlever « hidden » --><a href="#" target="_blank" rel="noopener" aria-label="Facebook Hannibal Auto" hidden><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-7.5h2.6l.4-3h-3V8.6c0-.9.3-1.5 1.5-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.8 1.4-3.8 3.9v2.3H7.9v3h2.6V21z"/></svg></a><a href="#" target="_blank" rel="noopener" aria-label="TikTok Hannibal Auto" hidden><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 3c.3 2.2 1.6 3.6 3.9 3.8v3.1c-1.4.1-2.6-.3-3.9-1.1v5.6c0 3.9-3.6 6.4-7.1 5.4-3.6-1-4.9-5.5-2.4-8.3 1.1-1.2 2.7-1.8 4.3-1.7v3.2c-.4-.1-.8-.2-1.2-.1-1.4.2-2.2 1.4-1.8 2.8.4 1.5 2.4 2 3.5 1 .5-.5.8-1.2.8-2V3z"/></svg></a></div></div>
+          <div data-r style="--d:750ms" class="crow"><a class="btn btn-wa" href="https://wa.me/33699501849"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11.6a8.2 8.2 0 0 1-12.1 7.2L3.5 20l1.3-4.2A8.2 8.2 0 1 1 20 11.6z"/><path d="M9 8.8c.3 2.6 2.3 4.9 5.2 5.6l1.1-1.2-1.6-.9-.8.7c-1-.4-1.9-1.3-2.3-2.3l.7-.8-.9-1.6z"/></svg>WhatsApp</a><a class="btn btn-line btn-mail" href="mailto:contact@hannibalautos.fr" title="contact@hannibalautos.fr"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3.5 6.5l8.5 6.5 8.5-6.5"/></svg>Écrire au garage</a><div class="social "><a href="https://www.instagram.com/hannibal_auto/" target="_blank" rel="noopener" aria-label="Instagram Hannibal Auto"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1" fill="currentColor" stroke="none"/></svg></a><!-- Pour activer : remplacer href="#" par le lien et enlever « hidden » --><a href="#" target="_blank" rel="noopener" aria-label="Facebook Hannibal Auto" hidden><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-7.5h2.6l.4-3h-3V8.6c0-.9.3-1.5 1.5-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.8 1.4-3.8 3.9v2.3H7.9v3h2.6V21z"/></svg></a><a href="https://www.tiktok.com/@hannial_autos" target="_blank" rel="noopener" aria-label="TikTok Hannibal Autos"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 3c.3 2.2 1.6 3.6 3.9 3.8v3.1c-1.4.1-2.6-.3-3.9-1.1v5.6c0 3.9-3.6 6.4-7.1 5.4-3.6-1-4.9-5.5-2.4-8.3 1.1-1.2 2.7-1.8 4.3-1.7v3.2c-.4-.1-.8-.2-1.2-.1-1.4.2-2.2 1.4-1.8 2.8.4 1.5 2.4 2 3.5 1 .5-.5.8-1.2.8-2V3z"/></svg></a><a href="https://www.youtube.com/@hannibalautos" target="_blank" rel="noopener" aria-label="YouTube Hannibal Autos"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22.5 7.2a2.8 2.8 0 0 0-2-2C18.7 4.7 12 4.7 12 4.7s-6.7 0-8.5.5a2.8 2.8 0 0 0-2 2C1 9 1 12 1 12s0 3 .5 4.8a2.8 2.8 0 0 0 2 2c1.8.5 8.5.5 8.5.5s6.7 0 8.5-.5a2.8 2.8 0 0 0 2-2c.5-1.8.5-4.8.5-4.8s0-3-.5-4.8zM9.8 15.3V8.7l5.7 3.3z"/></svg></a></div></div>
         </div>
         <div class="mapcard real" data-r="zoom" style="--d:200ms">
           <iframe src="https://maps.google.com/maps?q=Hannibal%20Autos%2017%20rue%20de%20la%20Fert%C3%A9%20Alais%2091720%20Maisse&amp;z=15&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Carte : Hannibal Autos, 17 rue de la Ferté Alais à Maisse"></iframe>
@@ -587,7 +627,7 @@ body{background:#1E131B}
   <div class="wrap foot">
     <a class="brand" href="#accueil"><img src="img/elephant-blanc.png" alt="Hannibal Autos"><span class="wordmark"><b>HANNIBAL</b><span>AUTOS</span></span></a>
     <span>© 2026 Hannibal Autos · PHOENIXAUTO SAS · SIRET 941 969 644 00017</span>
-    <div class="social foot-s"><a href="https://www.instagram.com/hannibal_auto/" target="_blank" rel="noopener" aria-label="Instagram Hannibal Auto"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1" fill="currentColor" stroke="none"/></svg></a><!-- Pour activer : remplacer href="#" par le lien et enlever « hidden » --><a href="#" target="_blank" rel="noopener" aria-label="Facebook Hannibal Auto" hidden><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-7.5h2.6l.4-3h-3V8.6c0-.9.3-1.5 1.5-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.8 1.4-3.8 3.9v2.3H7.9v3h2.6V21z"/></svg></a><a href="#" target="_blank" rel="noopener" aria-label="TikTok Hannibal Auto" hidden><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 3c.3 2.2 1.6 3.6 3.9 3.8v3.1c-1.4.1-2.6-.3-3.9-1.1v5.6c0 3.9-3.6 6.4-7.1 5.4-3.6-1-4.9-5.5-2.4-8.3 1.1-1.2 2.7-1.8 4.3-1.7v3.2c-.4-.1-.8-.2-1.2-.1-1.4.2-2.2 1.4-1.8 2.8.4 1.5 2.4 2 3.5 1 .5-.5.8-1.2.8-2V3z"/></svg></a></div>
+    <div class="social foot-s"><a href="https://www.instagram.com/hannibal_auto/" target="_blank" rel="noopener" aria-label="Instagram Hannibal Auto"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1" fill="currentColor" stroke="none"/></svg></a><!-- Pour activer : remplacer href="#" par le lien et enlever « hidden » --><a href="#" target="_blank" rel="noopener" aria-label="Facebook Hannibal Auto" hidden><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-7.5h2.6l.4-3h-3V8.6c0-.9.3-1.5 1.5-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.8 1.4-3.8 3.9v2.3H7.9v3h2.6V21z"/></svg></a><a href="https://www.tiktok.com/@hannial_autos" target="_blank" rel="noopener" aria-label="TikTok Hannibal Autos"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 3c.3 2.2 1.6 3.6 3.9 3.8v3.1c-1.4.1-2.6-.3-3.9-1.1v5.6c0 3.9-3.6 6.4-7.1 5.4-3.6-1-4.9-5.5-2.4-8.3 1.1-1.2 2.7-1.8 4.3-1.7v3.2c-.4-.1-.8-.2-1.2-.1-1.4.2-2.2 1.4-1.8 2.8.4 1.5 2.4 2 3.5 1 .5-.5.8-1.2.8-2V3z"/></svg></a><a href="https://www.youtube.com/@hannibalautos" target="_blank" rel="noopener" aria-label="YouTube Hannibal Autos"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22.5 7.2a2.8 2.8 0 0 0-2-2C18.7 4.7 12 4.7 12 4.7s-6.7 0-8.5.5a2.8 2.8 0 0 0-2 2C1 9 1 12 1 12s0 3 .5 4.8a2.8 2.8 0 0 0 2 2c1.8.5 8.5.5 8.5.5s6.7 0 8.5-.5a2.8 2.8 0 0 0 2-2c.5-1.8.5-4.8.5-4.8s0-3-.5-4.8zM9.8 15.3V8.7l5.7 3.3z"/></svg></a></div>
     <a href="mentions-legales.html" style="color:var(--muted)">Mentions légales</a>
   </div>
 </footer>
@@ -598,7 +638,7 @@ body{background:#1E131B}
   <a class="btn btn-line" href="https://www.google.com/maps/search/?api=1&amp;query=Hannibal+Autos+17+rue+de+la+Fert%C3%A9+Alais+91720+Maisse" target="_blank" rel="noopener">Itinéraire</a>
 </div>
 
-<script src="voitures.js?v=4f82a5bc"></script>
+<script src="voitures.js?v=448d0491"></script>
 <script>
 (function(){
   var GEAR = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#E8C373" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M5.3 18.7l2.1-2.1M16.6 7.4l2.1-2.1"/></svg>';
@@ -640,6 +680,7 @@ body{background:#1E131B}
       (specs ? '<div class="specs">' + specs + '</div>' : '') +
       (v.prix && v.statut !== 'vendue' ? '<div class="price">' + nb(v.prix) + ' €</div>' : '') +
       (v.lien && v.statut !== 'vendue' ? '<a class="btn btn-line lbc" href="' + esc(v.lien) + '" target="_blank" rel="noopener">Voir l\'annonce sur Leboncoin<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></a>' : '') +
+      (!v.lien && v.statut === 'vente' ? '<span class="btn btn-line lbc off" aria-disabled="true">Annonce Leboncoin bientôt</span>' : '') +
       '</div></article>';
   }).join('');
   box.innerHTML = html.split('GEAR ').join(GEAR);
