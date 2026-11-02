@@ -768,5 +768,28 @@ nav.menu a,.hcall{white-space:nowrap}
   [].forEach.call(document.querySelectorAll('.hero, section, footer, .frieze'), function(el){ io.observe(el); });
 })();
 </script>
+<script>
+(function(){
+  function slug(s){ return String(s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,''); }
+  function send(name, title){ try { if (window.goatcounter && window.goatcounter.count) window.goatcounter.count({path: name, title: title || name, event: true}); } catch(e){} }
+  document.addEventListener('click', function(e){
+    var car = e.target.closest('.car');
+    var model = car ? slug((car.querySelector('.brandn') || {}).textContent + ' ' + (car.querySelector('.model') || {}).textContent) : '';
+    if (e.target.closest('.gnav')) { send('photos-' + model, 'Photos ' + model); return; }
+    var a = e.target.closest('a');
+    if (!a) { if (car && car.hasAttribute('data-href')) send('annonce-' + model, 'Annonce ' + model); return; }
+    var h = a.getAttribute('href') || '';
+    if (h.indexOf('tel:') === 0) send('clic-appeler', 'Appeler');
+    else if (h.indexOf('wa.me') > -1) send('clic-whatsapp', 'WhatsApp');
+    else if (h.indexOf('mailto:') === 0) send('clic-email', 'Écrire au garage');
+    else if (h.indexOf('google.com/maps') > -1) send('clic-itineraire', 'Itinéraire');
+    else if (h.indexOf('leboncoin') > -1) send('annonce-' + model, 'Annonce ' + model);
+    else if (h.indexOf('instagram.com') > -1) send('clic-instagram', 'Instagram');
+    else if (h.indexOf('tiktok.com') > -1) send('clic-tiktok', 'TikTok');
+    else if (h.indexOf('youtube.com') > -1) send('clic-youtube', 'YouTube');
+  }, true);
+})();
+</script>
+<script data-goatcounter="https://hannibalautos.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
