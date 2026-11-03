@@ -971,7 +971,7 @@ html.fiche-on{overflow:hidden}
   });
   // Boutons et glisser du doigt pour changer de photo
   [].forEach.call(box.querySelectorAll('.gal'), function(g){
-    var ph = g.getAttribute('data-photos').split('|'), img = g.querySelector('img'), cnt = g.querySelector('.gcount'), i = 0, alt = img.alt.replace(/, photo 1$/, '');
+    var ph = g.getAttribute('data-photos').split('|').map(function(p){ try { return new URL(p, document.baseURI).href; } catch(e){ return p; } }), img = g.querySelector('img'), cnt = g.querySelector('.gcount'), i = 0, alt = img.alt.replace(/, photo 1$/, '');
     function show(n){
       i = (n + ph.length) % ph.length; g.setAttribute('data-i', i);
       img.classList.add('fade');
@@ -1074,6 +1074,8 @@ html.fiche-on{overflow:hidden}
   // 2) Diaporama : la photo de l'atelier reste 30 s, puis les autres photos du garage défilent doucement (8 s chacune)
   var S = [['img/accueil/facade.jpg', 'img/accueil/facade-m.jpg', "L'entrée du garage"], ['img/accueil/pont.jpg', 'img/accueil/pont-m.jpg', 'Le pont élévateur'],
            ['img/accueil/accueil.jpg', 'img/accueil/accueil-m.jpg', "L'accueil des clients"], ['img/accueil/pneus.jpg', 'img/accueil/pneus-m.jpg', "L'espace pneus"]];
+  // adresses absolues (sinon cassées si une fiche voiture a changé l'adresse en /voitures/<voiture>/)
+  S = S.map(function(d){ try { return [new URL(d[0], document.baseURI).href, new URL(d[1], document.baseURI).href, d[2]]; } catch(e){ return d; } });
   var slides = [first], cur = 0, PREMIERE = 30000, AUTRES = 8000;
   function make(d){
     var pic = document.createElement('picture'); pic.className = 'hs';
@@ -1111,7 +1113,7 @@ html.fiche-on{overflow:hidden}
   var V = window.VOITURES || [], wrap = document.getElementById('fiche'), box = wrap.querySelector('.fiche'), lbx = document.getElementById('lbx');
   var TEL = '+33699501849', WA = '33699501849';
   // petite version (800 px) des photos, pour les miniatures et le fond flou
-  function sm(p){ return String(p).replace(/^img\/voitures\//, 'img/voitures/m/'); }
+  function sm(p){ return String(p).replace(/(^|\/)img\/voitures\/(?!m\/)/, '$1img/voitures/m/'); }
   function esc(s){ return String(s == null ? '' : s).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
   function nb(n){ return Number(n).toLocaleString('fr-FR'); }
   function slug(s){ return String(s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,''); }
@@ -1133,7 +1135,11 @@ html.fiche-on{overflow:hidden}
     ['<circle cx="6" cy="6" r="1.8"/><circle cx="12" cy="6" r="1.8"/><circle cx="18" cy="6" r="1.8"/><circle cx="6" cy="18" r="1.8"/><circle cx="12" cy="18" r="1.8"/><path d="M6 8v8M12 8v8M18 8v4H6"/>', 'boite']
   ];
   var MARQUES = {'renault':'renault','peugeot':'peugeot','dacia':'dacia','citroën':'citroen','citroen':'citroen','alfa romeo':'alfaromeo'};
-  function photos(v){ return v.photos && v.photos.length ? v.photos : (v.photo ? [v.photo] : []); }
+  // adresses ABSOLUES des photos : sur hannibalautos.fr l'adresse devient /voitures/<voiture>/ quand la fiche s'ouvre,
+  // une adresse relative (img/...) chercherait alors /voitures/<voiture>/img/... et la photo serait cassée
+  var RACINE = document.baseURI;
+  function abs(p){ try { return new URL(p, RACINE).href; } catch(e){ return p; } }
+  function photos(v){ return (v.photos && v.photos.length ? v.photos : (v.photo ? [v.photo] : [])).map(abs); }
 
   var cur = null, ph = [], pi = 0, opener = null, pushed = false, tHide = null;
 
@@ -1149,7 +1155,7 @@ html.fiche-on{overflow:hidden}
     var infos = v.infos ? Object.keys(v.infos).map(function(k){ return '<dt>' + esc(k) + '</dt><dd>' + esc(v.infos[k]) + '</dd>'; }).join('') : '';
     var f = MARQUES[String(v.marque || '').toLowerCase()];
     box.innerHTML = '<button type="button" class="fclose" data-close aria-label="Fermer la fiche">' + I.x + '</button>' + gal +
-      '<div class="finfo">' + (f ? '<img class="mlogo" src="img/marques/' + f + '.svg" alt="" aria-hidden="true">' : '') +
+      '<div class="finfo">' + (f ? '<img class="mlogo" src="' + abs('img/marques/' + f + '.svg') + '" alt="" aria-hidden="true">' : '') +
         '<div class="fhead"><div class="brandn">' + esc(v.marque) + '</div><h3 class="model" id="fTitle">' + esc(v.modele) + '</h3>' + (v.version ? '<div class="fver">' + esc(v.version) + '</div>' : '') + '</div>' +
         (specs ? '<div class="specs">' + specs + '</div>' : '') +
         (prix ? '<div class="fprice"><b>' + prix + '</b><span>TTC · prix garage</span></div>' : '') +
