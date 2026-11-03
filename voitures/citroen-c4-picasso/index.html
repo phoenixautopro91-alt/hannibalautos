@@ -1078,7 +1078,15 @@ html.fiche-on{overflow:hidden}
     wrap.classList.remove('on');
     tHide = setTimeout(function(){ wrap.hidden = true; box.innerHTML = ''; }, 520);
     document.documentElement.classList.remove('fiche-on');
-    if (!fromPop) { if (pushed) { pushed = false; history.back(); } else if (location.hash) history.replaceState(null, '', location.pathname + location.search); }
+    if (!fromPop) {
+      if (pushed) { pushed = false; history.back(); }
+      else {
+        // fiche ouverte directement (lien partagé, page actualisée) : on revient sur la page d'accueil
+        window.FICHE_AUTO = null;
+        var p = location.pathname.replace(/voitures\/[^\/]+\/?$/, '');
+        if (location.hash || p !== location.pathname) history.replaceState(null, '', p + location.search);
+      }
+    }
     else pushed = false;
     if (opener && opener.focus) opener.focus({preventScroll: true});
   }
