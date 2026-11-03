@@ -10,8 +10,9 @@
 <link rel="icon" type="image/svg+xml" href="img/favicon.svg?v=4">
 <script>
 (function(){
-  var d = document.documentElement, th = 'dark';
-  try { localStorage.removeItem('hb-theme'); } catch(e){}
+  var d = document.documentElement, s = null;
+  try { s = localStorage.getItem('hb-theme'); } catch(e){}
+  var th = s === 'light' ? 'light' : 'dark';
   d.setAttribute('data-theme', th);
   })();
 </script>
