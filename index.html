@@ -236,6 +236,46 @@ footer{padding-block:24px 40px}
 .foot img:hover{transform:rotate(-5deg) scale(1.06)}
 
 
+.tri{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:15px;font-weight:600}
+.tri[hidden]{display:none}
+.tri select{appearance:none;-webkit-appearance:none;font:inherit;font-weight:700;color:var(--cream);background:var(--panel) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23D4A94C' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") no-repeat right 14px center;border:1px solid rgba(212,169,76,.45);border-radius:10px;padding:11px 40px 11px 14px;min-height:46px;cursor:pointer;transition:border-color .3s}
+.tri select:hover,.tri select:focus{border-color:var(--gold);outline:none}
+.tri option{background:#2A1B25;color:#F6EFF3}
+#cars{transition:opacity .22s ease}
+#cars.tri-out{opacity:.08}
+@media (max-width:760px){.tri{width:100%}.tri select{flex:1}}
+/* téléphone : cartes plus compactes, boutons plus faciles à toucher, moins de vide */
+@media (max-width:700px){
+  .car.sale .sbody{padding:14px 16px 16px;gap:3px}
+  .car.sale .price{position:absolute;top:12px;right:16px;margin:0;font-size:24px;line-height:1.3}
+  .car.sale .brandn{font-size:12px}
+  .car.sale .specs{gap:5px;margin:6px 0 4px;max-width:calc(100% - 60px)}
+  .car.sale .spec{font-size:12.5px;padding:4px 9px 4px 7px;gap:5px}
+  .car.sale .spec svg{width:13px;height:13px}
+  .car.sale .mlogo{width:52px;height:52px;margin-top:-10px;right:16px}
+  .car.sale .cbtns{margin-top:8px}
+  .car.sale .cbtns .btn{padding:11px 18px;font-size:15.5px}
+  .gnav{width:44px!important;height:44px!important;margin-top:-22px!important}
+  .car .clbc{position:relative}
+  .car .clbc::after{content:"";position:absolute;inset:-14px -10px}
+  #contact{padding-top:20px}
+  footer{padding-top:30px}
+}
+/* téléphone : accueil moins haut (on voit le titre des voitures), barre du haut plus fine quand on descend */
+@media (max-width:760px){
+  .hero{min-height:0}
+  .hero-in{padding-block:96px 26px!important;gap:16px!important}
+  header.scrolled .hbar{padding-block:5px}
+  header.scrolled .brand img{width:38px}
+  header.scrolled .wordmark{transform:scale(.82);transform-origin:left center}
+  .wordmark{transition:transform .35s var(--ease)}
+  /* menu ouvert : fond plein, logo visible, page assombrie dessous */
+  header:has(nav.menu.open){background:#1E131B;box-shadow:0 1px 0 rgba(194,135,174,.18)}
+  .js header:has(nav.menu.open) .brand{opacity:1;transform:none;pointer-events:auto}
+  nav.menu{background:#1E131B!important;top:calc(env(safe-area-inset-top,0px) + 77px)}
+  header.scrolled nav.menu{top:calc(env(safe-area-inset-top,0px) + 59px)}
+  nav.menu.open{box-shadow:0 30px 60px rgba(0,0,0,.55)}
+}
 .car.sale{padding:0;min-height:0}
 .car.sale .sphoto{position:relative;aspect-ratio:4/3;overflow:hidden}
 .car.sale .sphoto img{width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease)}
@@ -642,6 +682,7 @@ html.fiche-on{overflow:hidden}
   .fthumb{width:70px}
   .finfo{height:auto;min-height:0;overflow:visible;padding:24px 18px calc(110px + env(safe-area-inset-bottom,0px))}
   .finfo .mlogo{right:18px;top:22px;width:58px;height:58px}
+  .fhead{order:0}.fprice{order:1;margin-top:-4px}.finfo>*:not(.fhead):not(.fprice):not(.mlogo){order:2}
   .fhead{padding-right:64px}
   .fclose{position:fixed;top:max(12px,env(safe-area-inset-top,0px));right:12px}
   .fnav{width:40px;height:40px;margin-top:-20px}.fnav.prev{left:10px}.fnav.next{right:10px}
@@ -700,6 +741,7 @@ html.fiche-on{overflow:hidden}
     <div class="wrap">
       <div class="head" data-r>
         <div><h2 id="carsTitle">Voitures à vendre</h2><p id="carsSub" hidden></p></div>
+        <label class="tri" hidden><span>Trier par</span><select id="tri" aria-label="Trier les voitures"><option value="pert">Pertinence</option><option value="prix-bas">Prix le plus bas</option><option value="prix-haut">Prix le plus haut</option><option value="recent">Plus récentes</option><option value="km">Moins de kilomètres</option></select></label>
       </div>
       <div class="cars" id="cars"></div>
     </div>
@@ -778,6 +820,8 @@ html.fiche-on{overflow:hidden}
   var V = window.VOITURES || [], box = document.getElementById('cars');
   function esc(s){ return String(s == null ? '' : s).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
   function nb(n){ return Number(n).toLocaleString('fr-FR'); }
+  // petite version (800 px) des photos pour les cartes : site plus rapide sur téléphone
+  function sm(p){ return String(p).replace(/^img[/]voitures[/]/, 'img/voitures/m/'); }
   function slugv(v){ return String(v.marque + ' ' + v.modele).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,''); }
   var NAV = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>';
   // Photos d'une voiture : une seule photo (photo) ou plusieurs (photos) avec boutons pour avancer
@@ -785,6 +829,7 @@ html.fiche-on{overflow:hidden}
     var ph = v.photos && v.photos.length ? v.photos : (v.photo ? [v.photo] : []);
     if (!ph.length) return '';
     var alt = esc(v.marque + ' ' + v.modele);
+    ph = ph.map(sm);
     if (ph.length === 1) return '<div class="sphoto"><img loading="lazy" src="' + esc(ph[0]) + '" alt="' + alt + '"></div>';
     return '<div class="sphoto gal" data-photos="' + esc(ph.join('|')) + '" data-i="0">' +
       '<img loading="lazy" src="' + esc(ph[0]) + '" alt="' + alt + ', photo 1">' +
@@ -808,7 +853,7 @@ html.fiche-on{overflow:hidden}
       SP('<path d="M5 20V5.5A1.5 1.5 0 0 1 6.5 4h6A1.5 1.5 0 0 1 14 5.5V20M3.5 20h12M5 10h9"/><path d="M14 8l3 3v6a1.5 1.5 0 0 0 3 0V9.5L17.5 7"/>', v.carburant) +
       SP('<circle cx="6" cy="6" r="1.8"/><circle cx="12" cy="6" r="1.8"/><circle cx="18" cy="6" r="1.8"/><circle cx="6" cy="18" r="1.8"/><circle cx="12" cy="18" r="1.8"/><path d="M6 8v8M12 8v8M18 8v4H6"/>', v.boite);
     var fi = v.statut === 'vente' ? ' data-fiche="' + V.indexOf(v) + '"' : '';
-    return '<article class="car sale' + (v.statut === 'vendue' ? ' sold' : '') + '"' + fi + ' data-r ' + d + '>' +
+    return '<article class="car sale' + (v.statut === 'vendue' ? ' sold' : '') + '"' + fi + ' data-v="' + V.indexOf(v) + '" data-r ' + d + '>' +
       gal(v) +
       '<div class="sbody">' + mlogo(v) + '<div class="brandn">' + esc(v.marque) + '</div><div class="model">' + esc(v.modele) + '</div>' +
       (specs ? '<div class="specs">' + specs + '</div>' : '') +
@@ -838,6 +883,25 @@ html.fiche-on{overflow:hidden}
     g.addEventListener('touchstart', function(e){ x0 = e.touches[0].clientX; }, {passive:true});
     g.addEventListener('touchend', function(e){ if (x0 === null) return; var dx = e.changedTouches[0].clientX - x0; if (Math.abs(dx) > 40) show(i + (dx < 0 ? 1 : -1)); x0 = null; });
   });
+  // Menu « Trier par » (seulement s'il y a au moins 2 voitures en vente) ; les voitures en préparation restent après
+  var tri = document.getElementById('tri'), saleEls = [].slice.call(box.querySelectorAll('.car.sale'));
+  if (tri && saleEls.length > 1) {
+    tri.parentNode.hidden = false;
+    tri.addEventListener('change', function(){
+      var k = tri.value;
+      function val(el, f){ var x = V[+el.getAttribute('data-v')][f]; return x == null || x === '' ? null : +x; }
+      function by(f, sens){ return function(a, b){ var x = val(a, f), y = val(b, f); if (x === null) return 1; if (y === null) return -1; return (x - y) * sens; }; }
+      var arr = saleEls.slice(), cmp = {'prix-bas': by('prix', 1), 'prix-haut': by('prix', -1), 'recent': by('annee', -1), 'km': by('km', 1)}[k];
+      if (cmp) arr.sort(function(a, b){ var sa = a.classList.contains('sold'), sb = b.classList.contains('sold'); return sa !== sb ? (sa ? 1 : -1) : cmp(a, b); });
+      box.classList.add('tri-out');
+      setTimeout(function(){
+        var first = box.querySelector('.car.prep');
+        arr.forEach(function(el){ box.insertBefore(el, first); });
+        box.classList.remove('tri-out');
+      }, 220);
+      if (window.hbStat) window.hbStat('tri-' + k, 'Tri des voitures : ' + tri.options[tri.selectedIndex].text);
+    });
+  }
   if (!V.length) {
     var s = document.getElementById('carsSub');
     s.textContent = 'Pas de voiture en ce moment.';
@@ -911,6 +975,8 @@ html.fiche-on{overflow:hidden}
 (function(){
   var V = window.VOITURES || [], wrap = document.getElementById('fiche'), box = wrap.querySelector('.fiche'), lbx = document.getElementById('lbx');
   var TEL = '+33699501849', WA = '33699501849';
+  // petite version (800 px) des photos, pour les miniatures et le fond flou
+  function sm(p){ return String(p).replace(/^img\/voitures\//, 'img/voitures/m/'); }
   function esc(s){ return String(s == null ? '' : s).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
   function nb(n){ return Number(n).toLocaleString('fr-FR'); }
   function slug(s){ return String(s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,''); }
@@ -940,9 +1006,9 @@ html.fiche-on{overflow:hidden}
     var nom = v.marque + ' ' + v.modele, prix = v.prix ? nb(v.prix) + ' €' : '';
     var msg = 'Bonjour, je suis intéressé(e) par la ' + nom + (prix ? ' à ' + prix : '') + ' vue sur hannibalautos.fr';
     var specs = SPECS.map(function(s){ var x = v[s[1]]; if (!x) return ''; if (s[1] === 'km') x = nb(x) + ' km'; return '<span class="spec">' + ico(s[0], 15) + esc(x) + '</span>'; }).join('');
-    var thumbs = ph.length > 1 ? '<div class="fthumbs">' + ph.map(function(p, i){ return '<button type="button" class="fthumb" data-i="' + i + '" aria-label="Photo ' + (i + 1) + '"><img loading="lazy" src="' + esc(p) + '" alt=""></button>'; }).join('') + '</div>' : '';
+    var thumbs = ph.length > 1 ? '<div class="fthumbs">' + ph.map(function(p, i){ return '<button type="button" class="fthumb" data-i="' + i + '" aria-label="Photo ' + (i + 1) + '"><img loading="lazy" src="' + esc(sm(p)) + '" alt=""></button>'; }).join('') + '</div>' : '';
     var nav = ph.length > 1 ? '<button type="button" class="fnav prev" aria-label="Photo précédente">' + I.nav + '</button><button type="button" class="fnav next" aria-label="Photo suivante">' + I.nav + '</button>' : '';
-    var gal = ph.length ? '<div class="fgal"><div class="fmain"><img class="fblur" src="' + esc(ph[pi]) + '" alt="" aria-hidden="true"><img class="fph" src="' + esc(ph[pi]) + '" alt="' + esc(nom) + '">' + nav +
+    var gal = ph.length ? '<div class="fgal"><div class="fmain"><img class="fblur" src="' + esc(sm(ph[pi])) + '" alt="" aria-hidden="true"><img class="fph" src="' + esc(ph[pi]) + '" alt="' + esc(nom) + '">' + nav +
       '<span class="fcount">' + (pi + 1) + ' / ' + ph.length + '</span><button type="button" class="fzoom">' + I.zoom + 'Plein écran</button></div>' + thumbs + '</div>' : '<div class="fgal"></div>';
     var list = function(t, a, cls, ic){ return a && a.length ? '<div class="fsec"><h4>' + t + '</h4><ul class="flist ' + cls + '">' + a.map(function(x){ return '<li>' + ic + esc(x) + '</li>'; }).join('') + '</ul></div>' : ''; };
     var infos = v.infos ? Object.keys(v.infos).map(function(k){ return '<dt>' + esc(k) + '</dt><dd>' + esc(v.infos[k]) + '</dd>'; }).join('') : '';
@@ -979,7 +1045,7 @@ html.fiche-on{overflow:hidden}
     if (!ph.length) return;
     pi = (n + ph.length) % ph.length;
     var img = box.querySelector('.fmain .fph'), bl = box.querySelector('.fmain .fblur'), c = box.querySelector('.fcount');
-    if (img) swap(img, ph[pi], null, function(){ if (bl) bl.src = ph[pi]; });
+    if (img) swap(img, ph[pi], null, function(){ if (bl) bl.src = sm(ph[pi]); });
     if (c) c.textContent = (pi + 1) + ' / ' + ph.length;
     setThumb();
     if (!lbx.hidden) lshow();
