@@ -8,6 +8,14 @@
 <link rel="icon" href="/favicon.ico?v=4" sizes="48x48">
 <link rel="icon" type="image/png" sizes="192x192" href="img/favicon-192.png?v=4">
 <link rel="icon" type="image/svg+xml" href="img/favicon.svg?v=4">
+<script>
+(function(){
+  var d = document.documentElement, s = null;
+  try { s = localStorage.getItem('hb-theme'); } catch(e){}
+  var th = s === 'light' ? 'light' : 'dark';
+  d.setAttribute('data-theme', th);
+  })();
+</script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&family=Barlow:wght@500;700&display=swap">
 <style>
 :root{--ink:#1E131B;--panel:#1F141B;--line:#3C2533;--mauve-soft:#C287AE;--gold:#D4A94C;--cream:#F6EFF3;--muted:#D3C2CD;color-scheme:dark}
@@ -19,11 +27,12 @@ h2{font:800 20px Montserrat,"Arial Black",sans-serif;color:var(--mauve-soft);mar
 p{margin:0 0 10px;color:var(--muted)} strong{color:var(--cream)}
 .back{display:inline-flex;align-items:center;gap:10px;text-decoration:none;font-weight:700}
 .back img{width:44px}
+html[data-theme="light"]{--ink:#F3ECDD;--panel:#FBF7EE;--line:#D8C9A6;--mauve-soft:#6A4590;--gold:#735096;--cream:#111111;--muted:#555555;color-scheme:light}
 </style>
 </head>
 <body>
 <div class="wrap">
-  <a class="back" href="./"><img src="img/elephant-blanc.png" alt="">← Retour au site</a>
+  <a class="back" href="./"><img src="img/elephant-blanc.png" alt="" id="mlLogo"><script>if(document.documentElement.getAttribute("data-theme")==="light")document.getElementById("mlLogo").src="img/elephant-fonce.png";</script>← Retour au site</a>
   <h1>Mentions légales</h1>
   <p>Site hannibalautos.fr</p>
 

@@ -8,6 +8,15 @@
 <meta name="description" content="Dacia Logan d&#x27;occasion à vendre à Maisse (91) : 2017, 99 871 km, Essence, Manuelle, 5 680 €. Vendue par le garage Hannibal Autos. Berline fiable et économique, avec un faible kilométrage pour son année. Grand coffre, 5 vraies places et un entretien simple et peu coûteux. Idéale pour un jeune conduct">
 <link rel="canonical" href="https://hannibalautos.fr/voitures/dacia-logan/">
 <meta name="theme-color" content="#1E131B">
+<script>
+(function(){
+  var d = document.documentElement, s = null;
+  try { s = localStorage.getItem('hb-theme'); } catch(e){}
+  var th = s === 'light' ? 'light' : 'dark';
+  d.setAttribute('data-theme', th);
+  var m = document.querySelector('meta[name="theme-color"]'); if (m) m.setAttribute('content', th === 'light' ? '#F3ECDD' : '#1E131B');
+})();
+</script>
 <link rel="icon" href="/favicon.ico?v=4" sizes="48x48">
 <link rel="icon" type="image/png" sizes="96x96" href="img/favicon-96.png?v=4">
 <link rel="icon" type="image/png" sizes="192x192" href="img/favicon-192.png?v=4">
@@ -37,44 +46,26 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Barlow:wght@500;600;700&display=swap">
 <style>
-.elor{display:block;aspect-ratio:800/596;background:url(img/elephant-or.png) no-repeat center/contain}
-/* Mise en page : un seul fond prune-noir continu, des cartes posées dessus ; or pour les actions, mauve pour l'ambiance */
-:root{
-  --ink:#1E131B; --panel:#2A1B25; --panel2:#352230; --line:#4B2F42;
-  --mauve:#8A3D6E; --mauve-soft:#C287AE; --deep:#4E1A3B;
-  --gold:#D4A94C; --gold-soft:#E8C373;
-  --cream:#F6EFF3; --muted:#D3C2CD;
-  --wa:#6FAF8A;
-  --display:Montserrat,"Arial Black",system-ui,sans-serif;
-  --body:Barlow,"Helvetica Neue",Arial,system-ui,sans-serif;
-  --ease:cubic-bezier(.2,.75,.2,1);
-  color-scheme:dark;
-}
+:root{--ink:#1E131B;--panel:#2A1B25;--panel2:#352230;--line:#4B2F42;--mauve:#8A3D6E;--mauve-soft:#C287AE;--deep:#4E1A3B;--gold:#D4A94C;--gold-soft:#E8C373;--cream:#F6EFF3;--muted:#D3C2CD;--wa:#6FAF8A;--display:Montserrat,"Arial Black",system-ui,sans-serif;--body:Barlow,"Helvetica Neue",Arial,system-ui,sans-serif;--ease:cubic-bezier(.2,.75,.2,1);color-scheme:dark}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{background:var(--ink);color:var(--cream);font:500 17px/1.55 var(--body);overflow-x:hidden}
+body{color:var(--cream);font:500 17px/1.55 var(--body);overflow-x:hidden}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--ink)}
 a{color:var(--gold)}
 img{max-width:100%;display:block}
 h1,h2,h3{font-family:var(--display);font-weight:800;margin:0;text-wrap:balance;line-height:1.1}
 .wrap{max-width:1200px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
 :focus-visible{outline:3px solid var(--gold-soft);outline-offset:3px;border-radius:4px}
-
-/* Ambiance : lueurs mauves qui dérivent + grain */
-.glow{position:fixed;z-index:0;border-radius:50%;filter:blur(90px);pointer-events:none;opacity:.55}
-.glow.g1{width:520px;height:520px;background:radial-gradient(circle,#6B2A55,transparent 70%);top:10%;left:-160px;animation:drift1 26s ease-in-out infinite alternate}
-.glow.g2{width:600px;height:600px;background:radial-gradient(circle,#4E1A3B,transparent 70%);top:55%;right:-200px;animation:drift2 32s ease-in-out infinite alternate}
+.glow{position:fixed;z-index:0;border-radius:50%;filter:blur(90px);pointer-events:none}
+.glow.g1{top:10%;animation:drift1 26s ease-in-out infinite alternate}
+.glow.g2{top:55%;animation:drift2 32s ease-in-out infinite alternate}
 @keyframes drift1{to{transform:translate(180px,260px) scale(1.15)}}
 @keyframes drift2{to{transform:translate(-220px,-300px) scale(.9)}}
 .grain{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.6;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 main,header,footer{position:relative;z-index:2}
-
-/* Barre de progression */
-.progress{position:fixed;top:env(safe-area-inset-top,0px);left:0;height:3px;width:100%;transform-origin:0 50%;transform:scaleX(0);background:linear-gradient(90deg,var(--gold),var(--mauve-soft));z-index:70}
-
-/* En-tête */
+.progress{position:fixed;top:env(safe-area-inset-top,0px);left:0;width:100%;transform-origin:0 50%;transform:scaleX(0);background:linear-gradient(90deg,var(--gold),var(--mauve-soft));z-index:70}
 header{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;transition:background .35s,box-shadow .35s;animation:dropIn .8s var(--ease) both}
-header.scrolled{background:rgba(30,19,27,.82);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 1px 0 rgba(194,135,174,.18)}
+header.scrolled{backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 1px 0 rgba(194,135,174,.18)}
 .hbar{display:flex;align-items:center;gap:14px 32px;padding-block:14px;transition:padding .35s var(--ease)}
 header.scrolled .hbar{padding-block:8px}
 .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:#fff;flex-grow:1}
@@ -93,70 +84,47 @@ nav.menu a:hover::after{transform:scaleX(1);transform-origin:left}
 .burger[aria-expanded="true"] span:nth-child(1){transform:translateY(8px) rotate(45deg)}
 .burger[aria-expanded="true"] span:nth-child(2){opacity:0}
 .burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
-
-/* Boutons */
-.btn{position:relative;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;gap:10px;text-decoration:none;font-weight:700;font-size:17px;padding:15px 26px;border-radius:8px;transition:transform .25s var(--ease),box-shadow .25s,background .25s,color .25s;border:2px solid transparent}
-.btn:hover{transform:translateY(-3px)}
+.btn{position:relative;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;gap:10px;text-decoration:none;font-weight:700;font-size:17px;padding:15px 26px;transition:transform .25s var(--ease),box-shadow .25s,background .25s,color .25s;border:2px solid transparent}
 .btn:active{transform:translateY(0) scale(.97)}
 .btn-gold{background:linear-gradient(180deg,#E3BC63,#CFA246);color:var(--ink);border-color:#F1D58F;box-shadow:inset 0 1px 0 rgba(255,255,255,.45),inset 0 -2px 0 rgba(110,70,15,.22),0 8px 22px rgba(0,0,0,.35)}
 .btn-gold:hover{box-shadow:0 10px 28px rgba(212,169,76,.35)}
-.btn-gold::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-20deg);animation:shine 9s ease-in-out infinite}
+.btn-gold::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;transform:skewX(-20deg);animation:shine 9s ease-in-out infinite}
 @keyframes shine{0%,70%{left:-60%}100%{left:130%}}
-.btn-line{border-color:var(--mauve-soft);color:#fff}
-.btn-line:hover{background:var(--mauve);border-color:var(--mauve)}
+.btn-line{color:#fff}
 .btn-wa{border-color:var(--wa);color:#E3F2E9;background:rgba(111,175,138,.10)}
 .btn-wa:hover{background:rgba(111,175,138,.22)}
 .btn-wa svg{flex:none}
-.arrow{transition:transform .3s var(--ease);display:inline-block}
-a:hover .arrow{transform:translateX(6px)}
-
-/* Accueil */
 .hero{position:relative;overflow:hidden;min-height:clamp(520px,72vh,680px);display:flex;align-items:flex-end;margin-top:-92px;padding-top:92px}
 .hero-media{position:absolute;inset:-6% 0;will-change:transform}
-.hero-media img{width:100%;height:100%;object-fit:cover;object-position:65% 70%;filter:sepia(.15) saturate(1.05) contrast(1.06) hue-rotate(-8deg);animation:kenburns 26s ease-in-out infinite alternate;transform-origin:65% 70%}
+.hero-media img{width:100%;height:100%;object-fit:cover;object-position:65% 70%;animation:kenburns 26s ease-in-out infinite alternate;transform-origin:65% 70%}
 @keyframes kenburns{from{transform:scale(1.02)}to{transform:scale(1.14) translate(-1.5%,-1%)}}
-.hero::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(30,19,27,.95) 0%,rgba(30,14,26,.78) 42%,rgba(78,26,59,.18) 80%),linear-gradient(0deg,rgba(30,19,27,.9),transparent 35%)}
-.hero-in{position:relative;z-index:2;width:100%;padding-block:72px 56px;display:flex;flex-direction:column;gap:20px}
-.hero h1{font-size:clamp(34px,5.2vw,58px);max-width:640px;color:#fff}
-.hero h1 .w{display:inline-block;opacity:0;transform:translateY(40px) rotate(3deg);animation:wordUp .9s var(--ease) forwards}
+.hero::before{content:"";position:absolute;inset:0;z-index:1}
+.hero-in{position:relative;z-index:2;width:100%;padding-block:72px 56px;display:flex;flex-direction:column}
+.hero h1{font-size:clamp(34px,5.2vw,58px);color:#fff}
+.hero h1 .w{display:inline-block;opacity:0;animation:wordUp .9s var(--ease) forwards}
 @keyframes wordUp{to{opacity:1;transform:none}}
-.hero p.lead{font-size:clamp(17px,1.6vw,20px);max-width:520px;margin:0;color:var(--muted)}
+.hero p.lead{font-size:clamp(17px,1.6vw,20px)}
 .hero .ctas{display:flex;flex-wrap:wrap;gap:12px}
-.hero .info{margin:0;font-weight:600;color:var(--muted);display:flex;flex-wrap:wrap;gap:8px}
-.chip.rer{padding:5px 14px 5px 6px}.chip img,.rerline img{display:block;height:auto;flex:none}
+.hero .info{margin:0;font-weight:600;color:var(--muted);display:flex;flex-wrap:wrap}
+.rerline img{display:block;height:auto;flex:none}
 .rerline{display:flex;align-items:center;gap:12px;color:var(--muted);font-weight:600}
-.chip{display:inline-flex;align-items:center;gap:8px;background:rgba(138,61,110,.22);border:1px solid rgba(194,135,174,.35);border-radius:30px;padding:7px 14px;font-size:15px}
-.chip i{width:8px;height:8px;border-radius:50%;background:#7FD69E;box-shadow:0 0 0 0 rgba(127,214,158,.6);animation:ping 4s infinite}
-@keyframes ping{70%{box-shadow:0 0 0 9px rgba(127,214,158,0)}100%{box-shadow:0 0 0 0 rgba(127,214,158,0)}}
-.load{opacity:0;transform:translateY(24px);animation:wordUp .9s var(--ease) forwards}
-
-/* Frise animée (une seule) */
+.load{opacity:0;animation:wordUp .9s var(--ease) forwards}
 .frieze{position:relative;height:14px;background:linear-gradient(var(--gold) 0 3px,var(--ink) 3px 5px,var(--deep) 5px 11px,var(--ink) 11px 12px,var(--gold) 12px 14px);overflow:hidden;z-index:2}
-.frieze::after{content:"";position:absolute;inset:0;width:30%;background:linear-gradient(90deg,transparent,rgba(255,240,200,.6),transparent);animation:sweep 11s linear infinite}
+.frieze::after{content:"";position:absolute;inset:0;width:30%;animation:sweep 11s linear infinite}
 @keyframes sweep{from{transform:translateX(-120%)}to{transform:translateX(450%)}}
-
-/* Apparitions au défilement */
-[data-r]{transition:opacity .9s var(--ease),transform .9s var(--ease);transition-delay:var(--d,0ms)}
-.js [data-r].pre{opacity:0;transform:translateY(40px)}
-.js [data-r="left"].pre{transform:translateX(-60px)}
-.js [data-r="right"].pre{transform:translateX(60px)}
-.js [data-r="zoom"].pre{transform:scale(.9)}
-
-section{padding-block:56px}
 .head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:14px;margin-bottom:28px}
 .head h2{font-size:clamp(28px,3.4vw,40px);position:relative;padding-bottom:12px}
 .head h2::after{content:"";position:absolute;left:0;bottom:0;height:4px;width:90px;border-radius:2px;background:linear-gradient(90deg,var(--gold),var(--mauve-soft));transform:scaleX(0);transform-origin:left;transition:transform 1s var(--ease) .3s}
 .head.in h2::after,.head:not(.pre) h2::after{transform:scaleX(1)}
 .head p{margin:8px 0 0;color:var(--muted);max-width:600px}
-
-/* Voitures en préparation */
 .cars{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
-.car{position:relative;overflow:hidden;border-radius:12px;padding:22px;min-height:190px;display:flex;flex-direction:column;justify-content:space-between;background:linear-gradient(150deg,var(--panel2),var(--panel) 60%);border:1px solid var(--line);transition:transform .35s var(--ease),box-shadow .35s,border-color .35s}
+.car{position:relative;overflow:hidden;border-radius:12px;padding:22px;min-height:190px;display:flex;flex-direction:column;justify-content:space-between;border:1px solid var(--line);transition:transform .35s var(--ease),box-shadow .35s,border-color .35s}
 .car::before{content:"";position:absolute;inset:auto 0 0 0;height:3px;background:linear-gradient(90deg,var(--gold),var(--mauve-soft));transform:scaleX(.25);transform-origin:left;transition:transform .5s var(--ease)}
-.car:hover{transform:translateY(-6px) rotate(-.4deg);border-color:rgba(194,135,174,.6);box-shadow:0 18px 40px rgba(78,26,59,.55)}
+.car:hover{border-color:rgba(194,135,174,.6);box-shadow:0 18px 40px rgba(78,26,59,.55)}
 .car:hover::before{transform:scaleX(1)}
 .car .el{position:absolute;right:-30px;bottom:-26px;width:210px;opacity:.11;animation:float 7s ease-in-out infinite;transition:opacity .4s,transform .6s var(--ease)}
-.car:nth-child(2n) .el{animation-delay:-2s}.car:nth-child(3n) .el{animation-delay:-4s}
+.car:nth-child(2n) .el{animation-delay:-2s}
+.car:nth-child(3n) .el{animation-delay:-4s}
 .car:hover .el{opacity:.22}
 @keyframes float{50%{transform:translateY(-10px) rotate(-2deg)}}
 .badge{position:relative;align-self:flex-start;display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(232,195,115,.6);color:var(--gold-soft);border-radius:30px;padding:5px 12px 5px 8px;font-size:12.5px;font-weight:700;letter-spacing:1.2px;background:rgba(30,19,27,.4)}
@@ -165,20 +133,17 @@ section{padding-block:56px}
 .car .brandn{position:relative;font-size:13px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--mauve-soft)}
 .car .model{position:relative;font:800 clamp(22px,2.4vw,30px)/1.1 var(--display);color:#fff}
 .car .bar{position:relative;height:4px;border-radius:2px;background:rgba(255,255,255,.08);overflow:hidden;margin-top:12px}
-.car .bar::after{content:"";position:absolute;inset:0;width:35%;border-radius:2px;background:linear-gradient(90deg,var(--mauve),var(--gold));animation:work 5.5s ease-in-out infinite}
+.car .bar::after{content:"";position:absolute;inset:0;border-radius:2px}
 @keyframes work{0%{transform:translateX(-100%)}100%{transform:translateX(300%)}}
-
-/* Services */
 .split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px;align-items:center}
 .photo{position:relative;border-radius:12px;overflow:hidden}
 .photo img{width:100%;aspect-ratio:16/10;object-fit:cover;filter:sepia(.12) saturate(1.05) contrast(1.06) hue-rotate(-10deg);transition:transform .8s var(--ease)}
-.photo:hover img{transform:scale(1.06)}
 .photo::after{content:"";position:absolute;inset:0;background:linear-gradient(200deg,transparent 50%,rgba(78,26,59,.45))}
 .mech h2{font-size:clamp(28px,3.4vw,40px)}
 .tow{margin-top:64px;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr)}
 .split:not(.tow){grid-template-columns:minmax(0,1fr) minmax(0,1.35fr)}
-.mech p{color:var(--muted);margin:10px 0 18px}
-.icons{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-bottom:20px}
+.mech p{color:var(--muted)}
+.icons{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));margin-bottom:20px}
 .ic{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:10px;background:rgba(138,61,110,.12);border:1px solid rgba(194,135,174,.22);font-weight:700;transition:transform .3s var(--ease),background .3s,border-color .3s}
 .ic:hover{transform:translateY(-3px);background:rgba(138,61,110,.28);border-color:rgba(194,135,174,.55)}
 .ic:hover svg{transform:rotate(-12deg) scale(1.12)}
@@ -187,18 +152,9 @@ section{padding-block:56px}
 .js .icons.pre svg *{stroke-dashoffset:1}
 .js .icons.pre .ic{opacity:0;transform:translateY(14px)}
 .icons .ic{transition-delay:var(--d,0ms)}
-.trade{position:relative;overflow:hidden;margin-top:28px;border-radius:14px;padding:36px;isolation:isolate}
-.trade::before{content:"";position:absolute;inset:-60%;z-index:-2;background:conic-gradient(from 0deg,var(--gold),var(--mauve-soft),var(--mauve),var(--gold),var(--mauve-soft),var(--mauve),var(--gold));animation:spin 24s linear infinite}
-.trade::after{content:"";position:absolute;inset:2px;z-index:-1;border-radius:12px;background:linear-gradient(140deg,var(--panel2),var(--ink) 70%)}
-.trade .el{position:absolute;right:-20px;bottom:-60px;width:330px;opacity:.13;animation:float 8s ease-in-out infinite;pointer-events:none}
-.trade h2{color:var(--gold-soft);font-size:clamp(24px,3vw,34px)}
-.trade p{max-width:620px;margin:12px 0 16px}
-.trade a{font-weight:700;text-decoration:none}
-
-/* Nous trouver */
-.contact{position:relative;overflow:hidden;border-radius:14px;padding:36px;background:linear-gradient(160deg,var(--panel2),var(--panel));border:1px solid var(--line);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:36px}
+.contact{position:relative;display:grid}
 .contact .el{position:absolute;left:-70px;bottom:-60px;width:330px;opacity:.05;pointer-events:none}
-.contact h2{font-size:clamp(28px,3.4vw,40px);margin-bottom:16px}
+.contact h2{font-size:clamp(28px,3.4vw,40px)}
 .contact p{margin:0 0 12px}
 .hours{display:inline-flex;gap:10px;align-items:baseline;flex-wrap:wrap}
 .hours b{color:var(--gold-soft)}
@@ -208,45 +164,28 @@ section{padding-block:56px}
 .social a{width:46px;height:46px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;border:2px solid var(--mauve-soft);color:#fff;text-decoration:none;transition:transform .5s var(--ease),background .5s,color .5s,border-color .5s}
 .social a:hover{transform:translateY(-3px);background:var(--gold);border-color:var(--gold);color:#1E131B}
 .social a[hidden]{display:none}
-.socialbox{margin-top:22px}
-.socialbox .lbl{display:block;font-weight:700;margin-bottom:10px;color:var(--muted)}
 .social.foot-s a{width:38px;height:38px}
 .social.foot-s svg{width:18px;height:18px}
-.links{display:flex;flex-wrap:wrap;gap:18px;font-weight:700;margin-top:14px}
-.links a{text-decoration:none;position:relative}
-.links a::after{content:"";position:absolute;left:0;bottom:-3px;width:100%;height:2px;background:currentColor;transform:scaleX(.3);transform-origin:left;transition:transform .3s var(--ease)}
-.links a:hover::after{transform:scaleX(1)}
-.mapcard{position:relative;border-radius:12px;overflow:hidden;min-height:320px;background:radial-gradient(circle at 30% 30%,rgba(138,61,110,.35),transparent 60%),var(--ink);border:1px solid var(--line);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;text-align:center;padding:28px}
-.pinwrap{position:relative;display:grid;place-items:center}
-.mapcard .rings{position:absolute;left:50%;top:40%;width:10px;height:10px;margin:-5px 0 0 -5px}
-.mapcard .rings i{position:absolute;inset:0;border-radius:50%;border:2px solid var(--mauve-soft);animation:ring 6s ease-out infinite}
-.mapcard .rings i:nth-child(2){animation-delay:2s}.mapcard .rings i:nth-child(3){animation-delay:4s}
-@keyframes ring{from{transform:scale(1);opacity:.8}to{transform:scale(14);opacity:0}}
-.pin{position:relative;animation:bob 4s ease-in-out infinite}
-@keyframes bob{50%{transform:translateY(-8px)}}
-.mapcard .addr{position:relative;font-weight:700;font-size:18px}
+.mapcard{position:relative;border-radius:12px;overflow:hidden;background:radial-gradient(circle at 30% 30%,rgba(138,61,110,.35),transparent 60%),var(--ink);border:1px solid var(--line);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;text-align:center;padding:28px}
 .mapcard small{position:relative;color:var(--muted);font-size:14px;max-width:320px}
-.mapbtns{position:relative;display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
 button.btn{font-family:inherit;cursor:pointer}
 .mapcard.real{padding:0;display:block}
 .mapcard.real iframe{position:absolute;inset:0;width:100%;height:100%;border:0;filter:invert(92%) hue-rotate(180deg) saturate(.55) brightness(.92) contrast(.95)}
 .mapcard.real::after{content:"";position:absolute;inset:0;pointer-events:none;background:rgba(138,61,110,.16);mix-blend-mode:multiply}
 .mapcard.real .btn{position:absolute;left:16px;bottom:16px;z-index:2}
-
 footer{padding-block:24px 40px}
 .foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;color:var(--muted);font-size:15px}
 .foot img{width:96px;transition:transform .6s var(--ease)}
 .foot img:hover{transform:rotate(-5deg) scale(1.06)}
-
-
 .tri{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:15px;font-weight:600}
 .tri[hidden]{display:none}
-.tri select{appearance:none;-webkit-appearance:none;font:inherit;font-weight:700;color:var(--cream);background:var(--panel) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23D4A94C' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") no-repeat right 14px center;border:1px solid rgba(212,169,76,.45);border-radius:10px;padding:11px 40px 11px 14px;min-height:46px;cursor:pointer;transition:border-color .3s}
+.tri select{appearance:none;-webkit-appearance:none;font:inherit;font-weight:700;color:var(--cream);background:var(--panel) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23D4A94C' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") no-repeat right 14px center;border:1px solid rgba(212,169,76,.45);border-radius:10px;padding:11px 40px 11px 14px;min-height:46px;cursor:pointer}
 .tri select:hover,.tri select:focus{border-color:var(--gold);outline:none}
 .tri option{background:#2A1B25;color:#F6EFF3}
-
-@media (max-width:760px){.tri{width:100%}.tri select{flex:1}}
-/* menu du haut (ordi) : petit fond arrondi transparent sur la photo, qui s'efface quand on descend (la barre prend le relais) */
+@media (max-width:760px){
+  .tri{width:100%}
+  .tri select{flex:1}
+}
 @media (min-width:761px){
   nav.menu{padding:7px 24px;border-radius:14px;background:rgba(24,15,21,.58);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid rgba(194,135,174,.3);box-shadow:0 6px 24px rgba(0,0,0,.18);transition:background .7s,border-color .7s,box-shadow .7s}
   header.scrolled nav.menu{background:rgba(24,15,21,0);border-color:rgba(194,135,174,0);box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none}
@@ -255,8 +194,9 @@ footer{padding-block:24px 40px}
 .hero-media .hs.on{opacity:1}
 .hero-media .hs img{object-position:50% 50%}
 .hero-media .hs-first img{object-position:65% 70%}
-@media (max-width:760px){.hero-media .hs-first img{object-position:55% 30%}}
-/* téléphone : cartes plus compactes, boutons plus faciles à toucher, moins de vide */
+@media (max-width:760px){
+  .hero-media .hs-first img{object-position:55% 30%}
+}
 @media (max-width:700px){
   .car.sale .sbody{padding:14px 16px 16px;gap:3px}
   .car.sale .price{position:absolute;top:12px;right:16px;margin:0;font-size:24px;line-height:1.3}
@@ -264,7 +204,6 @@ footer{padding-block:24px 40px}
   .car.sale .specs{gap:5px;margin:6px 0 4px;max-width:calc(100% - 60px)}
   .car.sale .spec{font-size:12.5px;padding:4px 9px 4px 7px;gap:5px}
   .car.sale .spec svg{width:13px;height:13px}
-  .car.sale .mlogo{width:52px;height:52px;margin-top:-10px;right:16px}
   .car.sale .cbtns{margin-top:8px}
   .car.sale .cbtns .btn{padding:11px 18px;font-size:15.5px}
   .gnav{width:44px!important;height:44px!important;margin-top:-22px!important}
@@ -273,18 +212,15 @@ footer{padding-block:24px 40px}
   #contact{padding-top:20px}
   footer{padding-top:30px}
 }
-/* téléphone : accueil moins haut (on voit le titre des voitures), barre du haut plus fine quand on descend */
 @media (max-width:760px){
-  .hero{min-height:0}
   .hero-in{padding-block:96px 26px!important;gap:16px!important}
   header.scrolled .hbar{padding-block:5px}
   header.scrolled .brand img{width:38px}
   header.scrolled .wordmark{transform:scale(.82);transform-origin:left center}
   .wordmark{transition:transform .35s var(--ease)}
-  /* menu ouvert : fond plein, logo visible, page assombrie dessous */
   header:has(nav.menu.open){background:#1E131B;box-shadow:0 1px 0 rgba(194,135,174,.18)}
   .js header:has(nav.menu.open) .brand{opacity:1;transform:none;pointer-events:auto}
-  nav.menu{background:#1E131B!important;top:calc(env(safe-area-inset-top,0px) + 77px)}
+  nav.menu{background:#1E131B!important}
   header.scrolled nav.menu{top:calc(env(safe-area-inset-top,0px) + 59px)}
   nav.menu.open{box-shadow:0 30px 60px rgba(0,0,0,.55)}
 }
@@ -299,24 +235,25 @@ footer{padding-block:24px 40px}
 .car .price{font:800 26px var(--display);color:var(--gold-soft);margin:4px 0 10px}
 .car.sale .sphoto img.fade{opacity:.35}
 .car.sale .sphoto.gal img{transition:transform .7s var(--ease),opacity .35s}
-.gnav{position:absolute;top:50%;width:42px;height:42px;margin-top:-21px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(30,19,27,.62);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);transition:background .3s,border-color .3s;z-index:2}
+.gnav{position:absolute;top:50%;width:42px;height:42px;margin-top:-21px;border-radius:50%;border:1px solid rgba(255,255,255,.25);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);transition:background .3s,border-color .3s;z-index:2}
 .gnav:hover,.gnav:focus-visible{background:rgba(138,61,110,.85);border-color:var(--gold-soft)}
-.gnav.prev{left:12px}.gnav.prev svg{transform:rotate(180deg)}
+.gnav.prev{left:12px}
+.gnav.prev svg{transform:rotate(180deg)}
 .gnav.next{right:12px}
 .gcount{position:absolute;right:12px;bottom:12px;padding:4px 10px;border-radius:20px;background:rgba(30,19,27,.7);color:#fff;font-size:13px;font-weight:700;letter-spacing:.5px;z-index:2}
-@media (max-width:700px){.car.sale{grid-column:1/-1}.gnav{width:38px;height:38px;margin-top:-19px}}
+@media (max-width:700px){
+  .car.sale{grid-column:1/-1}
+  .gnav{width:38px;height:38px;margin-top:-19px}
+}
 .car .mlogo{position:absolute;right:22px;top:50%;width:92px;height:92px;margin-top:-46px;object-fit:contain;opacity:.24;pointer-events:none;transition:opacity .5s,transform .8s var(--ease)}
 .car:hover .mlogo{opacity:.38;transform:scale(1.04)}
 .car.sale .mlogo{width:76px;height:76px;margin-top:-38px}
-@media (max-width:700px){.car .mlogo{width:58px;height:58px;margin-top:-29px;right:12px}.car.sale .mlogo{width:64px;height:64px;margin-top:-32px;right:18px}}
+@media (max-width:700px){
+  .car .mlogo{width:58px;height:58px;margin-top:-29px;right:12px}
+  .car.sale .mlogo{width:64px;height:64px;margin-top:-32px;right:18px}
+}
 .car[data-href]{cursor:pointer}
-.car .lbc{align-self:flex-start;margin-top:2px;padding:11px 18px;font-size:15px;gap:8px}
-.car .lbc svg{flex:none;transition:transform .3s var(--ease)}
-.car .lbc.off{opacity:.42;filter:grayscale(1);cursor:not-allowed;pointer-events:none;border-style:dashed}
-.car[data-href]:hover .lbc{background:rgba(138,61,110,.35);border-color:var(--mauve-soft)}
-.car[data-href]:hover .lbc svg{transform:translate(2px,-2px)}
 .car.sold .sphoto::after{content:"VENDUE";position:absolute;top:18px;right:-34px;transform:rotate(35deg);background:var(--mauve);color:#fff;font:800 14px var(--display);letter-spacing:3px;padding:6px 44px}
-/* Voitures en préparation : même forme que les voitures en vente (zone image avec le logo de la marque) ; barre lente et douce */
 .car.prep{padding:0;min-height:0}
 .car.prep .pphoto{position:relative;aspect-ratio:4/3;overflow:hidden;background:radial-gradient(ellipse at 50% 55%,rgba(138,61,110,.28),rgba(30,19,27,0) 70%),linear-gradient(160deg,rgba(255,255,255,.03),rgba(0,0,0,.12));border-bottom:1px solid rgba(194,135,174,.14)}
 .car.prep .pphoto .badge{position:absolute;top:16px;left:16px}
@@ -326,11 +263,10 @@ footer{padding-block:24px 40px}
 .car.prep .bar{margin-top:auto}
 .car.prep .model{margin-bottom:14px}
 .car .bar::after{width:45%;opacity:.6;background:linear-gradient(90deg,transparent,var(--mauve-soft),var(--gold-soft),transparent);animation:work 14s ease-in-out infinite}
-@media (max-width:760px){.car.prep .mlogo{width:56px;height:56px;top:auto;bottom:14px;margin:0 0 0 -28px}.car.prep .pphoto .badge{top:10px;left:10px}.car.prep .sbody{padding:12px 14px 16px}.car.prep .model{margin-bottom:10px}}
-.legal{max-width:760px}
-/* Barre d'actions téléphone */
+@media (max-width:760px){
+  .car.prep .mlogo{width:56px;height:56px;top:auto;bottom:14px;margin:0 0 0 -28px}
+}
 .mbar{display:none}
-
 @media (max-width:760px){
   body{font-size:16px}
   nav.menu{position:fixed;inset:0 0 auto 0;top:calc(env(safe-area-inset-top,0px) + 66px);flex-direction:column;gap:0;background:rgba(30,19,27,.97);padding:8px max(20px,env(safe-area-inset-left,0px)) 20px;transform:translateY(-16px);opacity:0;pointer-events:none;transition:transform .35s var(--ease),opacity .3s}
@@ -338,29 +274,24 @@ footer{padding-block:24px 40px}
   nav.menu a{padding:14px 0;font-size:19px;border-bottom:1px solid var(--line)}
   .burger{display:block}
   .hcall{display:none}
-  .brand img{width:48px} .wordmark b{font-size:18px} .wordmark span{font-size:10px;letter-spacing:6px}
+  .brand img{width:48px}
+  .wordmark b{font-size:18px}
+  .wordmark span{font-size:10px;letter-spacing:6px}
   .hero{min-height:560px}
-  .hero-in{padding-block:200px 32px}
-  .hero::before{background:linear-gradient(180deg,rgba(30,19,27,.25) 0%,rgba(30,14,26,.7) 45%,rgba(30,19,27,.97) 78%)}
   .hero .ctas .btn{flex:1 1 100%}
   .hero .ctas .btn-line,.hero .ctas .btn-wa{display:none}
-  section{padding-block:36px}
   .cars{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
   .car{min-height:150px;padding:14px;border-radius:10px}
   .car .el{width:130px;right:-24px;bottom:-18px}
   .badge{font-size:10.5px;padding:4px 8px 4px 6px;gap:5px;letter-spacing:.8px}
   .split{grid-template-columns:1fr;gap:0}
-  .mech{background:var(--panel);border-radius:0 0 12px 12px;padding:18px}
-  .split .photo{border-radius:12px 12px 0 0}
-  .tow{margin-top:36px}.tow .photo{order:-1}
+  .tow{margin-top:36px}
+  .tow .photo{order:-1}
   .split:not(.tow),.tow{grid-template-columns:1fr}
   .photo img{aspect-ratio:16/8}
-  .icons{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
-  .ic{flex-direction:column;align-items:flex-start;gap:6px;padding:10px;font-size:14px}
-  .trade{padding:24px 20px}
-  .trade .el{width:200px;bottom:-40px}
-  .contact{grid-template-columns:1fr;padding:22px 18px;gap:20px}
-  .mapcard{min-height:220px}
+  .icons{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .ic{flex-direction:column;align-items:flex-start;gap:6px;font-size:14px}
+  .contact{padding:22px 18px}
   .foot{flex-direction:column;text-align:center}
   footer{padding-bottom:110px}
   .mbar{display:flex;gap:8px;position:fixed;left:0;right:0;bottom:0;z-index:55;padding:10px max(12px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(12px,env(safe-area-inset-left,0px));background:rgba(30,19,27,.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid var(--line);animation:barUp .7s var(--ease) 1.2s both}
@@ -374,36 +305,23 @@ footer{padding-block:24px 40px}
   .js [data-r].pre,.js .icons.pre .ic{opacity:1;transform:none}
   .js .icons.pre svg *{stroke-dashoffset:0}
 }
-/* ===== VERSION ALLÉGÉE (26/10) ===== */
 html,body{margin:0}
 header.scrolled{background:rgba(30,19,27,.96)}
 .progress{height:2px}
-/* un seul éléphant en filigrane : Achat-revente */
 .car .el,.contact .el{display:none}
-/* services sans boîtes */
 .icons{gap:14px 24px}
 .ic,.ic:hover{background:none;border:0;padding:4px 0;transform:none}
-/* Achat-revente : plus de cadre dégradé (bordure cassée), simple trait or à gauche */
-.trade{border-radius:0;padding:28px 0 28px 32px;overflow:visible;isolation:auto;border-left:3px solid var(--gold)}
-.trade::before,.trade::after{display:none}
-.trade .el{right:0;bottom:50%;transform:translateY(50%);width:260px;opacity:.10;animation:none}
-/* contact : liens d'une seule couleur, sans soulignement */
 .contact p a{color:var(--cream);text-decoration:none}
 .contact p a:hover{color:var(--gold-soft)}
-/* pied de page : même logo blanc qu'en haut */
 .foot .brand{flex-grow:0}
 .foot .brand img{width:50px}
-#services .tow{margin-top:72px}
 @media (max-width:760px){
   .hero .ctas .btn-gold{display:none}
   .hero .ctas .btn-line.cars-l{display:inline-flex}
   .icons{gap:12px}
   .ic{padding:2px 0}
-  .trade{padding:20px 0 20px 20px}
-  .trade .el{width:160px}
   .foot .brand{justify-content:center}
 }
-/* Nous trouver : l'essentiel + l'éléphant en fond */
 .contact>div:first-of-type{display:flex;flex-direction:column;justify-content:center}
 .contact .addr1{font-size:19px}
 .contact .phone{margin:10px 0 16px}
@@ -413,59 +331,49 @@ header.scrolled{background:rgba(30,19,27,.96)}
 .mailtxt{display:block;color:var(--muted);font-size:15px;text-decoration:none;transition:color .3s}
 .mailtxt:hover{color:var(--gold-soft)}
 .crow .btn{padding:11px 20px;font-size:16px}
-@media (max-width:420px){.crow{gap:10px}.crow .btn{padding:10px 13px;font-size:15px;gap:8px}}
-/* l'éléphant : une seule fois, en grand, centré, en signature avant le pied de page */
-footer{padding-top:24px}
+@media (max-width:420px){
+  .crow{gap:10px}
+  .crow .btn{padding:10px 13px;font-size:15px;gap:8px}
+}
 footer>.el{width:340px;margin:24px auto 32px;opacity:.16;pointer-events:none}
-@media (max-width:760px){footer>.el{width:220px;margin:8px auto 20px}}
-/* ===== LUMIÈRES PLUS DOUCES + PLUS D'ANIMATIONS AU DÉFILEMENT ===== */
+@media (max-width:760px){
+  footer>.el{width:220px;margin:8px auto 20px}
+}
 .btn-gold::after{background:linear-gradient(100deg,transparent,rgba(255,255,255,.22),transparent);animation-duration:18s}
 .frieze::after{background:linear-gradient(90deg,transparent,rgba(255,240,200,.25),transparent);animation-duration:22s}
-.glow{opacity:.38}
-.glow.g1{animation-duration:48s}.glow.g2{animation-duration:60s}
-.chip i{animation-duration:6s}
+.glow.g1{animation-duration:48s}
+.glow.g2{animation-duration:60s}
 [data-r]{transition:opacity 2.2s var(--ease),transform 2.4s var(--ease),filter 2.2s var(--ease);transition-delay:var(--d,0ms)}
 .js [data-r].pre{opacity:0;transform:translateY(22px);filter:blur(2px)}
 .js [data-r="left"].pre{transform:translateX(-24px)}
 .js [data-r="right"].pre{transform:translateX(24px)}
 .js [data-r="zoom"].pre{transform:scale(.97)}
-/* photos : simple fondu lent, sans balayage */
 .js .photo[data-r].pre{transform:none;filter:none}
-/* tout plus calme */
 .hero h1 .w{transform:translateY(16px);animation-duration:1.8s}
 .load{transform:translateY(12px);animation-duration:1.8s}
 .btn:hover{transform:translateY(-1px)}
 .car:hover{transform:translateY(-3px)}
 .photo:hover img{transform:scale(1.02)}
-/* ===== COHÉRENCE : une seule grammaire pour tout le site ===== */
-/* rythme : même espace entre toutes les parties */
 section{padding-block:56px}
 #voitures{padding-top:64px}
 #services .tow{margin-top:112px}
 .icons{max-width:440px}
-/* arrondis identiques partout */
 .btn{border-radius:10px}
 .car,.photo,.mapcard,.mapcard.real{border-radius:14px}
-/* boutons contour plus calmes, même famille que le reste */
 .btn-line{border-color:rgba(194,135,174,.55)}
 .btn-line:hover{background:rgba(138,61,110,.35);border-color:var(--mauve-soft)}
 .mapcard .btn-line{background:rgba(30,19,27,.85)}
-/* tous les titres de partie : même taille + même trait or/mauve qui se dessine */
 .mech h2,.contact h2{font-size:clamp(28px,3.4vw,40px);position:relative;padding-bottom:12px;margin-bottom:6px}
 .mech h2::after,.contact h2::after{content:"";position:absolute;left:0;bottom:0;height:4px;width:90px;border-radius:2px;background:linear-gradient(90deg,var(--gold),var(--mauve-soft));transform:scaleX(1);transform-origin:left;transition:transform 1.6s var(--ease) .4s}
 .js .mech h2.pre::after,.js .contact h2.pre::after{transform:scaleX(0)}
 .mech p{margin:12px 0 22px;max-width:520px}
-/* Mécanique, Remorquage, Nous trouver : même mise en page (texte + image côte à côte, sans boîte) */
 .contact{background:none;border:0;padding:0;border-radius:0;overflow:visible;gap:32px;grid-template-columns:minmax(0,1fr) minmax(0,1.35fr);align-items:center}
 .contact h2{margin-bottom:22px}
 .mapcard{min-height:340px;box-shadow:0 24px 60px rgba(0,0,0,.35)}
 .photo{box-shadow:0 24px 60px rgba(0,0,0,.35)}
-/* les photos vivent doucement */
 .photo img{animation:breathe 30s ease-in-out infinite alternate}
 @keyframes breathe{from{transform:scale(1)}to{transform:scale(1.06)}}
-/* cartes voitures dans la même matière que le reste */
 .car{background:linear-gradient(160deg,rgba(42,26,37,.9),rgba(31,20,27,.9));border-color:rgba(194,135,174,.18)}
-/* pied de page relié au site par un trait fin */
 footer .foot{border-top:1px solid var(--line);padding:28px 0 0;max-width:1160px;margin-inline:max(20px,calc((100% - 1160px) / 2))}
 footer{padding-top:48px}
 @media (max-width:760px){
@@ -478,7 +386,6 @@ footer{padding-top:48px}
   .contact{gap:24px;grid-template-columns:1fr}
   .mapcard{min-height:240px}
 }
-/* ===== ACCUEIL : logo rond (sans fond) + nom, alignés à gauche ===== */
 .hero-in{gap:26px}
 .hlogo{display:flex;align-items:center;gap:clamp(18px,2.6vw,36px)}
 .hlogo .rond{width:clamp(150px,16vw,210px);height:auto;flex:none;filter:drop-shadow(0 10px 30px rgba(0,0,0,.6))}
@@ -487,7 +394,6 @@ footer{padding-top:48px}
 .hero h1 .hn{font:800 clamp(40px,6.6vw,88px)/.95 var(--display);letter-spacing:.04em;color:#fff}
 .hero h1 .ha{font:700 clamp(14px,1.9vw,24px)/1 var(--display);letter-spacing:.66em;color:#fff;margin-top:clamp(8px,1vw,12px);padding-left:.12em}
 .hero p.lead{margin:0;font:600 clamp(18px,1.9vw,23px)/1.3 var(--body);color:var(--gold-soft);letter-spacing:.02em;max-width:none}
-/* petit logo de la barre : seulement après avoir dépassé le grand */
 .js header .brand{opacity:0;transform:translateY(-6px);pointer-events:none;transition:opacity .9s var(--ease),transform .9s var(--ease)}
 .js header.showbrand .brand{opacity:1;transform:none;pointer-events:auto}
 @media (max-width:760px){
@@ -502,33 +408,26 @@ footer{padding-top:48px}
 }
 /* accueil : filtre mauve un peu allégé (25/10) */
 .hero::before{background:linear-gradient(90deg,rgba(30,19,27,.86) 0%,rgba(30,14,26,.6) 42%,rgba(78,26,59,.1) 80%),linear-gradient(0deg,rgba(30,19,27,.85),transparent 32%)}
-.hero-media img{filter:sepia(.1) saturate(1.05) contrast(1.04) brightness(1.08) hue-rotate(-8deg)}
-@media (max-width:760px){.hero::before{background:linear-gradient(180deg,rgba(30,19,27,.12) 0%,rgba(30,14,26,.55) 45%,rgba(30,19,27,.95) 80%)}}
-/* ===== SITE UN PEU MOINS SOMBRE (même DA prune/or) ===== */
 body{background:#1E131B}
 .glow{opacity:.5}
 .glow.g1{background:radial-gradient(circle,#7A3263,transparent 70%)}
 .glow.g2{background:radial-gradient(circle,#5E2349,transparent 70%)}
 :root{--muted:#DCCDD6}
-/* photo d'accueil : filtre encore allégé */
 .hero::before{background:linear-gradient(90deg,rgba(30,19,27,.8) 0%,rgba(40,20,34,.45) 42%,rgba(78,26,59,.06) 80%),linear-gradient(0deg,rgba(30,19,27,.85),transparent 30%)}
 .hero-media img{filter:sepia(.08) saturate(1.05) contrast(1.03) brightness(1.15) hue-rotate(-8deg)}
 .hero h1,.hero p.lead{text-shadow:0 2px 18px rgba(0,0,0,.55)}
-@media (max-width:760px){.hero::before{background:linear-gradient(180deg,rgba(30,19,27,.05) 0%,rgba(40,20,34,.45) 45%,rgba(30,19,27,.95) 80%)}}
-/* boutons et pastilles de l'accueil lisibles sur la photo plus claire */
+@media (max-width:760px){
+  .hero::before{background:linear-gradient(180deg,rgba(30,19,27,.05) 0%,rgba(40,20,34,.45) 45%,rgba(30,19,27,.95) 80%)}
+}
 .hero .btn-line,.hero .btn-wa{background:rgba(30,19,27,.72);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
 .hero .btn-line:hover{background:rgba(138,61,110,.6)}
 .hero .btn-wa:hover{background:rgba(30,19,27,.85)}
-.hero .chip{background:rgba(30,19,27,.65);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
-/* petits téléphones : badge et modèle sur une ligne */
 @media (max-width:400px){
   .badge{white-space:nowrap;font-size:9.5px;letter-spacing:.4px;padding:4px 7px 4px 5px;gap:4px}
   .badge svg{width:12px;height:12px}
   .car .model{font-size:20px}
   .car{padding:12px}
 }
-
-/* HAUT DE PAGE : bloc « Suivez le garage » à droite du logo (ordi), dans le menu (téléphone) + horaires en petites cartes */
 .follow{position:absolute;right:max(20px,env(safe-area-inset-right,0px));top:50%;margin-top:-4px;translate:0 -50%;display:flex;flex-direction:column;gap:8px;min-width:270px;padding:16px;border-radius:16px;background:rgba(24,15,21,.82);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid rgba(232,195,115,.32);box-shadow:0 18px 40px rgba(0,0,0,.45)}
 .flbl{font:700 12px var(--body);letter-spacing:2.5px;text-transform:uppercase;color:var(--gold-soft);padding:0 4px 4px}
 .frow{display:flex;align-items:center;gap:12px;padding:9px 12px 9px 9px;border-radius:11px;text-decoration:none;color:#fff;background:rgba(255,255,255,.04);border:1px solid rgba(194,135,174,.22);transition:background .4s,border-color .4s,transform .4s var(--ease)}
@@ -555,13 +454,8 @@ nav.menu a,.hcall{white-space:nowrap}
 .ibox img{display:block;width:48px;height:auto;flex:none;border-radius:6px}
 .ibox b{display:block;color:#fff;font-weight:700;font-size:15px;line-height:1.25}
 .ibox small{display:block;color:var(--gold-soft);font-weight:600;font-size:14px;line-height:1.3}
-a.ilink{text-decoration:none;color:inherit;transition:border-color .4s,background .4s}
-a.ilink:hover,a.ilink:focus-visible{border-color:var(--gold-soft);background:rgba(138,61,110,.45)}
-.garr{display:inline-block;vertical-align:-1px;margin-left:3px;transition:transform .4s var(--ease)}
-a:hover .garr{transform:translate(2px,-2px)}
 .rerline a{display:inline-flex;align-items:center;gap:12px;color:inherit;text-decoration:none;border-bottom:1px solid transparent;transition:color .3s,border-color .3s}
 .rerline a:hover{color:#fff;border-color:var(--gold-soft)}
-.rerline .garr{color:var(--gold-soft)}
 @media (max-width:760px){
   .follow{display:none}
   .menusoc{display:flex;flex-wrap:wrap;gap:8px;padding-top:16px}
@@ -571,9 +465,9 @@ a:hover .garr{transform:translate(2px,-2px)}
   .hero .info{flex-direction:column;gap:8px}
   .ibox{width:100%;padding:9px 14px 9px 9px}
 }
-
 .glow{filter:none!important;will-change:transform}
-.glow.g1{width:760px;height:760px;left:-280px}.glow.g2{width:860px;height:860px;right:-330px}
+.glow.g1{width:760px;height:760px;left:-280px}
+.glow.g2{width:860px;height:860px;right:-330px}
 .gnav{backdrop-filter:none!important;-webkit-backdrop-filter:none!important;background:rgba(30,19,27,.72)}
 .hero-media img,.photo img{will-change:transform}
 .paused,.paused *{animation-play-state:paused!important}
@@ -586,11 +480,8 @@ a:hover .garr{transform:translate(2px,-2px)}
   .car.prep .model{margin-bottom:0}
   .car.prep .bar{margin-top:12px}
 }
-
-/* ===== Cartes voitures : boutons ===== */
 .car .cbtns{display:flex;align-items:center;flex-wrap:wrap;gap:10px 18px;margin-top:2px}
 .car .fopen{padding:11px 18px;font-size:15px;gap:8px;font-family:inherit;cursor:pointer;background:transparent}
-.car .fopen svg{transition:transform .5s var(--ease)}
 .car[data-fiche]{cursor:pointer}
 .car[data-fiche]:hover .fopen{background:rgba(138,61,110,.35);border-color:var(--mauve-soft)}
 .car[data-fiche]:hover .fopen svg{transform:translateX(3px)}
@@ -600,8 +491,6 @@ a:hover .garr{transform:translate(2px,-2px)}
 .car .clbc.off:hover{color:var(--muted);border-color:rgba(211,194,205,.3)}
 .car.sale .sphoto::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 60%,rgba(30,19,27,.45));opacity:0;transition:opacity .8s var(--ease);pointer-events:none}
 .car[data-fiche]:hover .sphoto::after{opacity:1}
-
-/* ===== Fiche ===== */
 html.fiche-on{overflow:hidden}
 .fwrap{position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;padding:clamp(14px,2.2vh,28px) clamp(14px,2vw,32px)}
 .fwrap[hidden]{display:none}
@@ -613,19 +502,17 @@ html.fiche-on{overflow:hidden}
 .fiche::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;z-index:4;background:linear-gradient(90deg,var(--gold),var(--mauve-soft),transparent)}
 .fclose{position:absolute;top:14px;right:14px;z-index:6;width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.22);background:rgba(30,19,27,.75);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .3s,border-color .3s,transform .5s var(--ease)}
 .fclose:hover,.fclose:focus-visible{background:var(--mauve);border-color:var(--gold-soft);transform:rotate(90deg)}
-
-/* galerie de la fiche */
 .fgal{position:relative;display:flex;flex-direction:column;min-height:0;background:#150D13;border-right:1px solid var(--line)}
 .fmain{position:relative;flex:none;aspect-ratio:4/3;max-height:calc(100vh - 140px);overflow:hidden;cursor:zoom-in}
 .fmain img{position:absolute;inset:0;width:100%;height:100%;transition:opacity .45s ease,transform 1.2s var(--ease)}
-/* photo entière (rien de coupé), sur un fond flou de la même photo */
 .fmain .fph{object-fit:contain;z-index:1}
 .fmain .fblur{object-fit:cover;filter:blur(26px) brightness(.42) saturate(1.15);transform:scale(1.18);pointer-events:none}
 .fmain:hover .fph{transform:scale(1.02)}
 .fmain img.fade{opacity:.25}
 .fnav{position:absolute;top:50%;width:46px;height:46px;margin-top:-23px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(30,19,27,.72);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:2;transition:background .3s,border-color .3s}
 .fnav:hover,.fnav:focus-visible{background:rgba(138,61,110,.9);border-color:var(--gold-soft)}
-.fnav.prev{left:16px}.fnav.prev svg{transform:rotate(180deg)}
+.fnav.prev{left:16px}
+.fnav.prev svg{transform:rotate(180deg)}
 .fnav.next{right:16px}
 .fcount{position:absolute;left:16px;bottom:16px;padding:5px 12px;border-radius:20px;background:rgba(30,19,27,.75);color:#fff;font-size:13px;font-weight:700;letter-spacing:.5px;z-index:2}
 .fzoom{position:absolute;right:16px;bottom:16px;z-index:2;display:inline-flex;align-items:center;gap:7px;padding:8px 14px;border-radius:20px;border:1px solid rgba(232,195,115,.45);background:rgba(30,19,27,.75);color:var(--gold-soft);font:700 13px var(--body);letter-spacing:.3px;cursor:pointer;transition:background .3s,color .3s}
@@ -635,8 +522,6 @@ html.fiche-on{overflow:hidden}
 .fthumb img{width:100%;height:100%;object-fit:cover;display:block}
 .fthumb:hover{opacity:.85}
 .fthumb.on{opacity:1;border-color:var(--gold-soft)}
-
-/* infos de la fiche */
 .finfo{position:relative;height:0;min-height:100%;overflow-y:auto;overscroll-behavior:contain;padding:34px 34px 28px;display:flex;flex-direction:column;gap:18px;scrollbar-width:thin;scrollbar-color:var(--line) transparent}
 .finfo .mlogo{position:absolute;right:30px;top:30px;width:74px;height:74px;object-fit:contain;opacity:.22;pointer-events:none}
 .fhead{padding-right:84px}
@@ -668,8 +553,6 @@ html.fiche-on{overflow:hidden}
 .fnote{display:flex;gap:10px;align-items:flex-start;margin:0;padding:13px 14px;border-radius:10px;background:rgba(138,61,110,.12);border:1px solid rgba(194,135,174,.2);color:var(--muted);font-size:14px;line-height:1.5}
 .fnote svg{flex:none;color:var(--gold-soft);margin-top:1px}
 .fnote b{color:#fff}
-
-/* ===== Zoom plein écran ===== */
 .lbx{position:fixed;inset:0;z-index:260;background:#0B0709;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .5s ease;touch-action:none}
 .lbx[hidden]{display:none}
 .lbx.on{opacity:1}
@@ -679,35 +562,46 @@ html.fiche-on{overflow:hidden}
 .lbx.drag img{transition:opacity .4s ease}
 .lbx img.fade{opacity:.2}
 .lbx .fnav{width:52px;height:52px;margin-top:-26px;z-index:3}
-.lbx .fnav.prev{left:20px}.lbx .fnav.next{right:20px}
+.lbx .fnav.prev{left:20px}
+.lbx .fnav.next{right:20px}
 .lbx.z .fnav{opacity:0;pointer-events:none}
 .lbx .fclose{top:max(16px,env(safe-area-inset-top,0px));right:16px}
 .lbx .fcount{left:50%;transform:translateX(-50%);bottom:max(18px,env(safe-area-inset-bottom,0px));z-index:3}
 .lhint{position:absolute;top:max(22px,env(safe-area-inset-top,0px));left:20px;z-index:3;color:rgba(255,255,255,.6);font-size:13px;font-weight:600;letter-spacing:.3px;pointer-events:none}
-
-/* ===== Animations douces (même esprit que le reste du site) ===== */
 @keyframes fIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
 @keyframes fFade{from{opacity:0}to{opacity:1}}
 @keyframes fBar{from{transform:translateY(105%)}to{transform:none}}
 .fwrap.on .finfo>*:not(.mlogo):not(.fcta){animation:fIn 1.1s var(--ease) both}
 .fwrap.on .finfo>.fcta{animation:fIn 1.1s var(--ease) .32s both}
-.fwrap.on .finfo>:nth-child(3){animation-delay:.1s}.fwrap.on .finfo>:nth-child(4){animation-delay:.18s}.fwrap.on .finfo>:nth-child(5){animation-delay:.26s}
-.fwrap.on .finfo>:nth-child(7){animation-delay:.4s}.fwrap.on .finfo>:nth-child(8){animation-delay:.48s}.fwrap.on .finfo>:nth-child(n+9){animation-delay:.56s}
+.fwrap.on .finfo>:nth-child(3){animation-delay:.1s}
+.fwrap.on .finfo>:nth-child(4){animation-delay:.18s}
+.fwrap.on .finfo>:nth-child(5){animation-delay:.26s}
+.fwrap.on .finfo>:nth-child(7){animation-delay:.4s}
+.fwrap.on .finfo>:nth-child(8){animation-delay:.48s}
+.fwrap.on .finfo>:nth-child(n+9){animation-delay:.56s}
 @keyframes fLogo{from{opacity:0}to{opacity:.22}}
 .fwrap.on .finfo .mlogo{animation:fLogo 1.8s ease .4s both}
 .fwrap.on .fthumb{animation:fIn .9s var(--ease) both}
-.fwrap.on .fthumb:nth-child(2){animation-delay:.06s}.fwrap.on .fthumb:nth-child(3){animation-delay:.12s}.fwrap.on .fthumb:nth-child(4){animation-delay:.18s}.fwrap.on .fthumb:nth-child(5){animation-delay:.24s}.fwrap.on .fthumb:nth-child(n+6){animation-delay:.3s}
+.fwrap.on .fthumb:nth-child(2){animation-delay:.06s}
+.fwrap.on .fthumb:nth-child(3){animation-delay:.12s}
+.fwrap.on .fthumb:nth-child(4){animation-delay:.18s}
+.fwrap.on .fthumb:nth-child(5){animation-delay:.24s}
+.fwrap.on .fthumb:nth-child(n+6){animation-delay:.3s}
 .fwrap.on .fmain .fph{animation:fFade 1.2s ease both}
 .ftab dt,.ftab dd,.flist li{transition:background .4s}
 .flist li:hover{background:rgba(255,255,255,.03)}
-.car .clbc svg{transition:transform .4s var(--ease)}.car .clbc:hover svg{transform:translate(2px,-2px)}
-.car .fopen svg{transition:transform .5s var(--ease)}.car:hover .fopen svg{transform:translateX(4px)}
+.car .clbc svg{transition:transform .4s var(--ease)}
+.car .clbc:hover svg{transform:translate(2px,-2px)}
+.car .fopen svg{transition:transform .5s var(--ease)}
+.car:hover .fopen svg{transform:translateX(4px)}
 .tri select{transition:border-color .4s,background-color .4s,box-shadow .6s}
 .tri select:focus{box-shadow:0 0 0 4px rgba(212,169,76,.12)}
-@media (max-width:860px){.fwrap.on .finfo>.fcta{animation:fBar 1s var(--ease) .3s both}}
-@media (prefers-reduced-motion:reduce){.fwrap.on .finfo>*,.fwrap.on .fthumb,.fwrap.on .fmain .fph,.fwrap.on .finfo .mlogo{animation:none!important}}
-
-/* ===== Téléphone / tablette ===== */
+@media (max-width:860px){
+  .fwrap.on .finfo>.fcta{animation:fBar 1s var(--ease) .3s both}
+}
+@media (prefers-reduced-motion:reduce){
+  .fwrap.on .finfo>*,.fwrap.on .fthumb,.fwrap.on .fmain .fph,.fwrap.on .finfo .mlogo{animation:none!important}
+}
 @media (max-width:860px){
   .fwrap{padding:0;align-items:stretch}
   .fiche{display:block;height:100%;border-radius:0;border:0;overflow-y:auto;overscroll-behavior:contain;transform:translateY(26px)}
@@ -716,23 +610,36 @@ html.fiche-on{overflow:hidden}
   .fthumb{width:70px}
   .finfo{height:auto;min-height:0;overflow:visible;padding:24px 18px calc(110px + env(safe-area-inset-bottom,0px))}
   .finfo .mlogo{right:18px;top:22px;width:58px;height:58px}
-  .fhead{order:0}.fprice{order:1;margin-top:-4px}.finfo>*:not(.fhead):not(.fprice):not(.mlogo){order:2}
+  .fhead{order:0}
+  .fprice{order:1;margin-top:-4px}
+  .finfo>*:not(.fhead):not(.fprice):not(.mlogo){order:2}
   .fhead{padding-right:64px}
   .fclose{position:fixed;top:max(12px,env(safe-area-inset-top,0px));right:12px}
-  .fnav{width:40px;height:40px;margin-top:-20px}.fnav.prev{left:10px}.fnav.next{right:10px}
-  .fcount{left:12px;bottom:12px}.fzoom{right:12px;bottom:12px}
+  .fnav{width:40px;height:40px;margin-top:-20px}
+  .fnav.prev{left:10px}
+  .fnav.next{right:10px}
+  .fcount{left:12px;bottom:12px}
+  .fzoom{right:12px;bottom:12px}
   .fcta{position:fixed;left:0;right:0;bottom:0;z-index:5;grid-template-columns:1fr 1fr 1fr;gap:8px;padding:10px max(12px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(12px,env(safe-area-inset-left,0px));background:rgba(30,19,27,.96);border-top:1px solid var(--line)}
   .fcta .btn{padding:13px 4px;font-size:14px;gap:6px}
   .fcta .flbc{grid-column:auto}
   .fcta .btn .lg{display:none}
-  .ftab{grid-template-columns:42% 58%}.ftab dt,.ftab dd{padding:9px 12px;font-size:14px}
+  .ftab{grid-template-columns:42% 58%}
+  .ftab dt,.ftab dd{padding:9px 12px;font-size:14px}
   .fclose{background:rgba(30,19,27,.9)}
-  .lbx .fnav{width:44px;height:44px;margin-top:-22px}.lbx .fnav.prev{left:8px}.lbx .fnav.next{right:8px}
+  .lbx .fnav{width:44px;height:44px;margin-top:-22px}
+  .lbx .fnav.prev{left:8px}
+  .lbx .fnav.next{right:8px}
 }
-@media (min-width:861px){.fcta .btn .sm{display:none}}
-@media (max-width:360px){.fcta .btn svg{display:none}}
-@media (prefers-reduced-motion:reduce){.fiche,.fbg,.lbx,.fmain img,.lbx img{transition:none!important}}
-
+@media (min-width:861px){
+  .fcta .btn .sm{display:none}
+}
+@media (max-width:360px){
+  .fcta .btn svg{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  .fiche,.fbg,.lbx,.fmain img,.lbx img{transition:none!important}
+}
 @media (min-width:761px){
   .hero{min-height:max(560px,calc(100vh - 58px));min-height:max(560px,calc(100svh - 58px));align-items:center}
   .hero-in{padding-block:28px 78px;gap:clamp(22px,3.6vh,40px)}
@@ -748,9 +655,6 @@ html.fiche-on{overflow:hidden}
   @keyframes hdIn{to{opacity:.9}}
   @keyframes hdBob{0%,100%{translate:0 0}50%{translate:0 7px}}
 }
-/* grand écran : la 1re page utilise TOUTE la largeur (plus de colonne de 1200 px au milieu).
-   Barre du haut : menu + téléphone tout à droite. Accueil : un seul bloc à gauche (logo + nom, boutons, horaires/RER),
-   centré en hauteur et bien espacé ; « Suivez le garage » collé à droite, à la même hauteur ; flèche en bas au milieu. */
 @media (min-width:1101px){
   :root{--side:clamp(36px,5vw,112px)}
   .hbar,.hero-in.wrap{max-width:none;padding-left:var(--side);padding-right:var(--side)}
@@ -774,7 +678,6 @@ html.fiche-on{overflow:hidden}
   .frow{padding-block:clamp(9px,1.3vh,13px)}
   .hdown{bottom:clamp(18px,3vh,32px)}
 }
-/* tablette / petit écran (761-1100 px) : nom + boutons au milieu, horaires/RER + réseaux en bas */
 @media (min-width:761px) and (max-width:1100px){
   .hero{align-items:stretch;min-height:max(560px,min(calc(100svh - 58px),96vw))}
   .hero-in{display:grid;grid-template-rows:1fr auto auto 1fr auto auto;gap:0;padding-block:clamp(16px,2.5vh,32px) clamp(26px,4vh,44px)}
@@ -784,9 +687,12 @@ html.fiche-on{overflow:hidden}
   .follow{grid-row:6;margin-top:12px;justify-self:start}
   .hdown{display:none}
 }
-@media (min-width:761px) and (prefers-reduced-motion:reduce){.hdown{animation:none;opacity:.9}}
-@media (max-width:760px){.hdown{display:none}}
-/* téléphone : horaires + RER réunis dans UNE carte en 2 colonnes (icône au-dessus, texte centré, trait au milieu) */
+@media (min-width:761px) and (prefers-reduced-motion:reduce){
+  .hdown{animation:none;opacity:.9}
+}
+@media (max-width:760px){
+  .hdown{display:none}
+}
 @media (max-width:760px){
   .hero .info{display:grid!important;grid-template-columns:1fr 1fr;gap:0!important;padding:16px 4px;border-radius:16px;background:rgba(30,19,27,.66);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border:1px solid rgba(194,135,174,.3)}
   .hero .info .ibox{width:auto;flex-direction:column;justify-content:flex-start;text-align:center;gap:9px;padding:2px 12px!important;background:none;border:0;border-radius:0;-webkit-backdrop-filter:none;backdrop-filter:none}
@@ -796,6 +702,175 @@ html.fiche-on{overflow:hidden}
   .hero .info .ibox b{font-size:14.5px;line-height:1.25;text-wrap:balance}
   .hero .info .ibox small{font-size:13.5px;margin-top:3px}
 }
+.mailtxt{position:relative}
+.mailtxt::after{content:"";position:absolute;inset:-10px 0}
+footer a[href="mentions-legales.html"]{position:relative;display:inline-block}
+footer a[href="mentions-legales.html"]::after{content:"";position:absolute;inset:-12px -10px}
+.thm{position:relative;flex:none;width:66px;height:34px;padding:0;border-radius:20px;cursor:pointer;border:1px solid rgba(194,135,174,.38);background:rgba(24,15,21,.58);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 4px 16px rgba(0,0,0,.16);transition:background .7s,border-color .7s,box-shadow .7s}
+.thm:hover{border-color:var(--gold-soft)}
+.thm-k{position:absolute;top:3px;left:3px;width:26px;height:26px;border-radius:50%;background:linear-gradient(180deg,#E3BC63,#CFA246);box-shadow:inset 0 1px 0 rgba(255,255,255,.45),0 2px 8px rgba(0,0,0,.25);transition:transform .8s var(--ease)}
+.thm-i{position:absolute;top:8px;width:16px;height:16px;z-index:1;transition:color .7s,transform 1s var(--ease),opacity .7s}
+.thm-moon{left:8px;color:#1E131B}
+.thm-sun{left:40px;color:var(--muted);opacity:.8}
+.thm:hover .thm-sun{transform:rotate(45deg)}
+.thm:hover .thm-moon{transform:rotate(-14deg)}
+.hbar .thm{margin-right:-12px}
+@media (max-width:760px){
+  .hbar .thm{margin-right:-18px}
+}
+html.thm-anim,html.thm-anim *,html.thm-anim *::before,html.thm-anim *::after{transition:background-color .8s ease,color .8s ease,border-color .8s ease,box-shadow .8s ease,fill .8s ease!important}
+::view-transition-old(root),::view-transition-new(root){animation:none;mix-blend-mode:normal}
+html[data-theme="light"]{--ink:#F3ECDD;--panel:#FBF7EE;--panel2:#E8DCC0;--line:#D8C9A6;--mauve:#735096;--mauve-soft:#6A4590;--deep:#D2AE4E;--gold:#735096;--gold-soft:#5A3A80;--cream:#111111;--wa:#4E9A6E;color-scheme:light}
+html[data-theme="light"] body{background:#F3ECDD}
+html[data-theme="light"] .glow{display:none}
+html[data-theme="light"] .grain{display:none}
+html[data-theme="light"] .progress{background:linear-gradient(90deg,#735096,#A07CC4)}
+html[data-theme="light"] .head h2::after,html[data-theme="light"] .mech h2::after,html[data-theme="light"] .contact h2::after,html[data-theme="light"] .car::before{background:linear-gradient(90deg,#735096,#C9A227)}
+html[data-theme="light"] .car .bar::after{background:linear-gradient(90deg,transparent,#735096,#C9A227,transparent)}
+html[data-theme="light"] .thm-k{transform:translateX(32px);background:linear-gradient(180deg,#8462A8,#664289);box-shadow:inset 0 1px 0 rgba(255,255,255,.25),0 2px 8px rgba(60,40,90,.3)}
+html[data-theme="light"] .thm-sun{color:#FCF5E3;opacity:1}
+html[data-theme="light"] header.scrolled{background:rgba(243,236,221,.95);box-shadow:0 1px 0 rgba(115,80,150,.18),0 6px 20px rgba(60,40,90,.07)}
+html[data-theme="light"] .brand{color:var(--cream)}
+html[data-theme="light"] .burger span{background:#111111}
+@media (min-width:761px){
+  html[data-theme="light"] header.scrolled nav.menu{background:rgba(251,247,238,0);border-color:rgba(115,80,150,0);box-shadow:none}
+}
+@media (max-width:760px){
+  html[data-theme="light"] nav.menu{background:#F3ECDD!important}
+  html[data-theme="light"] header:has(nav.menu.open){background:#F3ECDD;box-shadow:0 1px 0 rgba(115,80,150,.18)}
+  html[data-theme="light"] nav.menu.open{box-shadow:0 30px 60px rgba(60,40,90,.2)}
+  html[data-theme="light"] nav.menu .menusoc a{background:rgba(115,80,150,.06);border-color:rgba(115,80,150,.3)}
+}
+html[data-theme="light"] .btn-gold{background:linear-gradient(180deg,#8462A8,#664289);color:#FCF5E3;border-color:#9B7CC0;box-shadow:inset 0 1px 0 rgba(255,255,255,.25),inset 0 -2px 0 rgba(40,20,70,.25),0 8px 22px rgba(60,40,90,.25)}
+html[data-theme="light"] .btn-gold:hover{box-shadow:0 10px 28px rgba(115,80,150,.4)}
+html[data-theme="light"] .btn-line{color:var(--cream);border-color:rgba(115,80,150,.68)}
+html[data-theme="light"] .btn-line:hover{background:rgba(115,80,150,.14);border-color:var(--mauve)}
+html[data-theme="light"] .btn-wa{background:rgba(111,175,138,.14)}
+html[data-theme="light"] .btn-wa:hover{background:rgba(111,175,138,.26)}
+html[data-theme="light"] .mapcard .btn-line{background:rgba(251,247,238,.94)}
+html[data-theme="light"] .car[data-fiche]:hover .fopen{background:rgba(115,80,150,.14);border-color:var(--mauve)}
+html[data-theme="light"] .hero::before{background:linear-gradient(90deg,rgba(243,236,221,.74) 0%,rgba(243,236,221,.4) 42%,rgba(243,236,221,.03) 80%),linear-gradient(0deg,rgba(243,236,221,.9),transparent 24%)}
+@media (max-width:760px){
+  html[data-theme="light"] .hero::before{background:linear-gradient(180deg,rgba(243,236,221,.38) 0%,rgba(243,236,221,0) 16%,rgba(243,236,221,.06) 30%,rgba(243,236,221,.48) 50%,rgba(243,236,221,.95) 82%)}
+}
+html[data-theme="light"] .hero-media img{filter:sepia(.1) saturate(1.02) contrast(1.03) brightness(1.04)}
+html[data-theme="light"] .hero h1,html[data-theme="light"] .hero h1 .hn,html[data-theme="light"] .hero h1 .ha,html[data-theme="light"] .wordmark{color:#111111}
+html[data-theme="light"] .hero h1,html[data-theme="light"] .hero p.lead{text-shadow:none}
+html[data-theme="light"] .hlogo .rond{filter:none}
+html[data-theme="light"] .hero .btn-line,html[data-theme="light"] .hero .btn-wa{background:rgba(251,247,238,.8)}
+html[data-theme="light"] .ibox{border-color:rgba(115,80,150,.22)}
+html[data-theme="light"] .ibox b{color:#111111}
+html[data-theme="light"] .follow{border-color:rgba(115,80,150,.3)}
+html[data-theme="light"] .frow{color:#111111}
+html[data-theme="light"] .frow:hover{background:rgba(115,80,150,.14);border-color:var(--mauve)}
+html[data-theme="light"] .fic{color:#FCF5E3}
+html[data-theme="light"] .hdown{border-color:rgba(115,80,150,.38)}
+html[data-theme="light"] .hdown:hover{background:#735096;color:#FCF5E3}
+@media (max-width:760px){
+  html[data-theme="light"] .hero .info .ibox+.ibox{border-left-color:rgba(115,80,150,.2)}
+}
+html[data-theme="light"] .rerline a:hover{color:#111111}
+html[data-theme="light"] .car:hover{border-color:rgba(115,80,150,.45);box-shadow:0 18px 40px rgba(60,40,90,.17)}
+html[data-theme="light"] .car .model{color:#111111}
+html[data-theme="light"] .car .bar{background:rgba(115,80,150,.12)}
+html[data-theme="light"] .badge{background:rgba(251,247,238,.9);border-color:rgba(115,80,150,.45)}
+html[data-theme="light"] .badge svg{stroke:#735096}
+html[data-theme="light"] .car .spec,html[data-theme="light"] .fiche .spec{background:rgba(115,80,150,.07);border-color:rgba(115,80,150,.2);color:#222222}
+html[data-theme="light"] .car.prep .pphoto{background:linear-gradient(180deg,#F6F0E3,#EFE6D2);border-bottom-color:rgba(115,80,150,.14)}
+@media (max-width:760px){
+  html[data-theme="light"] .car.prep .pphoto{background:none}
+}
+html[data-theme="light"] .mlogo{filter:none}
+html[data-theme="light"] .mlogo[src*="peugeot"],html[data-theme="light"] .mlogo[src*="dacia"]{filter:brightness(.38) contrast(1.2)}
+html[data-theme="light"] .mlogo[src*="renault"]{filter:brightness(.82) saturate(1.4)}
+html[data-theme="light"] .car .clbc:hover{color:#111111;border-color:#735096}
+html[data-theme="light"] .gnav,html[data-theme="light"] .fnav,html[data-theme="light"] .fclose{background:rgba(251,247,238,.9);border-color:rgba(115,80,150,.25);color:#111111;box-shadow:0 4px 14px rgba(60,40,90,.14)}
+html[data-theme="light"] .gnav:hover,html[data-theme="light"] .gnav:focus-visible,html[data-theme="light"] .fnav:hover,html[data-theme="light"] .fnav:focus-visible,html[data-theme="light"] .fclose:hover,html[data-theme="light"] .fclose:focus-visible{background:#735096;border-color:#D2AE4E;color:#FCF5E3}
+html[data-theme="light"] .gcount,html[data-theme="light"] .fcount{background:rgba(251,247,238,.9);color:#111111}
+html[data-theme="light"] .tri select{border-color:rgba(115,80,150,.4);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23735096' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E")}
+html[data-theme="light"] .tri select:hover,html[data-theme="light"] .tri select:focus{border-color:#735096;box-shadow:0 0 0 4px rgba(115,80,150,.14)}
+html[data-theme="light"] .tri option{background:#FBF7EE;color:#111111}
+html[data-theme="light"] .photo,html[data-theme="light"] .mapcard{box-shadow:0 24px 60px rgba(60,40,90,.16)}
+html[data-theme="light"] .photo::after{background:linear-gradient(200deg,transparent 55%,rgba(60,40,90,.2))}
+html[data-theme="light"] .phone,html[data-theme="light"] .social a{color:#111111}
+html[data-theme="light"] .phone:hover{color:#735096;text-shadow:none}
+html[data-theme="light"] .social a:hover{background:#735096;border-color:#735096;color:#FCF5E3}
+html[data-theme="light"] .mapcard.real iframe{filter:sepia(.12) saturate(.9) contrast(.98)}
+html[data-theme="light"] .mapcard.real::after{background:rgba(210,174,78,.08)}
+html[data-theme="light"] .contact p a:hover,html[data-theme="light"] .mailtxt:hover{color:#735096}
+html[data-theme="light"] .fbg{background:rgba(42,26,58,.45)}
+html[data-theme="light"] .fiche{border-color:rgba(115,80,150,.2);box-shadow:0 40px 120px rgba(42,26,58,.3)}
+html[data-theme="light"] .fiche::before{background:linear-gradient(90deg,#735096,#D2AE4E,transparent)}
+html[data-theme="light"] .fgal{background:#E6DCC6}
+html[data-theme="light"] .fmain .fblur{filter:blur(26px) brightness(1.08) saturate(.8);opacity:.5}
+html[data-theme="light"] .fhead h3,html[data-theme="light"] .ftab dd,html[data-theme="light"] .fnote b{color:#111111}
+html[data-theme="light"] .fsec p,html[data-theme="light"] .flist li{color:#222222}
+html[data-theme="light"] .fsec{border-top-color:rgba(115,80,150,.18)}
+html[data-theme="light"] .ftab dt,html[data-theme="light"] .ftab dd{border-top-color:rgba(115,80,150,.1)}
+html[data-theme="light"] .flist li:hover{background:rgba(115,80,150,.05)}
+html[data-theme="light"] .fnote{background:rgba(115,80,150,.07);border-color:rgba(115,80,150,.2)}
+html[data-theme="light"] .fzoom{background:rgba(251,247,238,.92);color:#735096;border-color:rgba(115,80,150,.42)}
+html[data-theme="light"] .fzoom:hover,html[data-theme="light"] .fzoom:focus-visible{background:#735096;color:#FCF5E3}
+html[data-theme="light"] .car.sale .sphoto::after{background:linear-gradient(180deg,transparent 60%,rgba(42,26,58,.3))}
+html[data-theme="light"] .lbx{background:#EEE6D6}
+html[data-theme="light"] .lhint{color:rgba(42,26,58,.6)}
+@media (max-width:860px){
+  html[data-theme="light"] .fcta{background:rgba(243,236,221,.97)}
+  html[data-theme="light"] .fclose{background:rgba(251,247,238,.95)}
+}
+html[data-theme="light"] .hero .btn-line{background:#FBF7EE;border:1.5px solid #735096;color:#111;box-shadow:0 6px 18px rgba(50,30,80,.22)}
+html[data-theme="light"] .hero .btn-line:hover{background:#EFE6F6}
+html[data-theme="light"] .hero .btn-wa{background:#F4FAF6;border:1.5px solid #3E8A5E;color:#1F5537;box-shadow:0 6px 18px rgba(30,70,45,.2)}
+html[data-theme="light"] .hero .btn-wa:hover{background:#E4F2E9}
+html[data-theme="light"] .ibox{background:#FBF7EE;border:1px solid rgba(115,80,150,.5);box-shadow:0 6px 18px rgba(50,30,80,.18)}
+html[data-theme="light"] .ibox .ico{background:rgba(115,80,150,.16);color:#5A3A80}
+html[data-theme="light"] .ibox span,html[data-theme="light"] .ibox small,html[data-theme="light"] .ibox em{color:#5A3A80}
+html[data-theme="light"] .follow{background:#FBF7EE;border:1px solid rgba(115,80,150,.55);box-shadow:0 20px 44px rgba(50,30,80,.26)}
+html[data-theme="light"] .follow h3,html[data-theme="light"] .follow p{color:#5A3A80}
+html[data-theme="light"] .frow{background:#F3ECDD;border-color:rgba(115,80,150,.35)}
+html[data-theme="light"] .frow small,html[data-theme="light"] .frow span:not(.fic){color:#444}
+html[data-theme="light"] .frow .fic{color:#FFFFFF;box-shadow:0 3px 8px rgba(50,30,80,.25)}
+html[data-theme="light"] .hdown{background:#FBF7EE;border:1.5px solid #735096;color:#5A3A80;box-shadow:0 6px 16px rgba(50,30,80,.22)}
+html[data-theme="light"] .thm{background:#FBF7EE;border-color:rgba(115,80,150,.55);box-shadow:0 4px 14px rgba(50,30,80,.22)}
+html[data-theme="light"] .thm-moon{color:#5A3A80;opacity:1}
+html[data-theme="light"] .hero p.lead{color:#4A2A6E;font-weight:600}
+@media (min-width:761px){
+  html[data-theme="light"] nav.menu{background:#FBF7EE;border-color:rgba(115,80,150,.5);box-shadow:0 8px 24px rgba(50,30,80,.2)}
+  html[data-theme="light"] nav.menu a{color:#111}
+}
+@media (max-width:760px){
+  html[data-theme="light"] .hero .info{background:#FBF7EE;border-color:rgba(115,80,150,.5);box-shadow:0 10px 26px rgba(50,30,80,.2)}
+  html[data-theme="light"] .hero .info .ibox{background:none;border:0;box-shadow:none}
+}
+html[data-theme="light"] .hero::before{transition:background .9s ease}
+html[data-theme="light"] .hero[data-sl="facade"]::before,html[data-theme="light"] .hero[data-sl="pont"]::before,html[data-theme="light"] .hero[data-sl="accueil"]::before,html[data-theme="light"] .hero[data-sl="pneus"]::before{background:linear-gradient(90deg,rgba(243,236,221,.88) 0%,rgba(243,236,221,.62) 42%,rgba(243,236,221,.12) 80%),linear-gradient(180deg,rgba(243,236,221,.5),transparent 18%),linear-gradient(0deg,rgba(243,236,221,.92),transparent 24%)}
+html[data-theme="light"] .hero[data-sl="facade"]::before{background:linear-gradient(90deg,rgba(243,236,221,.92) 0%,rgba(243,236,221,.72) 42%,rgba(243,236,221,.2) 80%),linear-gradient(180deg,rgba(243,236,221,.6),transparent 22%),linear-gradient(0deg,rgba(243,236,221,.94),transparent 26%)}
+@media (max-width:760px){
+  html[data-theme="light"] .hero[data-sl="facade"]::before,html[data-theme="light"] .hero[data-sl="pont"]::before,html[data-theme="light"] .hero[data-sl="accueil"]::before,html[data-theme="light"] .hero[data-sl="pneus"]::before{background:linear-gradient(180deg,rgba(243,236,221,.55) 0%,rgba(243,236,221,.3) 16%,rgba(243,236,221,.5) 34%,rgba(243,236,221,.8) 52%,rgba(243,236,221,.97) 82%)}
+}
+html[data-theme="light"]{--muted:#444444}
+html[data-theme="light"] .btn-line{border:1.5px solid #735096}
+html[data-theme="light"] .btn-wa{border:1.5px solid #3E8A5E;color:#1F5537}
+html[data-theme="light"] .car{background:#FDFAF4;border-color:rgba(115,80,150,.3);box-shadow:0 2px 4px rgba(50,30,80,.08),0 14px 34px rgba(50,30,80,.13)}
+html[data-theme="light"] .car .clbc{border-bottom-color:rgba(115,80,150,.6)}
+html[data-theme="light"] .fiche{background:linear-gradient(160deg,#FDFAF4,#F7F1E4 55%,#F1E8D6)}
+html[data-theme="light"] .ftab{border-color:rgba(115,80,150,.32)}
+html[data-theme="light"] .ftab dt{background:rgba(115,80,150,.09)}
+html[data-theme="light"] .gnav,html[data-theme="light"] .fnav,html[data-theme="light"] .fclose,html[data-theme="light"] .fzoom,html[data-theme="light"] .gcount,html[data-theme="light"] .fcount{background:#FBF7EE;border:1px solid rgba(115,80,150,.55);box-shadow:0 4px 14px rgba(50,30,80,.25)}
+html[data-theme="light"] .ic svg{stroke:#5A3A80}
+html[data-theme="light"] .mapcard{background:#E3D7BC;border:1px solid rgba(115,80,150,.3)}
+html[data-theme="light"] .social a{border-color:rgba(115,80,150,.6)}
+@media (max-width:760px){
+  html[data-theme="light"] .mbar{background:#F3ECDD;box-shadow:0 -6px 20px rgba(50,30,80,.14);border-top:1px solid rgba(115,80,150,.3)}
+  html[data-theme="light"] .mbar .btn-wa{background:#F4FAF6}
+  html[data-theme="light"] .mbar .btn-line{background:#FBF7EE}
+}
+html[data-theme="light"] #services{background:#EAE0CA;box-shadow:inset 0 1px 0 rgba(115,80,150,.18),inset 0 -1px 0 rgba(115,80,150,.18)}
+html[data-theme="light"] #services .photo{box-shadow:0 26px 60px rgba(50,30,80,.24)}
+html[data-theme="light"] footer{background:#E6DBC2;border-top:3px solid #735096}
+html[data-theme="light"] footer .foot{border-top:0}
+html[data-theme="light"] .frieze{height:18px;background:linear-gradient(#735096 0 4px,#F3ECDD 4px 6px,#D2AE4E 6px 12px,#F3ECDD 12px 14px,#735096 14px 18px)}
+html[data-theme="light"] .head h2::after,html[data-theme="light"] .mech h2::after,html[data-theme="light"] .contact h2::after{height:4px}
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Car", "name": "Dacia Logan 1.0 SCe 75 ch Ambiance", "brand": {"@type": "Brand", "name": "Dacia"}, "model": "Logan", "url": "https://hannibalautos.fr/voitures/dacia-logan/", "image": ["https://hannibalautos.fr/img/voitures/logan-01.jpg", "https://hannibalautos.fr/img/voitures/logan-02.jpg", "https://hannibalautos.fr/img/voitures/logan-03.jpg", "https://hannibalautos.fr/img/voitures/logan-04.jpg", "https://hannibalautos.fr/img/voitures/logan-05.jpg", "https://hannibalautos.fr/img/voitures/logan-06.jpg", "https://hannibalautos.fr/img/voitures/logan-07.jpg", "https://hannibalautos.fr/img/voitures/logan-08.jpg", "https://hannibalautos.fr/img/voitures/logan-09.jpg", "https://hannibalautos.fr/img/voitures/logan-10.jpg"], "description": "Berline fiable et économique, avec un faible kilométrage pour son année. Grand coffre, 5 vraies places et un entretien simple et peu coûteux. Idéale pour un jeune conducteur ou comme voiture du quotidien.", "itemCondition": "https://schema.org/UsedCondition", "offers": {"@type": "Offer", "price": 5680, "priceCurrency": "EUR", "url": "https://hannibalautos.fr/voitures/dacia-logan/", "availability": "https://schema.org/InStock", "itemCondition": "https://schema.org/UsedCondition", "seller": {"@type": "AutoDealer", "name": "Hannibal Autos", "telephone": "+33699501849", "url": "https://hannibalautos.fr/", "address": {"@type": "PostalAddress", "streetAddress": "17 rue de la Ferté Alais", "postalCode": "91720", "addressLocality": "Maisse", "addressCountry": "FR"}}}, "vehicleModelDate": "2017", "mileageFromOdometer": {"@type": "QuantitativeValue", "value": 99871, "unitCode": "KMT"}, "fuelType": "Essence", "vehicleTransmission": "Manuelle", "color": "Blanc", "seatingCapacity": 5, "numberOfDoors": 4, "dateVehicleFirstRegistered": "2017-03", "sameAs": "https://www.leboncoin.fr/ad/voitures/3297364306"}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Hannibal Autos", "item": "https://hannibalautos.fr/"}, {"@type": "ListItem", "position": 2, "name": "Voitures à vendre", "item": "https://hannibalautos.fr/#voitures"}, {"@type": "ListItem", "position": 3, "name": "Dacia Logan", "item": "https://hannibalautos.fr/voitures/dacia-logan/"}]}</script>
@@ -810,7 +885,8 @@ html.fiche-on{overflow:hidden}
 
 <header id="top">
   <div class="wrap hbar">
-    <a class="brand" href="#accueil"><img src="img/elephant-blanc.png" alt="Logo Hannibal Autos"><span class="wordmark"><b>HANNIBAL</b><span>AUTOS</span></span></a>
+    <button class="thm" id="thm" type="button" role="switch" aria-checked="false" aria-label="Mode clair" title="Mode clair / mode sombre"><span class="thm-k" aria-hidden="true"></span><svg class="thm-i thm-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 1 1 9.8 3.5a6.8 6.8 0 0 0 10.7 10.7z"/></svg><svg class="thm-i thm-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg></button>
+    <a class="brand" href="#accueil"><img src="img/elephant-blanc.png" data-lt="img/elephant-fonce.png" alt="Logo Hannibal Autos"><span class="wordmark"><b>HANNIBAL</b><span>AUTOS</span></span></a>
     <nav class="menu" id="menu" aria-label="Menu principal">
       <a href="#voitures">Voitures à vendre</a>
       <a href="#services">Services</a>
@@ -826,7 +902,7 @@ html.fiche-on{overflow:hidden}
   <section class="hero" id="accueil" style="padding-block:0">
     <div class="hero-media" id="heroMedia"><picture class="hs hs-first on"><source media="(max-width:760px)" srcset="img/atelier-mobile.jpg"><img src="img/atelier.jpg" fetchpriority="high" alt="L'atelier Hannibal Autos à Maisse"></picture></div>
     <div class="wrap hero-in">
-      <div class="hlogo load" id="heroLogo" style="animation-delay:.2s"><img class="rond" src="img/logo-rond.png" alt="" width="400" height="400"><div class="hname"><h1 id="title"><span class="hn">HANNIBAL</span><span class="ha">AUTOS</span></h1><p class="lead">Garage mécanique à Maisse</p></div></div>
+      <div class="hlogo load" id="heroLogo" style="animation-delay:.2s"><img class="rond" src="img/logo-rond.png" data-lt="img/logo-rond-fonce.png" alt="" width="400" height="400"><div class="hname"><h1 id="title"><span class="hn">HANNIBAL</span><span class="ha">AUTOS</span></h1><p class="lead">Garage mécanique à Maisse</p></div></div>
       <div class="ctas load" style="animation-delay:1.1s">
         <a class="btn btn-gold" href="tel:+33699501849">Appeler le garage</a>
         <a class="btn btn-line cars-l" href="#voitures">Voir les voitures à vendre</a>
@@ -837,6 +913,59 @@ html.fiche-on{overflow:hidden}
     </div>
     <a class="hdown" href="#voitures" aria-label="Descendre vers les voitures à vendre"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></a>
   </section>
+<script>
+(function(){
+  var d = document.documentElement, btn = document.getElementById('thm'), KEY = 'hb-theme';
+  
+  // logos : blanc en mode sombre, prune foncé en mode clair (adresses absolues : marche aussi sur /voitures/<voiture>/)
+  function logos(th){
+    [].forEach.call(document.querySelectorAll('img[data-lt]'), function(im){
+      if (!im.getAttribute('data-dk')) im.setAttribute('data-dk', im.getAttribute('src'));
+      var p = im.getAttribute(th === 'light' ? 'data-lt' : 'data-dk');
+      try { p = new URL(p, document.baseURI).href; } catch(e){}
+      if (im.src !== p) im.src = p;
+    });
+  }
+  function apply(th){
+    d.setAttribute('data-theme', th);
+    logos(th);
+    var m = document.querySelector('meta[name="theme-color"]'); if (m) m.setAttribute('content', th === 'light' ? '#F3ECDD' : '#1E131B');
+    if (btn) { btn.setAttribute('aria-checked', th === 'light' ? 'true' : 'false'); btn.setAttribute('aria-label', th === 'light' ? 'Passer en mode sombre' : 'Passer en mode clair'); }
+  }
+  window.hbTheme = apply;
+  apply(d.getAttribute('data-theme') === 'light' ? 'light' : 'dark');
+
+  // photo du diaporama affichée -> data-sl sur .hero (voile adapté en mode clair)
+  (function(){ var hero = document.querySelector('.hero'), m = document.getElementById('heroMedia'); if (!hero || !m) return;
+    function mark(){ var on = m.querySelector('.hs.on img') || m.querySelector('.hs-first img'); var src = on ? (on.currentSrc || on.src || '') : '';
+      var n = (src.split('/').pop() || '').replace(/(-m)?\.[a-z]+$/i, ''); hero.setAttribute('data-sl', n); }
+    mark(); new MutationObserver(mark).observe(m, {subtree:true, attributes:true, attributeFilter:['class'], childList:true}); })();
+  document.addEventListener('DOMContentLoaded', function(){ logos(d.getAttribute('data-theme')); });
+  // les logos de l'autre mode sont chargés en avance (changement instantané)
+  addEventListener('load', function(){ setTimeout(function(){ [].forEach.call(document.querySelectorAll('img[data-lt]'), function(im){ new Image().src = new URL(im.getAttribute(d.getAttribute('data-theme') === 'light' ? 'data-dk' : 'data-lt') || im.getAttribute('src'), document.baseURI).href; }); }, 1500); });
+  if (!btn) return;
+  btn.addEventListener('click', function(){
+    var nt = d.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    // choix gardé sur cet appareil (mode clair) ; retour au sombre = on efface le choix
+    try { if (nt === 'dark') localStorage.removeItem(KEY); else localStorage.setItem(KEY, nt); } catch(e){}
+    var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!reduce && document.startViewTransition) {
+      // un cercle doux qui part du bouton et recouvre la page
+      var r = btn.getBoundingClientRect(), x = r.left + r.width / 2, y = r.top + r.height / 2;
+      var R = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y));
+      var vt = document.startViewTransition(function(){ apply(nt); });
+      vt.ready.then(function(){
+        d.animate({clipPath: ['circle(0px at ' + x + 'px ' + y + 'px)', 'circle(' + R + 'px at ' + x + 'px ' + y + 'px)']},
+                  {duration: 1100, easing: 'cubic-bezier(.2,.75,.2,1)', pseudoElement: '::view-transition-new(root)'});
+      }).catch(function(){});
+    } else {
+      d.classList.add('thm-anim'); apply(nt);
+      setTimeout(function(){ d.classList.remove('thm-anim'); }, 900);
+    }
+    if (window.hbStat) window.hbStat('bouton-mode-' + (nt === 'light' ? 'clair' : 'sombre'), 'Bouton : passe en mode ' + (nt === 'light' ? 'clair' : 'sombre'));
+  });
+})();
+</script>
   <div class="frieze" aria-hidden="true"></div>
 
   <section id="voitures">
@@ -902,7 +1031,7 @@ html.fiche-on{overflow:hidden}
 
 <footer>
   <div class="wrap foot">
-    <a class="brand" href="#accueil"><img src="img/elephant-blanc.png" alt="Hannibal Autos"><span class="wordmark"><b>HANNIBAL</b><span>AUTOS</span></span></a>
+    <a class="brand" href="#accueil"><img src="img/elephant-blanc.png" data-lt="img/elephant-fonce.png" alt="Hannibal Autos"><span class="wordmark"><b>HANNIBAL</b><span>AUTOS</span></span></a>
     <span>© 2026 Hannibal Autos · PHOENIXAUTO SAS · SIRET 941 969 644 00017</span>
     <div class="social foot-s"><a href="https://www.instagram.com/hannibal_auto/" target="_blank" rel="noopener" aria-label="Instagram Hannibal Auto"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1" fill="currentColor" stroke="none"/></svg></a><!-- Pour activer : remplacer href="#" par le lien et enlever « hidden » --><a href="#" target="_blank" rel="noopener" aria-label="Facebook Hannibal Auto" hidden><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-7.5h2.6l.4-3h-3V8.6c0-.9.3-1.5 1.5-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.8 1.4-3.8 3.9v2.3H7.9v3h2.6V21z"/></svg></a><a href="https://www.tiktok.com/@hannial_autos" target="_blank" rel="noopener" aria-label="TikTok Hannibal Autos"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 3c.3 2.2 1.6 3.6 3.9 3.8v3.1c-1.4.1-2.6-.3-3.9-1.1v5.6c0 3.9-3.6 6.4-7.1 5.4-3.6-1-4.9-5.5-2.4-8.3 1.1-1.2 2.7-1.8 4.3-1.7v3.2c-.4-.1-.8-.2-1.2-.1-1.4.2-2.2 1.4-1.8 2.8.4 1.5 2.4 2 3.5 1 .5-.5.8-1.2.8-2V3z"/></svg></a><a href="https://www.youtube.com/@hannibalautos" target="_blank" rel="noopener" aria-label="YouTube Hannibal Autos"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22.5 7.2a2.8 2.8 0 0 0-2-2C18.7 4.7 12 4.7 12 4.7s-6.7 0-8.5.5a2.8 2.8 0 0 0-2 2C1 9 1 12 1 12s0 3 .5 4.8a2.8 2.8 0 0 0 2 2c1.8.5 8.5.5 8.5.5s6.7 0 8.5-.5a2.8 2.8 0 0 0 2-2c.5-1.8.5-4.8.5-4.8s0-3-.5-4.8zM9.8 15.3V8.7l5.7 3.3z"/></svg></a></div>
     <a href="mentions-legales.html" style="color:var(--muted)">Mentions légales</a>
@@ -1379,5 +1508,11 @@ html.fiche-on{overflow:hidden}
 })();
 </script>
 <script data-goatcounter="https://hannibalautos.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script>
+(function(){ try { if (sessionStorage.getItem('hb-vu-mode')) return; sessionStorage.setItem('hb-vu-mode', '1'); } catch(e){}
+  var th = document.documentElement.getAttribute('data-theme') === 'light' ? 'clair' : 'sombre';
+  if (window.hbStat) window.hbStat('affichage-mode-' + th, 'Site affiché en mode ' + th);
+})();
+</script>
 </body>
 </html>
