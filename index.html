@@ -500,6 +500,13 @@ nav.menu a,.hcall{white-space:nowrap}
 .ibox img{display:block;width:48px;height:auto;flex:none;border-radius:6px}
 .ibox b{display:block;color:#fff;font-weight:700;font-size:15px;line-height:1.25}
 .ibox small{display:block;color:var(--gold-soft);font-weight:600;font-size:14px;line-height:1.3}
+a.ilink{text-decoration:none;color:inherit;transition:border-color .4s,background .4s}
+a.ilink:hover,a.ilink:focus-visible{border-color:var(--gold-soft);background:rgba(138,61,110,.45)}
+.garr{display:inline-block;vertical-align:-1px;margin-left:3px;transition:transform .4s var(--ease)}
+a:hover .garr{transform:translate(2px,-2px)}
+.rerline a{display:inline-flex;align-items:center;gap:12px;color:inherit;text-decoration:none;border-bottom:1px solid transparent;transition:color .3s,border-color .3s}
+.rerline a:hover{color:#fff;border-color:var(--gold-soft)}
+.rerline .garr{color:var(--gold-soft)}
 @media (max-width:760px){
   .follow{display:none}
   .menusoc{display:flex;flex-wrap:wrap;gap:8px;padding-top:16px}
@@ -545,7 +552,7 @@ html.fiche-on{overflow:hidden}
 .fwrap[hidden]{display:none}
 .fbg{position:absolute;inset:0;background:rgba(18,10,16,.78);opacity:0;transition:opacity .6s ease}
 .fwrap.on .fbg{opacity:1}
-.fiche{position:relative;width:min(1180px,100%);height:min(820px,100%);display:grid;grid-template-columns:minmax(0,1.32fr) minmax(0,1fr);border-radius:14px;overflow:hidden;background:linear-gradient(160deg,var(--panel2),var(--panel) 55%,var(--ink));border:1px solid var(--line);box-shadow:0 40px 120px rgba(0,0,0,.55),0 0 0 1px rgba(232,195,115,.06) inset;opacity:0;transform:translateY(18px) scale(.985);transition:opacity .6s var(--ease),transform .7s var(--ease)}
+.fiche{position:relative;width:min(1180px,100%);max-height:100%;display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);align-items:start;border-radius:14px;overflow:hidden;background:linear-gradient(160deg,var(--panel2),var(--panel) 55%,var(--ink));border:1px solid var(--line);box-shadow:0 40px 120px rgba(0,0,0,.55),0 0 0 1px rgba(232,195,115,.06) inset;opacity:0;transform:translateY(18px) scale(.985);transition:opacity .6s var(--ease),transform .7s var(--ease)}
 .fwrap.on .fiche{opacity:1;transform:none}
 .fiche:focus{outline:none}
 .fiche::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;z-index:4;background:linear-gradient(90deg,var(--gold),var(--mauve-soft),transparent)}
@@ -554,9 +561,12 @@ html.fiche-on{overflow:hidden}
 
 /* galerie de la fiche */
 .fgal{position:relative;display:flex;flex-direction:column;min-height:0;background:#150D13;border-right:1px solid var(--line)}
-.fmain{position:relative;flex:1;min-height:0;overflow:hidden;cursor:zoom-in}
-.fmain img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .45s ease,transform 1.2s var(--ease)}
-.fmain:hover img{transform:scale(1.025)}
+.fmain{position:relative;flex:none;aspect-ratio:4/3;max-height:calc(100vh - 160px);overflow:hidden;cursor:zoom-in}
+.fmain img{position:absolute;inset:0;width:100%;height:100%;transition:opacity .45s ease,transform 1.2s var(--ease)}
+/* photo entière (rien de coupé), sur un fond flou de la même photo */
+.fmain .fph{object-fit:contain;z-index:1}
+.fmain .fblur{object-fit:cover;filter:blur(26px) brightness(.42) saturate(1.15);transform:scale(1.18);pointer-events:none}
+.fmain:hover .fph{transform:scale(1.02)}
 .fmain img.fade{opacity:.25}
 .fnav{position:absolute;top:50%;width:46px;height:46px;margin-top:-23px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(30,19,27,.72);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:2;transition:background .3s,border-color .3s}
 .fnav:hover,.fnav:focus-visible{background:rgba(138,61,110,.9);border-color:var(--gold-soft)}
@@ -572,7 +582,7 @@ html.fiche-on{overflow:hidden}
 .fthumb.on{opacity:1;border-color:var(--gold-soft)}
 
 /* infos de la fiche */
-.finfo{position:relative;overflow-y:auto;overscroll-behavior:contain;padding:34px 34px 28px;display:flex;flex-direction:column;gap:18px;scrollbar-width:thin;scrollbar-color:var(--line) transparent}
+.finfo{position:relative;height:0;min-height:100%;overflow-y:auto;overscroll-behavior:contain;padding:34px 34px 28px;display:flex;flex-direction:column;gap:18px;scrollbar-width:thin;scrollbar-color:var(--line) transparent}
 .finfo .mlogo{position:absolute;right:30px;top:30px;width:74px;height:74px;object-fit:contain;opacity:.22;pointer-events:none}
 .fhead{padding-right:84px}
 .fhead .brandn{font-size:13px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--mauve-soft)}
@@ -625,9 +635,9 @@ html.fiche-on{overflow:hidden}
   .fwrap{padding:0;align-items:stretch}
   .fiche{display:block;height:100%;border-radius:0;border:0;overflow-y:auto;overscroll-behavior:contain;transform:translateY(26px)}
   .fgal{border-right:0;border-bottom:1px solid var(--line)}
-  .fmain{flex:none;aspect-ratio:4/3}
+  .fmain{flex:none;aspect-ratio:4/3;max-height:none}
   .fthumb{width:70px}
-  .finfo{overflow:visible;padding:24px 18px calc(110px + env(safe-area-inset-bottom,0px))}
+  .finfo{height:auto;min-height:0;overflow:visible;padding:24px 18px calc(110px + env(safe-area-inset-bottom,0px))}
   .finfo .mlogo{right:18px;top:22px;width:58px;height:58px}
   .fhead{padding-right:64px}
   .fclose{position:fixed;top:max(12px,env(safe-area-inset-top,0px));right:12px}
@@ -677,7 +687,7 @@ html.fiche-on{overflow:hidden}
         <a class="btn btn-line cars-l" href="#voitures">Voir les voitures à vendre</a>
         <a class="btn btn-wa" href="https://wa.me/33699501849"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11.6a8.2 8.2 0 0 1-12.1 7.2L3.5 20l1.3-4.2A8.2 8.2 0 1 1 20 11.6z"/><path d="M9 8.8c.3 2.6 2.3 4.9 5.2 5.6l1.1-1.2-1.6-.9-.8.7c-1-.4-1.9-1.3-2.3-2.3l.7-.8-.9-1.6z"/></svg>WhatsApp</a>
       </div>
-      <div class="info load" style="animation-delay:1.3s"><div class="ibox"><span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><span><b>Ouvert du lundi au samedi</b><small>de 10h à 20h</small></span></div><div class="ibox"><img src="img/rer-d.png" alt="RER D" width="48" height="23"><span><b>Depuis Paris en RER D</b><small>gare de Maisse</small></span></div></div>
+      <div class="info load" style="animation-delay:1.3s"><div class="ibox"><span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><span><b>Ouvert du lundi au samedi</b><small>de 10h à 20h</small></span></div><a class="ibox ilink" href="https://www.google.com/maps/place/Maisse/@48.3930109,2.3927022,19.74z/data=!4m6!3m5!1s0x47e5c06a99555d7f:0xb43e4f52e6751448!8m2!3d48.3929976!4d2.3930496!16s%2Fg%2F121p63g7" target="_blank" rel="noopener" title="Voir la gare de Maisse sur Google Maps"><img src="img/rer-d.png" alt="RER D" width="48" height="23"><span><b>Depuis Paris en RER D</b><small>gare de Maisse <svg class="garr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></small></span></a></div>
       <div class="follow load" style="animation-delay:.9s"><span class="flbl">Suivez le garage</span><a class="frow" href="https://www.instagram.com/hannibal_auto/" target="_blank" rel="noopener"><span class="fic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1" fill="currentColor" stroke="none"/></svg></span><span class="ftx"><b>Instagram</b><small>@hannibal_auto</small></span><svg class="go" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></a><a class="frow" href="https://www.tiktok.com/@hannial_autos" target="_blank" rel="noopener"><span class="fic"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 3c.3 2.2 1.6 3.6 3.9 3.8v3.1c-1.4.1-2.6-.3-3.9-1.1v5.6c0 3.9-3.6 6.4-7.1 5.4-3.6-1-4.9-5.5-2.4-8.3 1.1-1.2 2.7-1.8 4.3-1.7v3.2c-.4-.1-.8-.2-1.2-.1-1.4.2-2.2 1.4-1.8 2.8.4 1.5 2.4 2 3.5 1 .5-.5.8-1.2.8-2V3z"/></svg></span><span class="ftx"><b>TikTok</b><small>@hannial_autos</small></span><svg class="go" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></a><a class="frow" href="https://www.youtube.com/@hannibalautos" target="_blank" rel="noopener"><span class="fic"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22.5 7.2a2.8 2.8 0 0 0-2-2C18.7 4.7 12 4.7 12 4.7s-6.7 0-8.5.5a2.8 2.8 0 0 0-2 2C1 9 1 12 1 12s0 3 .5 4.8a2.8 2.8 0 0 0 2 2c1.8.5 8.5.5 8.5.5s6.7 0 8.5-.5a2.8 2.8 0 0 0 2-2c.5-1.8.5-4.8.5-4.8s0-3-.5-4.8zM9.8 15.3V8.7l5.7 3.3z"/></svg></span><span class="ftx"><b>YouTube</b><small>@hannibalautos</small></span><svg class="go" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></a></div>
     </div>
   </section>
@@ -728,7 +738,7 @@ html.fiche-on{overflow:hidden}
         <div style="position:relative">
           <h2 data-r style="--d:100ms">Nous trouver</h2>
           <p data-r style="--d:270ms" class="addr1">17 rue de la Ferté Alais, 91720 Maisse</p>
-          <p data-r style="--d:390ms" class="rerline"><img src="img/rer-d.png" alt="RER D" width="58" height="27">Depuis Paris, gare de Maisse</p>
+          <p data-r style="--d:390ms" class="rerline"><a href="https://www.google.com/maps/place/Maisse/@48.3930109,2.3927022,19.74z/data=!4m6!3m5!1s0x47e5c06a99555d7f:0xb43e4f52e6751448!8m2!3d48.3929976!4d2.3930496!16s%2Fg%2F121p63g7" target="_blank" rel="noopener" title="Voir la gare de Maisse sur Google Maps"><img src="img/rer-d.png" alt="RER D" width="58" height="27"><span>Depuis Paris, gare de Maisse</span><svg class="garr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></a></p>
           <p data-r style="--d:510ms" class="hours"><b>Du lundi au samedi</b> de 10h à 20h</p>
           <a data-r style="--d:630ms" class="phone" href="tel:+33699501849">06 99 50 18 49</a>
           <a data-r style="--d:690ms" class="mailtxt" href="mailto:contact@hannibalautos.fr">contact@hannibalautos.fr</a>
@@ -929,7 +939,7 @@ html.fiche-on{overflow:hidden}
     var specs = SPECS.map(function(s){ var x = v[s[1]]; if (!x) return ''; if (s[1] === 'km') x = nb(x) + ' km'; return '<span class="spec">' + ico(s[0], 15) + esc(x) + '</span>'; }).join('');
     var thumbs = ph.length > 1 ? '<div class="fthumbs">' + ph.map(function(p, i){ return '<button type="button" class="fthumb" data-i="' + i + '" aria-label="Photo ' + (i + 1) + '"><img loading="lazy" src="' + esc(p) + '" alt=""></button>'; }).join('') + '</div>' : '';
     var nav = ph.length > 1 ? '<button type="button" class="fnav prev" aria-label="Photo précédente">' + I.nav + '</button><button type="button" class="fnav next" aria-label="Photo suivante">' + I.nav + '</button>' : '';
-    var gal = ph.length ? '<div class="fgal"><div class="fmain"><img src="' + esc(ph[pi]) + '" alt="' + esc(nom) + '">' + nav +
+    var gal = ph.length ? '<div class="fgal"><div class="fmain"><img class="fblur" src="' + esc(ph[pi]) + '" alt="" aria-hidden="true"><img class="fph" src="' + esc(ph[pi]) + '" alt="' + esc(nom) + '">' + nav +
       '<span class="fcount">' + (pi + 1) + ' / ' + ph.length + '</span><button type="button" class="fzoom">' + I.zoom + 'Plein écran</button></div>' + thumbs + '</div>' : '<div class="fgal"></div>';
     var list = function(t, a, cls, ic){ return a && a.length ? '<div class="fsec"><h4>' + t + '</h4><ul class="flist ' + cls + '">' + a.map(function(x){ return '<li>' + ic + esc(x) + '</li>'; }).join('') + '</ul></div>' : ''; };
     var infos = v.infos ? Object.keys(v.infos).map(function(k){ return '<dt>' + esc(k) + '</dt><dd>' + esc(v.infos[k]) + '</dd>'; }).join('') : '';
@@ -965,8 +975,8 @@ html.fiche-on{overflow:hidden}
   function show(n){
     if (!ph.length) return;
     pi = (n + ph.length) % ph.length;
-    var img = box.querySelector('.fmain img'), c = box.querySelector('.fcount');
-    if (img) swap(img, ph[pi]);
+    var img = box.querySelector('.fmain .fph'), bl = box.querySelector('.fmain .fblur'), c = box.querySelector('.fcount');
+    if (img) swap(img, ph[pi], null, function(){ if (bl) bl.src = ph[pi]; });
     if (c) c.textContent = (pi + 1) + ' / ' + ph.length;
     setThumb();
     if (!lbx.hidden) lshow();
@@ -1004,7 +1014,7 @@ html.fiche-on{overflow:hidden}
     if (t.closest('[data-close]')) return close();
     if (t.closest('.fnav')) return show(pi + (t.closest('.prev') ? -1 : 1));
     var th = t.closest('.fthumb'); if (th) return show(+th.getAttribute('data-i'));
-    if (t.closest('.fzoom') || t.closest('.fmain img')) return lopen();
+    if (t.closest('.fzoom') || t.closest('.fmain .fph')) return lopen();
   });
   wrap.querySelector('.fbg').addEventListener('click', function(){ close(); });
   // glisser du doigt sur la grande photo de la fiche
@@ -1135,12 +1145,13 @@ html.fiche-on{overflow:hidden}
     var model = car ? slug((car.querySelector('.brandn') || {}).textContent + ' ' + (car.querySelector('.model') || {}).textContent) : '';
     if (e.target.closest('.gnav, .fnav, .fthumb')) { send('photos-' + model, 'Photos ' + model); return; }
     var a = e.target.closest('a');
-    if (!a) { if (e.target.closest('.fmain img, .fzoom')) send('zoom-' + model, 'Zoom ' + model); return; }
+    if (!a) { if (e.target.closest('.fmain .fph, .fzoom')) send('zoom-' + model, 'Zoom ' + model); return; }
     var h = a.getAttribute('href') || '';
     if (a.closest('nav, .menu, .mmenu') && h.charAt(0) === '#') { send('menu-' + (slug(a.textContent) || 'accueil'), 'Menu : ' + (a.textContent.trim() || 'logo')); return; }
     if (h.indexOf('tel:') === 0) send('clic-appeler', 'Appeler');
     else if (h.indexOf('wa.me') > -1) send('clic-whatsapp', 'WhatsApp');
     else if (h.indexOf('mailto:') === 0) send('clic-email', 'Écrire au garage');
+    else if (h.indexOf('maps/place/Maisse') > -1) send('clic-gare-maisse', 'Gare de Maisse (RER D)');
     else if (h.indexOf('google.com/maps') > -1) send('clic-itineraire', 'Itinéraire');
     else if (h.indexOf('leboncoin') > -1) send('annonce-' + model, 'Annonce ' + model);
     else if (h.indexOf('instagram.com') > -1) send('clic-instagram', 'Instagram');
