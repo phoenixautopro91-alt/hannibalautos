@@ -247,6 +247,8 @@ footer{padding-block:24px 40px}
 #cars{transition:opacity .22s ease}
 #cars.tri-out{opacity:.08}
 @media (max-width:760px){.tri{width:100%}.tri select{flex:1}}
+.hero-media picture{display:block;width:100%;height:100%}
+.hero-media img{object-position:60% 38%;transform-origin:60% 38%}
 /* téléphone : cartes plus compactes, boutons plus faciles à toucher, moins de vide */
 @media (max-width:700px){
   .car.sale .sbody{padding:14px 16px 16px;gap:3px}
@@ -267,8 +269,8 @@ footer{padding-block:24px 40px}
 /* téléphone : accueil moins haut (on voit le titre des voitures), barre du haut plus fine quand on descend */
 @media (max-width:760px){
   .hero{min-height:0}
-  /* photo d'accueil : on cache le plafond, on montre l'atelier et les voitures */
-  .hero-media{top:-52%}
+  /* photo d'accueil : version téléphone (img/atelier-mobile.jpg), sans le plafond */
+  .hero-media img{object-position:55% 30%}
   .hero-in{padding-block:96px 26px!important;gap:16px!important}
   header.scrolled .hbar{padding-block:5px}
   header.scrolled .brand img{width:38px}
@@ -731,7 +733,7 @@ html.fiche-on{overflow:hidden}
 
 <main>
   <section class="hero" id="accueil" style="padding-block:0">
-    <div class="hero-media" id="heroMedia"><img src="img/atelier.jpg" fetchpriority="high" alt="L'atelier Hannibal Autos à Maisse"></div>
+    <div class="hero-media" id="heroMedia"><picture><source media="(max-width:760px)" srcset="img/atelier-mobile.jpg"><img src="img/atelier.jpg" fetchpriority="high" alt="L'atelier Hannibal Autos à Maisse"></picture></div>
     <div class="wrap hero-in">
       <div class="hlogo load" id="heroLogo" style="animation-delay:.2s"><img class="rond" src="img/logo-rond.png" alt="" width="400" height="400"><div class="hname"><h1 id="title"><span class="hn">HANNIBAL</span><span class="ha">AUTOS</span></h1><p class="lead">Garage mécanique à Maisse</p></div></div>
       <div class="ctas load" style="animation-delay:1.1s">
