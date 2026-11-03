@@ -9,9 +9,9 @@
 <meta name="theme-color" content="#1E131B">
 <script>
 (function(){
-  var d = document.documentElement, s = null;
-  try { s = localStorage.getItem('hb-theme'); } catch(e){}
-  var th = s === 'light' ? 'light' : 'dark';
+  // le site s'ouvre TOUJOURS en sombre (03/11 : choix du patron) ; le mode clair n'est jamais gardé en mémoire
+  var d = document.documentElement, th = 'dark';
+  try { localStorage.removeItem('hb-theme'); } catch(e){}  // efface l'ancien choix gardé par la 1re version
   d.setAttribute('data-theme', th);
   var m = document.querySelector('meta[name="theme-color"]'); if (m) m.setAttribute('content', th === 'light' ? '#F3ECDD' : '#1E131B');
 })();
@@ -909,7 +909,7 @@ html[data-theme="light"] .head h2::after,html[data-theme="light"] .mech h2::afte
   </section>
 <script>
 (function(){
-  var d = document.documentElement, btn = document.getElementById('thm'), KEY = 'hb-theme';
+  var d = document.documentElement, btn = document.getElementById('thm');
   
   // logos : blanc en mode sombre, prune foncé en mode clair (adresses absolues : marche aussi sur /voitures/<voiture>/)
   function logos(th){
@@ -940,8 +940,7 @@ html[data-theme="light"] .head h2::after,html[data-theme="light"] .mech h2::afte
   if (!btn) return;
   btn.addEventListener('click', function(){
     var nt = d.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
-    // choix gardé sur cet appareil (mode clair) ; retour au sombre = on efface le choix
-    try { if (nt === 'dark') localStorage.removeItem(KEY); else localStorage.setItem(KEY, nt); } catch(e){}
+    // pas de mémoire : la prochaine ouverture du site sera de nouveau en sombre
     var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (!reduce && document.startViewTransition) {
       // un cercle doux qui part du bouton et recouvre la page
