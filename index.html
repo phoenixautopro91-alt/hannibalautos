@@ -765,6 +765,7 @@ html.fiche-on{overflow:hidden}
   var V = window.VOITURES || [], box = document.getElementById('cars');
   function esc(s){ return String(s == null ? '' : s).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
   function nb(n){ return Number(n).toLocaleString('fr-FR'); }
+  function slugv(v){ return String(v.marque + ' ' + v.modele).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,''); }
   var NAV = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>';
   // Photos d'une voiture : une seule photo (photo) ou plusieurs (photos) avec boutons pour avancer
   function gal(v){
@@ -799,14 +800,14 @@ html.fiche-on{overflow:hidden}
       '<div class="sbody">' + mlogo(v) + '<div class="brandn">' + esc(v.marque) + '</div><div class="model">' + esc(v.modele) + '</div>' +
       (specs ? '<div class="specs">' + specs + '</div>' : '') +
       (v.prix && v.statut !== 'vendue' ? '<div class="price">' + nb(v.prix) + ' €</div>' : '') +
-      (v.statut === 'vente' ? '<div class="cbtns"><button type="button" class="btn btn-line fopen">Voir la fiche<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>' +
+      (v.statut === 'vente' ? '<div class="cbtns"><a class="btn btn-line fopen" href="voitures/' + slugv(v) + '/">Voir la fiche<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></a>' +
         (v.lien ? '<a class="clbc" href="' + esc(v.lien) + '" target="_blank" rel="noopener">Leboncoin<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></a>' : '<span class="clbc off">Leboncoin bientôt</span>') + '</div>' : '') +
       '</div></article>';
   }).join('');
   box.innerHTML = html.split('GEAR ').join(GEAR);
   // Toute la carte ouvre la fiche détaillée (sauf les flèches des photos et le lien Leboncoin)
   [].forEach.call(box.querySelectorAll('.car[data-fiche]'), function(c){
-    c.addEventListener('click', function(e){ if (e.target.closest('.gnav, a')) return; if (window.ouvrirFiche) window.ouvrirFiche(+c.getAttribute('data-fiche'), +((c.querySelector('.gal') || {}).getAttribute ? c.querySelector('.gal').getAttribute('data-i') || 0 : 0)); });
+    c.addEventListener('click', function(e){ if (e.target.closest('.gnav') || (e.target.closest('a') && !e.target.closest('a.fopen'))) return; e.preventDefault(); if (window.ouvrirFiche) window.ouvrirFiche(+c.getAttribute('data-fiche'), +((c.querySelector('.gal') || {}).getAttribute ? c.querySelector('.gal').getAttribute('data-i') || 0 : 0)); });
   });
   // Boutons et glisser du doigt pour changer de photo
   [].forEach.call(box.querySelectorAll('.gal'), function(g){
@@ -983,7 +984,7 @@ html.fiche-on{overflow:hidden}
     box.focus({preventScroll: true});
     var sl = slug(v.marque + ' ' + v.modele);
     (function stat(n){ if (window.hbStat) window.hbStat('fiche-' + sl, 'Fiche ' + v.marque + ' ' + v.modele); else if (n < 10) setTimeout(function(){ stat(n + 1); }, 500); })(0);
-    if (!fromHash && history.pushState) { history.pushState({fiche: i}, '', '#' + slug(v.marque + ' ' + v.modele)); pushed = true; }
+    if (!fromHash && history.pushState) { history.pushState({fiche: i}, '', /hannibalautos\.fr$/.test(location.hostname) ? '/voitures/' + sl + '/' : '#' + sl); pushed = true; }
   }
   function close(fromPop){
     if (cur === null) return;
@@ -1111,7 +1112,7 @@ html.fiche-on{overflow:hidden}
   // bouton « retour » du téléphone : ferme la fiche au lieu de quitter le site
   window.addEventListener('popstate', function(){ if (cur !== null) close(true); else fromHash(); });
   function fromHash(){
-    var h = decodeURIComponent(location.hash.slice(1)); if (!h) return;
+    var h = decodeURIComponent(location.hash.slice(1)) || window.FICHE_AUTO; if (!h) return;
     V.forEach(function(v, i){ if (v.statut === 'vente' && slug(v.marque + ' ' + v.modele) === h) open(i, 0, true); });
   }
   fromHash();
