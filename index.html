@@ -241,12 +241,18 @@ footer{padding-block:24px 40px}
 .tri select{appearance:none;-webkit-appearance:none;font:inherit;font-weight:700;color:var(--cream);background:var(--panel) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23D4A94C' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") no-repeat right 14px center;border:1px solid rgba(212,169,76,.45);border-radius:10px;padding:11px 40px 11px 14px;min-height:46px;cursor:pointer;transition:border-color .3s}
 .tri select:hover,.tri select:focus{border-color:var(--gold);outline:none}
 .tri option{background:#2A1B25;color:#F6EFF3}
-#cars{transition:opacity .22s ease}
-#cars.tri-out{opacity:.08}
+
 @media (max-width:760px){.tri{width:100%}.tri select{flex:1}}
-.hero-media picture{display:block;width:100%;height:100%}
-.hero-media img{object-position:60% 38%;transform-origin:60% 38%}
-@media (min-width:761px){.hero-media{left:-16%}.hero-media img{object-position:100% 12%;transform-origin:70% 12%}}
+/* menu du haut (ordi) : petit fond arrondi transparent sur la photo, qui s'efface quand on descend (la barre prend le relais) */
+@media (min-width:761px){
+  nav.menu{padding:7px 24px;border-radius:14px;background:rgba(24,15,21,.58);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid rgba(194,135,174,.3);box-shadow:0 6px 24px rgba(0,0,0,.18);transition:background .7s,border-color .7s,box-shadow .7s}
+  header.scrolled nav.menu{background:rgba(24,15,21,0);border-color:rgba(194,135,174,0);box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none}
+}
+.hero-media .hs{position:absolute;inset:0;display:block;opacity:0;transition:opacity 2.6s ease}
+.hero-media .hs.on{opacity:1}
+.hero-media .hs img{object-position:50% 50%}
+.hero-media .hs-first img{object-position:65% 70%}
+@media (max-width:760px){.hero-media .hs-first img{object-position:55% 30%}}
 /* téléphone : cartes plus compactes, boutons plus faciles à toucher, moins de vide */
 @media (max-width:700px){
   .car.sale .sbody{padding:14px 16px 16px;gap:3px}
@@ -267,8 +273,6 @@ footer{padding-block:24px 40px}
 /* téléphone : accueil moins haut (on voit le titre des voitures), barre du haut plus fine quand on descend */
 @media (max-width:760px){
   .hero{min-height:0}
-  /* photo d'accueil : version téléphone (img/atelier-mobile.jpg), sans le plafond */
-  .hero-media img{object-position:55% 30%}
   .hero-in{padding-block:96px 26px!important;gap:16px!important}
   header.scrolled .hbar{padding-block:5px}
   header.scrolled .brand img{width:38px}
@@ -678,6 +682,28 @@ html.fiche-on{overflow:hidden}
 .lbx .fcount{left:50%;transform:translateX(-50%);bottom:max(18px,env(safe-area-inset-bottom,0px));z-index:3}
 .lhint{position:absolute;top:max(22px,env(safe-area-inset-top,0px));left:20px;z-index:3;color:rgba(255,255,255,.6);font-size:13px;font-weight:600;letter-spacing:.3px;pointer-events:none}
 
+/* ===== Animations douces (même esprit que le reste du site) ===== */
+@keyframes fIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes fFade{from{opacity:0}to{opacity:1}}
+@keyframes fBar{from{transform:translateY(105%)}to{transform:none}}
+.fwrap.on .finfo>*:not(.mlogo):not(.fcta){animation:fIn 1.1s var(--ease) both}
+.fwrap.on .finfo>.fcta{animation:fIn 1.1s var(--ease) .32s both}
+.fwrap.on .finfo>:nth-child(3){animation-delay:.1s}.fwrap.on .finfo>:nth-child(4){animation-delay:.18s}.fwrap.on .finfo>:nth-child(5){animation-delay:.26s}
+.fwrap.on .finfo>:nth-child(7){animation-delay:.4s}.fwrap.on .finfo>:nth-child(8){animation-delay:.48s}.fwrap.on .finfo>:nth-child(n+9){animation-delay:.56s}
+@keyframes fLogo{from{opacity:0}to{opacity:.22}}
+.fwrap.on .finfo .mlogo{animation:fLogo 1.8s ease .4s both}
+.fwrap.on .fthumb{animation:fIn .9s var(--ease) both}
+.fwrap.on .fthumb:nth-child(2){animation-delay:.06s}.fwrap.on .fthumb:nth-child(3){animation-delay:.12s}.fwrap.on .fthumb:nth-child(4){animation-delay:.18s}.fwrap.on .fthumb:nth-child(5){animation-delay:.24s}.fwrap.on .fthumb:nth-child(n+6){animation-delay:.3s}
+.fwrap.on .fmain .fph{animation:fFade 1.2s ease both}
+.ftab dt,.ftab dd,.flist li{transition:background .4s}
+.flist li:hover{background:rgba(255,255,255,.03)}
+.car .clbc svg{transition:transform .4s var(--ease)}.car .clbc:hover svg{transform:translate(2px,-2px)}
+.car .fopen svg{transition:transform .5s var(--ease)}.car:hover .fopen svg{transform:translateX(4px)}
+.tri select{transition:border-color .4s,background-color .4s,box-shadow .6s}
+.tri select:focus{box-shadow:0 0 0 4px rgba(212,169,76,.12)}
+@media (max-width:860px){.fwrap.on .finfo>.fcta{animation:fBar 1s var(--ease) .3s both}}
+@media (prefers-reduced-motion:reduce){.fwrap.on .finfo>*,.fwrap.on .fthumb,.fwrap.on .fmain .fph,.fwrap.on .finfo .mlogo{animation:none!important}}
+
 /* ===== Téléphone / tablette ===== */
 @media (max-width:860px){
   .fwrap{padding:0;align-items:stretch}
@@ -703,6 +729,70 @@ html.fiche-on{overflow:hidden}
 @media (min-width:861px){.fcta .btn .sm{display:none}}
 @media (max-width:360px){.fcta .btn svg{display:none}}
 @media (prefers-reduced-motion:reduce){.fiche,.fbg,.lbx,.fmain img,.lbx img{transition:none!important}}
+
+@media (min-width:761px){
+  .hero{min-height:max(560px,calc(100vh - 58px));min-height:max(560px,calc(100svh - 58px));align-items:center}
+  .hero-in{padding-block:28px 78px;gap:clamp(22px,3.6vh,40px)}
+  .hlogo{gap:clamp(20px,2.8vw,44px)}
+  .hlogo .rond{width:clamp(150px,min(16vw,26vh),232px)}
+  .hero h1 .hn{font-size:clamp(42px,min(6vw,11vh),86px)}
+  .hero h1 .ha{font-size:clamp(14px,min(1.9vw,3.2vh),26px);margin-top:clamp(8px,1.3vh,16px)}
+  .hero p.lead{font-size:clamp(18px,min(1.9vw,3vh),25px)}
+  .hero .ctas{gap:14px}
+  .hero .ctas .btn{min-height:clamp(52px,6.4vh,60px);padding-inline:clamp(24px,2vw,32px);font-size:clamp(16px,1.9vh,18px)}
+  .hdown{position:absolute;left:50%;bottom:clamp(16px,2.6vh,26px);z-index:3;width:46px;height:46px;margin-left:-23px;border-radius:50%;display:grid;place-items:center;color:var(--gold-soft);background:rgba(24,15,21,.55);border:1px solid rgba(232,195,115,.38);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);opacity:0;animation:hdIn 1.6s ease 2.4s forwards,hdBob 3.2s ease-in-out 4s infinite;transition:background .4s,color .4s}
+  .hdown:hover{background:rgba(138,61,110,.6);color:#fff}
+  @keyframes hdIn{to{opacity:.9}}
+  @keyframes hdBob{0%,100%{translate:0 0}50%{translate:0 7px}}
+}
+/* grand écran : la 1re page utilise TOUTE la largeur (plus de colonne de 1200 px au milieu).
+   Barre du haut : menu + téléphone tout à droite. Accueil : un seul bloc à gauche (logo + nom, boutons, horaires/RER),
+   centré en hauteur et bien espacé ; « Suivez le garage » collé à droite, à la même hauteur ; flèche en bas au milieu. */
+@media (min-width:1101px){
+  :root{--side:clamp(36px,5vw,112px)}
+  .hbar,.hero-in.wrap{max-width:none;padding-left:var(--side);padding-right:var(--side)}
+  .hero{align-items:stretch}
+  .hero-in{display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-rows:.9fr auto 1fr auto auto;column-gap:clamp(40px,4vw,96px);row-gap:0;padding-block:clamp(10px,2vh,28px) clamp(74px,10.5vh,116px)}
+  .hlogo{grid-column:1;grid-row:2}
+  .hlogo{gap:clamp(24px,2.6vw,52px)}
+  .hlogo .rond{width:clamp(190px,min(17vw,31vh),310px)}
+  .hero h1 .hn{font-size:clamp(62px,min(6.6vw,12.5vh),122px)}
+  .hero h1 .ha{font-size:clamp(17px,min(2vw,3.6vh),33px);margin-top:clamp(10px,1.6vh,18px)}
+  .hero p.lead{font-size:clamp(20px,min(1.9vw,3.4vh),30px);margin-top:clamp(6px,1.2vh,14px)}
+  .hero .ctas{grid-column:1;grid-row:4;margin-top:0;gap:clamp(14px,1.2vw,20px)}
+  .hero .ctas .btn{min-height:clamp(54px,6.6vh,64px);padding-inline:clamp(26px,2.2vw,38px);font-size:clamp(16px,2vh,19px)}
+  .hero .info{grid-column:1;grid-row:5;margin-top:clamp(22px,3.6vh,40px);gap:clamp(12px,1.2vw,20px);justify-content:flex-start}
+  .ibox{padding:12px 24px 12px 12px;gap:14px}
+  .ibox .ico{width:44px;height:44px}
+  .ibox img{width:54px}
+  .ibox b{font-size:16.5px}
+  .ibox small{font-size:15px}
+  .follow{position:static;translate:none;margin:0;grid-column:2;grid-row:2 / 6;align-self:center;min-width:clamp(280px,19vw,340px);padding:clamp(16px,2.2vh,22px);gap:clamp(8px,1.2vh,12px)}
+  .frow{padding-block:clamp(9px,1.3vh,13px)}
+  .hdown{bottom:clamp(18px,3vh,32px)}
+}
+/* tablette / petit écran (761-1100 px) : nom + boutons au milieu, horaires/RER + réseaux en bas */
+@media (min-width:761px) and (max-width:1100px){
+  .hero{align-items:stretch}
+  .hero-in{display:grid;grid-template-rows:1fr auto auto 1fr auto auto;gap:0;padding-block:clamp(16px,2.5vh,32px) clamp(26px,4vh,44px)}
+  .hlogo{grid-row:2}
+  .hero .ctas{grid-row:3;margin-top:clamp(26px,4.4vh,50px)}
+  .hero .info{grid-row:5;margin-top:24px}
+  .follow{grid-row:6;margin-top:12px;justify-self:start}
+  .hdown{display:none}
+}
+@media (min-width:761px) and (prefers-reduced-motion:reduce){.hdown{animation:none;opacity:.9}}
+@media (max-width:760px){.hdown{display:none}}
+/* téléphone : horaires + RER réunis dans UNE carte en 2 colonnes (icône au-dessus, texte centré, trait au milieu) */
+@media (max-width:760px){
+  .hero .info{display:grid!important;grid-template-columns:1fr 1fr;gap:0!important;padding:16px 4px;border-radius:16px;background:rgba(30,19,27,.66);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border:1px solid rgba(194,135,174,.3)}
+  .hero .info .ibox{width:auto;flex-direction:column;justify-content:flex-start;text-align:center;gap:9px;padding:2px 12px!important;background:none;border:0;border-radius:0;-webkit-backdrop-filter:none;backdrop-filter:none}
+  .hero .info .ibox+.ibox{border-left:1px solid rgba(194,135,174,.28)}
+  .hero .info .ibox .ico{width:36px;height:36px}
+  .hero .info .ibox img{width:46px;height:22px;object-fit:contain;margin-block:7px}
+  .hero .info .ibox b{font-size:14.5px;line-height:1.25;text-wrap:balance}
+  .hero .info .ibox small{font-size:13.5px;margin-top:3px}
+}
 </style>
 </head>
 <body>
@@ -728,7 +818,7 @@ html.fiche-on{overflow:hidden}
 
 <main>
   <section class="hero" id="accueil" style="padding-block:0">
-    <div class="hero-media" id="heroMedia"><picture><source media="(max-width:760px)" srcset="img/atelier-mobile.jpg"><img src="img/atelier.jpg" fetchpriority="high" alt="L'atelier Hannibal Autos à Maisse"></picture></div>
+    <div class="hero-media" id="heroMedia"><picture class="hs hs-first on"><source media="(max-width:760px)" srcset="img/atelier-mobile.jpg"><img src="img/atelier.jpg" fetchpriority="high" alt="L'atelier Hannibal Autos à Maisse"></picture></div>
     <div class="wrap hero-in">
       <div class="hlogo load" id="heroLogo" style="animation-delay:.2s"><img class="rond" src="img/logo-rond.png" alt="" width="400" height="400"><div class="hname"><h1 id="title"><span class="hn">HANNIBAL</span><span class="ha">AUTOS</span></h1><p class="lead">Garage mécanique à Maisse</p></div></div>
       <div class="ctas load" style="animation-delay:1.1s">
@@ -736,9 +826,10 @@ html.fiche-on{overflow:hidden}
         <a class="btn btn-line cars-l" href="#voitures">Voir les voitures à vendre</a>
         <a class="btn btn-wa" href="https://wa.me/33699501849"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11.6a8.2 8.2 0 0 1-12.1 7.2L3.5 20l1.3-4.2A8.2 8.2 0 1 1 20 11.6z"/><path d="M9 8.8c.3 2.6 2.3 4.9 5.2 5.6l1.1-1.2-1.6-.9-.8.7c-1-.4-1.9-1.3-2.3-2.3l.7-.8-.9-1.6z"/></svg>WhatsApp</a>
       </div>
-      <div class="info load" style="animation-delay:1.3s"><div class="ibox"><span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><span><b>Ouvert du lundi au samedi</b><small>de 10h à 20h</small></span></div><a class="ibox ilink" href="https://www.google.com/maps/place/Maisse/@48.3930109,2.3927022,19.74z/data=!4m6!3m5!1s0x47e5c06a99555d7f:0xb43e4f52e6751448!8m2!3d48.3929976!4d2.3930496!16s%2Fg%2F121p63g7" target="_blank" rel="noopener" title="Voir la gare de Maisse sur Google Maps"><img src="img/rer-d.png" alt="RER D" width="48" height="23"><span><b>Depuis Paris en RER D</b><small>gare de Maisse <svg class="garr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></small></span></a></div>
+      <div class="info load" style="animation-delay:1.3s"><div class="ibox"><span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><span><b>Ouvert du lundi au samedi</b><small>de 10h à 20h</small></span></div><div class="ibox"><img src="img/rer-d.png" alt="RER D" width="48" height="23"><span><b>Depuis Paris en RER&nbsp;D</b><small>gare de Maisse</small></span></div></div>
       <div class="follow load" style="animation-delay:.9s"><span class="flbl">Suivez le garage</span><a class="frow" href="https://www.instagram.com/hannibal_auto/" target="_blank" rel="noopener"><span class="fic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1" fill="currentColor" stroke="none"/></svg></span><span class="ftx"><b>Instagram</b><small>@hannibal_auto</small></span><svg class="go" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></a><a class="frow" href="https://www.tiktok.com/@hannial_autos" target="_blank" rel="noopener"><span class="fic"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 3c.3 2.2 1.6 3.6 3.9 3.8v3.1c-1.4.1-2.6-.3-3.9-1.1v5.6c0 3.9-3.6 6.4-7.1 5.4-3.6-1-4.9-5.5-2.4-8.3 1.1-1.2 2.7-1.8 4.3-1.7v3.2c-.4-.1-.8-.2-1.2-.1-1.4.2-2.2 1.4-1.8 2.8.4 1.5 2.4 2 3.5 1 .5-.5.8-1.2.8-2V3z"/></svg></span><span class="ftx"><b>TikTok</b><small>@hannial_autos</small></span><svg class="go" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></a><a class="frow" href="https://www.youtube.com/@hannibalautos" target="_blank" rel="noopener"><span class="fic"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22.5 7.2a2.8 2.8 0 0 0-2-2C18.7 4.7 12 4.7 12 4.7s-6.7 0-8.5.5a2.8 2.8 0 0 0-2 2C1 9 1 12 1 12s0 3 .5 4.8a2.8 2.8 0 0 0 2 2c1.8.5 8.5.5 8.5.5s6.7 0 8.5-.5a2.8 2.8 0 0 0 2-2c.5-1.8.5-4.8.5-4.8s0-3-.5-4.8zM9.8 15.3V8.7l5.7 3.3z"/></svg></span><span class="ftx"><b>YouTube</b><small>@hannibalautos</small></span><svg class="go" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></a></div>
     </div>
+    <a class="hdown" href="#voitures" aria-label="Descendre vers les voitures à vendre"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></a>
   </section>
   <div class="frieze" aria-hidden="true"></div>
 
@@ -788,7 +879,7 @@ html.fiche-on{overflow:hidden}
         <div style="position:relative">
           <h2 data-r style="--d:100ms">Nous trouver</h2>
           <p data-r style="--d:270ms" class="addr1">17 rue de la Ferté Alais, 91720 Maisse</p>
-          <p data-r style="--d:390ms" class="rerline"><a href="https://www.google.com/maps/place/Maisse/@48.3930109,2.3927022,19.74z/data=!4m6!3m5!1s0x47e5c06a99555d7f:0xb43e4f52e6751448!8m2!3d48.3929976!4d2.3930496!16s%2Fg%2F121p63g7" target="_blank" rel="noopener" title="Voir la gare de Maisse sur Google Maps"><img src="img/rer-d.png" alt="RER D" width="58" height="27"><span>Depuis Paris, gare de Maisse</span><svg class="garr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></a></p>
+          <p data-r style="--d:390ms" class="rerline"><img src="img/rer-d.png" alt="RER D" width="58" height="27">Depuis Paris, gare de Maisse</p>
           <p data-r style="--d:510ms" class="hours"><b>Du lundi au samedi</b> de 10h à 20h</p>
           <a data-r style="--d:630ms" class="phone" href="tel:+33699501849">06 99 50 18 49</a>
           <a data-r style="--d:690ms" class="mailtxt" href="mailto:contact@hannibalautos.fr">contact@hannibalautos.fr</a>
@@ -898,12 +989,17 @@ html.fiche-on{overflow:hidden}
       function by(f, sens){ return function(a, b){ var x = val(a, f), y = val(b, f); if (x === null) return 1; if (y === null) return -1; return (x - y) * sens; }; }
       var arr = saleEls.slice(), cmp = {'prix-bas': by('prix', 1), 'prix-haut': by('prix', -1), 'recent': by('annee', -1), 'km': by('km', 1)}[k];
       if (cmp) arr.sort(function(a, b){ var sa = a.classList.contains('sold'), sb = b.classList.contains('sold'); return sa !== sb ? (sa ? 1 : -1) : cmp(a, b); });
-      box.classList.add('tri-out');
-      setTimeout(function(){
-        var first = box.querySelector('.car.prep');
-        arr.forEach(function(el){ box.insertBefore(el, first); });
-        box.classList.remove('tri-out');
-      }, 220);
+      var avant = saleEls.map(function(el){ return el.getBoundingClientRect(); });
+      var first = box.querySelector('.car.prep');
+      arr.forEach(function(el){ box.insertBefore(el, first); });
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) saleEls.forEach(function(el, i){
+        var a = avant[i], b = el.getBoundingClientRect(), dx = a.left - b.left, dy = a.top - b.top;
+        if (!dx && !dy) return;
+        el.style.transition = 'none'; el.style.transform = 'translate(' + dx + 'px,' + dy + 'px)';
+        el.offsetWidth;
+        el.style.transition = 'transform 1.1s cubic-bezier(.2,.75,.2,1)'; el.style.transform = '';
+        setTimeout(function(){ el.style.transition = ''; }, 1200);
+      });
       if (window.hbStat) window.hbStat('tri-' + k, 'Tri des voitures : ' + tri.options[tri.selectedIndex].text);
     });
   }
@@ -962,6 +1058,34 @@ html.fiche-on{overflow:hidden}
   var b = document.getElementById('burger'), m = document.getElementById('menu');
   b.addEventListener('click', function(){ var o = m.classList.toggle('open'); b.setAttribute('aria-expanded', o); });
   m.addEventListener('click', function(e){ if(e.target.tagName==='A'){ m.classList.remove('open'); b.setAttribute('aria-expanded', false); } });
+})();
+</script>
+<script>
+(function(){
+  var m = document.getElementById('heroMedia'), hero = document.querySelector('.hero'), f = document.querySelector('.follow');
+  if (!m || !hero) return;
+  var first = m.querySelector('.hs-first'), img = first && first.querySelector('img');
+  // 2) Diaporama : la photo de l'atelier reste 30 s, puis les autres photos du garage défilent doucement (8 s chacune)
+  var S = [['img/accueil/facade.jpg', 'img/accueil/facade-m.jpg', "L'entrée du garage"], ['img/accueil/pont.jpg', 'img/accueil/pont-m.jpg', 'Le pont élévateur'],
+           ['img/accueil/accueil.jpg', 'img/accueil/accueil-m.jpg', "L'accueil des clients"], ['img/accueil/pneus.jpg', 'img/accueil/pneus-m.jpg', "L'espace pneus"]];
+  var slides = [first], cur = 0, PREMIERE = 30000, AUTRES = 8000;
+  function make(d){
+    var pic = document.createElement('picture'); pic.className = 'hs';
+    pic.innerHTML = '<source media="(max-width:760px)" srcset="' + d[1] + '"><img src="' + d[0] + '" alt="' + d[2] + ' – Hannibal Autos à Maisse" decoding="async">';
+    m.appendChild(pic); return pic;
+  }
+  function go(){
+    if (document.hidden || hero.getBoundingClientRect().bottom < 0) { setTimeout(go, 3000); return; }
+    var n = (cur + 1) % (S.length + 1);
+    if (!slides[n]) slides[n] = make(S[n - 1]);
+    var im = slides[n].querySelector('img');
+    var show = function(){
+      slides[cur].classList.remove('on'); slides[n].classList.add('on'); cur = n;
+      setTimeout(go, cur === 0 ? PREMIERE : AUTRES);
+    };
+    if (im.complete && im.naturalWidth) show(); else { im.addEventListener('load', show, {once: true}); im.addEventListener('error', function(){ slides[n].remove(); slides[n] = null; S.splice(n - 1, 1); setTimeout(go, 1000); }, {once: true}); }
+  }
+  if (first) setTimeout(go, PREMIERE);
 })();
 </script>
 <script>
@@ -1229,11 +1353,11 @@ html.fiche-on{overflow:hidden}
     var a = e.target.closest('a');
     if (!a) { if (e.target.closest('.fmain .fph, .fzoom')) send('zoom-' + model, 'Zoom ' + model); return; }
     var h = a.getAttribute('href') || '';
+    if (a.classList.contains('hdown')) { send('clic-fleche-bas', 'Flèche vers le bas (accueil)'); return; }
     if (a.closest('nav, .menu, .mmenu') && h.charAt(0) === '#') { send('menu-' + (slug(a.textContent) || 'accueil'), 'Menu : ' + (a.textContent.trim() || 'logo')); return; }
     if (h.indexOf('tel:') === 0) send('clic-appeler', 'Appeler');
     else if (h.indexOf('wa.me') > -1) send('clic-whatsapp', 'WhatsApp');
     else if (h.indexOf('mailto:') === 0) send('clic-email', 'Écrire au garage');
-    else if (h.indexOf('maps/place/Maisse') > -1) send('clic-gare-maisse', 'Gare de Maisse (RER D)');
     else if (h.indexOf('google.com/maps') > -1) send('clic-itineraire', 'Itinéraire');
     else if (h.indexOf('leboncoin') > -1) send('annonce-' + model, 'Annonce ' + model);
     else if (h.indexOf('instagram.com') > -1) send('clic-instagram', 'Instagram');
