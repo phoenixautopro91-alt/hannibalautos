@@ -169,7 +169,22 @@ button.btn{font-family:inherit;cursor:pointer}
 .mapcard.real{padding:0;display:block}
 .mapcard.real iframe{position:absolute;inset:0;width:100%;height:100%;border:0;filter:invert(92%) hue-rotate(180deg) saturate(.55) brightness(.92) contrast(.95)}
 .mapcard.real::after{content:"";position:absolute;inset:0;pointer-events:none;background:rgba(138,61,110,.16);mix-blend-mode:multiply}
-.mapcard.real .btn{position:absolute;left:16px;bottom:16px;z-index:2}
+.mapcard.real .mapbtns{position:absolute;left:16px;right:16px;bottom:16px;z-index:2;display:flex;flex-wrap:wrap;gap:10px;pointer-events:none}
+.mapcard.real .mapbtns .btn{pointer-events:auto}
+.btn-avis .star{flex:none;color:var(--gold);transition:transform .6s var(--ease);animation:starglow 7s ease-in-out infinite}
+.btn-avis:hover .star{transform:rotate(72deg) scale(1.15)}
+@keyframes starglow{0%,82%,100%{filter:none}90%{filter:drop-shadow(0 0 6px rgba(232,195,115,.85))}}
+@media (prefers-reduced-motion:reduce){
+  .btn-avis .star{animation:none}
+}
+@media (max-width:760px){
+  .mapcard.real .mapbtns{left:12px;right:12px;bottom:12px;gap:8px}
+  .mapcard.real .mapbtns .btn{flex:1 1 auto;padding:13px 12px;font-size:15.5px;gap:8px;white-space:nowrap}
+}
+@media (max-width:380px){
+  .mapcard.real .mapbtns .btn{padding:12px 9px;font-size:14.5px;gap:6px}
+  .btn-avis .star{width:16px;height:16px}
+}
 footer{padding-block:24px 40px}
 .foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;color:var(--muted);font-size:15px}
 .foot img{width:96px;transition:transform .6s var(--ease)}
@@ -262,6 +277,14 @@ footer{padding-block:24px 40px}
 .car .bar::after{width:45%;opacity:.6;background:linear-gradient(90deg,transparent,var(--mauve-soft),var(--gold-soft),transparent);animation:work 14s ease-in-out infinite}
 @media (max-width:760px){
   .car.prep .mlogo{width:56px;height:56px;top:auto;bottom:14px;margin:0 0 0 -28px}
+}
+@media (min-width:761px) and (max-width:940px){
+  header .brand .wordmark{display:none}
+}
+@media (min-width:761px) and (max-width:860px){
+  .hbar{column-gap:14px}
+  nav.menu{gap:18px;padding-inline:16px}
+  .hcall{padding-inline:16px;font-size:16px}
 }
 .mbar{display:none}
 @media (max-width:760px){
@@ -1016,7 +1039,7 @@ html[data-theme="light"] .head h2::after,html[data-theme="light"] .mech h2::afte
         </div>
         <div class="mapcard real" data-r="zoom" style="--d:200ms">
           <iframe src="https://maps.google.com/maps?q=Hannibal%20Autos%2017%20rue%20de%20la%20Fert%C3%A9%20Alais%2091720%20Maisse&amp;z=15&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Carte : Hannibal Autos, 17 rue de la Ferté Alais à Maisse"></iframe>
-          <a class="btn btn-line" href="https://www.google.com/maps/search/?api=1&amp;query=Hannibal+Autos+17+rue+de+la+Fert%C3%A9+Alais+91720+Maisse" target="_blank" rel="noopener">Itinéraire</a>
+          <div class="mapbtns"><a class="btn btn-line" href="https://www.google.com/maps/search/?api=1&amp;query=Hannibal+Autos+17+rue+de+la+Fert%C3%A9+Alais+91720+Maisse" target="_blank" rel="noopener">Itinéraire</a><a class="btn btn-line btn-avis" href="https://g.page/r/CZAzopE9DOvUEBE/review" target="_blank" rel="noopener"><svg class="star" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.6l2.9 5.9 6.5.9-4.7 4.6 1.1 6.5L12 17.4l-5.8 3.1 1.1-6.5-4.7-4.6 6.5-.9z"/></svg>Laisser un avis</a></div>
         </div>
       </div>
     </div>
@@ -1493,6 +1516,7 @@ html[data-theme="light"] .head h2::after,html[data-theme="light"] .mech h2::afte
     if (h.indexOf('tel:') === 0) send('clic-appeler', 'Appeler');
     else if (h.indexOf('wa.me') > -1) send('clic-whatsapp', 'WhatsApp');
     else if (h.indexOf('mailto:') === 0) send('clic-email', 'Écrire au garage');
+    else if (h.indexOf('g.page/r/') > -1) send('clic-avis-google', 'Laisser un avis Google');
     else if (h.indexOf('google.com/maps') > -1) send('clic-itineraire', 'Itinéraire');
     else if (h.indexOf('leboncoin') > -1) send('annonce-' + model, 'Annonce ' + model);
     else if (h.indexOf('instagram.com') > -1) send('clic-instagram', 'Instagram');
