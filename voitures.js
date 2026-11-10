@@ -23,7 +23,7 @@
   S'il manque une rubrique, elle ne s'affiche simplement pas.
 */
 window.VOITURES = [
-  { statut: "vente", marque: "Dacia", modele: "Logan", annee: 2017, km: 99871, carburant: "Essence", boite: "Manuelle", prix: 5680, lien: "https://www.leboncoin.fr/ad/voitures/3297364306",
+  { statut: "vente", marque: "Dacia", modele: "Logan", annee: 2017, km: 99871, carburant: "Essence", boite: "Manuelle", prix: 4980, lien: "https://www.leboncoin.fr/ad/voitures/3297364306",
     version: "1.0 SCe 75 ch Ambiance",
     texte: "Berline fiable et économique, avec un faible kilométrage pour son année. Grand coffre, 5 vraies places et un entretien simple et peu coûteux. Idéale pour un jeune conducteur ou comme voiture du quotidien.",
     atouts: ["Crit'Air 1 : accès aux zones à faibles émissions (ZFE)", "4 CV fiscaux : carte grise et assurance moins chères", "Moteur essence 1.0 SCe simple et sobre", "Grand coffre et 5 vraies places", "Contrôle technique valide"],
