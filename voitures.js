@@ -43,7 +43,12 @@ window.VOITURES = [
     atouts: ["Boîte automatique pilotée 6 rapports", "Diesel e-HDi avec Stop & Start", "Grand pare-brise panoramique", "Jantes en alliage", "Crit'Air 2"],
     infos: { "1re mise en circulation": "02/2013", "Puissance": "110 ch · 6 CV", "Carrosserie": "Monospace · 5 portes · 5 places", "Couleur": "Gris argent", "Norme": "Euro 5 · Crit'Air 2" },
     photos: ["img/voitures/c4picasso-01.jpg", "img/voitures/c4picasso-02.jpg", "img/voitures/c4picasso-03.jpg", "img/voitures/c4picasso-04.jpg", "img/voitures/c4picasso-05.jpg", "img/voitures/c4picasso-06.jpg", "img/voitures/c4picasso-07.jpg", "img/voitures/c4picasso-09.jpg", "img/voitures/c4picasso-10.jpg", "img/voitures/c4picasso-11.jpg", "img/voitures/c4picasso-12.jpg"] },
-  { statut: "preparation", marque: "Peugeot",    modele: "107" },
-  { statut: "preparation", marque: "Renault",    modele: "Twingo III" },
-  { statut: "preparation", marque: "Alfa Romeo", modele: "MiTo" }
+  { statut: "vente", marque: "Renault", modele: "Twingo III", annee: 2017, km: 137875, carburant: "Essence", boite: "Manuelle", prix: 5280,
+    version: "1.0 SCe 70 ch Zen",
+    texte: "Petite citadine 5 portes, maniable et économique, parfaite pour la ville. Moteur essence 1.0 SCe sobre, 4 CV fiscaux et Crit'Air 1. Freinage, éclairage et sonde lambda remis en état dans notre atelier.",
+    travaux: ["Frein à main réparé", "Feux de croisement réparés", "Pare-chocs arrière remis en état", "Défaut de sonde lambda réparé", "Contrôle technique OK"],
+    atouts: ["Crit'Air 1 : accès aux zones à faibles émissions (ZFE)", "4 CV fiscaux : carte grise et assurance moins chères", "Très maniable : idéale en ville et pour se garer", "Moteur essence 1.0 SCe simple et sobre", "5 portes"],
+    infos: { "1re mise en circulation": "02/2017", "Puissance": "70 ch · 4 CV", "Carrosserie": "Citadine · 5 portes · 4 places", "Couleur": "Gris", "Sellerie": "Tissu", "Norme": "Euro 6 · Crit'Air 1", "Contrôle technique": "OK" },
+    photos: ["img/voitures/twingo-01.jpg", "img/voitures/twingo-02.jpg", "img/voitures/twingo-03.jpg", "img/voitures/twingo-04.jpg", "img/voitures/twingo-05.jpg", "img/voitures/twingo-06.jpg", "img/voitures/twingo-07.jpg", "img/voitures/twingo-08.jpg", "img/voitures/twingo-09.jpg", "img/voitures/twingo-10.jpg", "img/voitures/twingo-11.jpg", "img/voitures/twingo-12.jpg"] },
+  { statut: "preparation", marque: "Peugeot",    modele: "107" }
 ];
