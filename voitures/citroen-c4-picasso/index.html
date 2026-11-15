@@ -557,6 +557,13 @@ html.fiche-on{overflow:hidden}
 .fprice{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
 .fprice b{font:800 34px var(--display);color:var(--gold-soft);letter-spacing:.5px}
 .fprice span{font-size:13px;color:var(--muted)}
+.fshare{margin-left:auto;align-self:center;display:inline-flex;align-items:center;gap:7px;min-height:40px;padding:8px 15px;border-radius:22px;border:1px solid rgba(232,195,115,.45);background:rgba(30,19,27,.35);color:var(--gold-soft);font:700 14px var(--body);letter-spacing:.2px;white-space:nowrap;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:background .35s,color .35s,border-color .35s,transform .5s var(--ease)}
+.fshare:hover,.fshare:focus-visible{background:rgba(138,61,110,.9);color:#fff;border-color:var(--gold-soft)}
+.fshare:active{transform:scale(.97)}
+.fshare svg{flex:none}
+.fshare.ok{background:rgba(111,175,138,.16);border-color:rgba(111,175,138,.7);color:#9FD3B4}
+.fshare.ok svg{animation:fPop .6s var(--ease) both}
+@keyframes fPop{from{transform:scale(.4);opacity:0}to{transform:none;opacity:1}}
 .fcta{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .fcta .btn{padding:13px 12px;font-size:15.5px;gap:8px}
 .fcta .flbc{grid-column:1/-1}
@@ -657,8 +664,12 @@ html.fiche-on{overflow:hidden}
 @media (min-width:861px){
   .fcta .btn .sm{display:none}
 }
+@media (max-width:520px){
+  .fshare{margin-left:0}
+}
 @media (max-width:360px){
   .fcta .btn svg{display:none}
+  .fshare{padding:8px 12px;font-size:13.5px}
 }
 @media (prefers-reduced-motion:reduce){
   .fiche,.fbg,.lbx,.fmain img,.lbx img{transition:none!important}
@@ -834,6 +845,9 @@ html[data-theme="light"] .flist li:hover{background:rgba(115,80,150,.05)}
 html[data-theme="light"] .fnote{background:rgba(115,80,150,.07);border-color:rgba(115,80,150,.2)}
 html[data-theme="light"] .fzoom{background:rgba(251,247,238,.92);color:#735096;border-color:rgba(115,80,150,.42)}
 html[data-theme="light"] .fzoom:hover,html[data-theme="light"] .fzoom:focus-visible{background:#735096;color:#FCF5E3}
+html[data-theme="light"] .fshare{background:#FBF7EE;color:#735096;border:1.5px solid rgba(115,80,150,.6)}
+html[data-theme="light"] .fshare:hover,html[data-theme="light"] .fshare:focus-visible{background:#735096;color:#FCF5E3;border-color:#735096}
+html[data-theme="light"] .fshare.ok{background:#E4F1E8;color:#2E6B47;border-color:#4E9A6C}
 html[data-theme="light"] .car.sale .sphoto::after{background:linear-gradient(180deg,transparent 60%,rgba(42,26,58,.3))}
 html[data-theme="light"] .lbx{background:#EEE6D6}
 html[data-theme="light"] .lhint{color:rgba(42,26,58,.6)}
@@ -939,13 +953,14 @@ html[data-theme="light"] .head h2::after,html[data-theme="light"] .mech h2::afte
 <script>
 (function(){
   var d = document.documentElement, btn = document.getElementById('thm'), KEY = 'hb-theme';
+  var RACINE = document.baseURI; // gardée au chargement : l'adresse change en /voitures/<voiture>/ quand une fiche s'ouvre
   
   // logos : blanc en mode sombre, prune foncé en mode clair (adresses absolues : marche aussi sur /voitures/<voiture>/)
   function logos(th){
     [].forEach.call(document.querySelectorAll('img[data-lt]'), function(im){
       if (!im.getAttribute('data-dk')) im.setAttribute('data-dk', im.getAttribute('src'));
       var p = im.getAttribute(th === 'light' ? 'data-lt' : 'data-dk');
-      try { p = new URL(p, document.baseURI).href; } catch(e){}
+      try { p = new URL(p, RACINE).href; } catch(e){}
       if (im.src !== p) im.src = p;
     });
   }
@@ -965,7 +980,7 @@ html[data-theme="light"] .head h2::after,html[data-theme="light"] .mech h2::afte
     mark(); new MutationObserver(mark).observe(m, {subtree:true, attributes:true, attributeFilter:['class'], childList:true}); })();
   document.addEventListener('DOMContentLoaded', function(){ logos(d.getAttribute('data-theme')); });
   // les logos de l'autre mode sont chargés en avance (changement instantané)
-  addEventListener('load', function(){ setTimeout(function(){ [].forEach.call(document.querySelectorAll('img[data-lt]'), function(im){ new Image().src = new URL(im.getAttribute(d.getAttribute('data-theme') === 'light' ? 'data-dk' : 'data-lt') || im.getAttribute('src'), document.baseURI).href; }); }, 1500); });
+  addEventListener('load', function(){ setTimeout(function(){ [].forEach.call(document.querySelectorAll('img[data-lt]'), function(im){ new Image().src = new URL(im.getAttribute(d.getAttribute('data-theme') === 'light' ? 'data-dk' : 'data-lt') || im.getAttribute('src'), RACINE).href; }); }, 1500); });
   if (!btn) return;
   btn.addEventListener('click', function(){
     var nt = d.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
@@ -1278,6 +1293,8 @@ html[data-theme="light"] .head h2::after,html[data-theme="light"] .mech h2::afte
     out: ico('<path d="M7 17L17 7M9 7h8v8"/>', 16),
     ok: ico('<circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.7 2.7L16 9.8"/>', 19),
     dot: ico('<path d="M12 3l2.6 5.6 6.1.7-4.5 4.2 1.2 6L12 16.5 6.6 19.5l1.2-6-4.5-4.2 6.1-.7z"/>', 18),
+    share: ico('<circle cx="18" cy="5" r="2.6"/><circle cx="6" cy="12" r="2.6"/><circle cx="18" cy="19" r="2.6"/><path d="M8.3 10.8l7.4-4.3M8.3 13.2l7.4 4.3"/>', 17),
+    copied: ico('<path d="M5 12.5l4.5 4.5L19 7.5"/>', 17),
     shop: ico('<path d="M3 10l1.5-5h15L21 10M4 10v10h16V10M9 20v-6h6v6M3 10h18"/>', 19)
   };
   var SPECS = [
@@ -1295,6 +1312,33 @@ html[data-theme="light"] .head h2::after,html[data-theme="light"] .mech h2::afte
 
   var cur = null, ph = [], pi = 0, opener = null, pushed = false, tHide = null;
 
+  /* ---------- partager l'annonce : copie le lien de la page de la voiture ---------- */
+  var SHARE_BTN = '<button type="button" class="fshare" aria-live="polite">' + I.share + 'Partager l\'annonce</button>', tShare = null;
+  function lienVoiture(v){ return 'https://hannibalautos.fr/voitures/' + slug(v.marque + ' ' + v.modele) + '/'; }
+  function copier(txt){
+    function vieux(){ // ancienne méthode (vieux téléphones, page non sécurisée)
+      var ta = document.createElement('textarea'); ta.value = txt; ta.setAttribute('readonly', '');
+      ta.style.cssText = 'position:fixed;top:0;left:0;width:1px;height:1px;opacity:0;font-size:16px';
+      box.appendChild(ta); ta.focus({preventScroll: true}); ta.select(); ta.setSelectionRange(0, txt.length);
+      var ok = false; try { ok = document.execCommand('copy'); } catch(e){}
+      box.removeChild(ta); return ok;
+    }
+    if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(txt).then(function(){ return true; }, function(){ return vieux(); });
+    return Promise.resolve(vieux());
+  }
+  function partager(b){
+    var v = V[cur]; if (!v) return;
+    var url = lienVoiture(v);
+    copier(url).then(function(ok){
+      clearTimeout(tShare);
+      if (ok) { b.classList.add('ok'); b.innerHTML = I.copied + 'Lien copié'; }
+      else { window.prompt('Copiez ce lien :', url); }
+      if (b.focus) b.focus({preventScroll: true});
+      tShare = setTimeout(function(){ b.classList.remove('ok'); b.innerHTML = I.share + 'Partager l\'annonce'; }, 2600);
+    });
+    if (window.hbStat) window.hbStat('partage-' + slug(v.marque + ' ' + v.modele), 'Partage ' + v.marque + ' ' + v.modele);
+  }
+
   function render(v){
     var nom = v.marque + ' ' + v.modele, prix = v.prix ? nb(v.prix) + ' €' : '';
     var msg = 'Bonjour, je suis intéressé(e) par la ' + nom + (prix ? ' à ' + prix : '') + ' vue sur hannibalautos.fr';
@@ -1310,7 +1354,7 @@ html[data-theme="light"] .head h2::after,html[data-theme="light"] .mech h2::afte
       '<div class="finfo">' + (f ? '<img class="mlogo" src="' + abs('img/marques/' + f + '.svg') + '" alt="" aria-hidden="true">' : '') +
         '<div class="fhead"><div class="brandn">' + esc(v.marque) + '</div><h3 class="model" id="fTitle">' + esc(v.modele) + '</h3>' + (v.version ? '<div class="fver">' + esc(v.version) + '</div>' : '') + '</div>' +
         (specs ? '<div class="specs">' + specs + '</div>' : '') +
-        (prix ? '<div class="fprice"><b>' + prix + '</b><span>TTC · prix garage</span></div>' : '') +
+        '<div class="fprice">' + (prix ? '<b>' + prix + '</b><span>TTC · prix garage</span>' : '') + SHARE_BTN + '</div>' +
         '<div class="fcta"><a class="btn btn-gold" href="tel:' + TEL + '">' + I.tel + '<span class="lg">Appeler le garage</span><span class="sm">Appeler</span></a>' +
           '<a class="btn btn-wa" href="https://wa.me/' + WA + '?text=' + encodeURIComponent(msg) + '" target="_blank" rel="noopener">' + I.wa + 'WhatsApp</a>' +
           (v.lien ? '<a class="btn btn-line flbc" href="' + esc(v.lien) + '" target="_blank" rel="noopener"><span class="lg">Voir l\'annonce sur Leboncoin</span><span class="sm">Leboncoin</span>' + I.out + '</a>'
@@ -1382,6 +1426,7 @@ html[data-theme="light"] .head h2::after,html[data-theme="light"] .mech h2::afte
   box.addEventListener('click', function(e){
     var t = e.target;
     if (t.closest('[data-close]')) return close();
+    var sh = t.closest('.fshare'); if (sh) return partager(sh);
     if (t.closest('.fnav')) return show(pi + (t.closest('.prev') ? -1 : 1));
     var th = t.closest('.fthumb'); if (th) return show(+th.getAttribute('data-i'));
     if (t.closest('.fzoom') || t.closest('.fmain .fph')) return lopen();
